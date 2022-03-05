@@ -1,6 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+//
+#include <stdio.h>
+#include "Common.h"
+#include "ForthWordExtensions.h"
+#include "ForthAtomicExtensions.h"
+//
 // Pico Forth Port by Dan Wahl 2/9/2022. Thank you Leif Bruder where ever you are.
 // May work easily with other boards supported by Arduino IDE, but not tested.
 // Probably the DUE and Nucleo Boards will work, MEGA etc may not have enough resources.
@@ -20,44 +26,11 @@ extern "C" {
 * unless such conditions are required by law.
 *
 *******************************************************************************/
-/* NOT a single include here; I'll define everything on the fly to keep
+/* NOT (not true)a single include here; I'll define everything on the fly to keep
 * dependencies as low as possible. In this file, the only C standard functions
 * used are getchar, putchar and the EOF value. Forget about EOF DJW */
 /* Base cell data types. Use short/long on most systems for 16 bit cells. */
 /* Experiment here if necessary. */
-#define CELL_BASE_TYPE short
-#define DOUBLE_CELL_BASE_TYPE long
-
-/* Basic memory configuration */
-#define MEM_SIZE 65536 /* main memory size in bytes */
-#define STACK_SIZE 192 /* cells reserved for the stack */
-#define RSTACK_SIZE 64 /* cells reserved for the return stack */
-#define INPUT_LINE_SIZE 32 /* bytes reserved for the WORD buffer */
-
-/******************************************************************************/
-/* Our basic data types */
-typedef CELL_BASE_TYPE scell;
-typedef DOUBLE_CELL_BASE_TYPE dscell;
-typedef unsigned CELL_BASE_TYPE cell;
-typedef unsigned DOUBLE_CELL_BASE_TYPE dcell;
-typedef unsigned char byte;
-#define CELL_SIZE sizeof(cell)
-#define DCELL_SIZE sizeof(dcell)
-
-/* A few constants that describe the memory layout of this implementation */
-#define LATEST_POSITION INPUT_LINE_SIZE
-#define HERE_POSITION (LATEST_POSITION + CELL_SIZE)
-#define BASE_POSITION (HERE_POSITION + CELL_SIZE)
-#define STATE_POSITION (BASE_POSITION + CELL_SIZE)
-#define STACK_POSITION (STATE_POSITION + CELL_SIZE)
-#define RSTACK_POSITION (STACK_POSITION + STACK_SIZE * CELL_SIZE)
-#define HERE_START (RSTACK_POSITION + RSTACK_SIZE * CELL_SIZE)
-#define MAX_BUILTIN_ID 71
-
-/* Flags and masks for the dictionary */
-#define FLAG_IMMEDIATE 0x80
-#define FLAG_HIDDEN 0x40
-#define MASK_NAMELENGTH 0x1F
 
 /* This is the main memory to be used by this Forth. There will be no malloc
 * in this file. */
@@ -81,7 +54,9 @@ cell lastIp;
 cell quit_address;
 cell commandAddress;
 cell maxBuiltinAddress;
-
+//
+builtin builtins[MAX_BUILTIN_ID] = { 0 };
+//
 /* The TIB, stored outside the main memory array for now */
 char lineBuffer[128];
 int charsInLineBuffer = 0;
@@ -90,15 +65,10 @@ int positionInLineBuffer = 0;
 /* A basic setup for defining builtins. This Forth uses impossibly low
 * adresses as IDs for the builtins so we can define builtins as
 * standard C functions. Slower but easier to port. */
-#define BUILTIN(id, name, c_name, flags) const int c_name##_id=id; const char* c_name##_name=name; const byte c_name##_flags=flags; void c_name()
-#define ADD_BUILTIN(c_name) addBuiltin(c_name##_id, c_name##_name, c_name##_flags, c_name)
-typedef void(*builtin)();
-builtin builtins[MAX_BUILTIN_ID] = { 0 };
-
 /* This is our initialization script containing all the words we define in
 * Forth for convenience. Focus is on simplicity, not speed. Partly copied from
 * Jonesforth (see top of file). */
-#include "ForthWordExtensions.h"
+//
 char *initscript_pos;
 const char *initScript =
     ": DECIMAL 10 BASE ! ;\n"
@@ -180,9 +150,10 @@ const char *initScript =
     ": MAX 2DUP > IF DROP ELSE NIP THEN ;\n"
     ": D0= OR 0= ;\n"
     ": DMIN 2OVER 2OVER D< IF 2DROP ELSE 2NIP THEN ;\n"
-    ": DMAX 2OVER 2OVER D> IF 2DROP ELSE 2NIP THEN ;\n"
-    ForthExtendedWords
-    ;
+    ": DMAX 2OVER 2OVER D> IF 2DROP ELSE 2NIP THEN ;\n" 
+    ForthExtensions_0 
+    ForthExtensions_1 
+    ForthExtensions_2 ;
   
 /******************************************************************************/
 // some of the work of dan
@@ -251,8 +222,7 @@ void tell(const char *str)
     while (*str)
         putkey(*str++);
 }
-
-#include <stdio.h>
+//
 void tellnumber(cell n){
   char buf[16];
   sprintf(buf, "%d\n",n);
@@ -1145,7 +1115,9 @@ int Forth(void)
     ADD_BUILTIN(dswap);
     ADD_BUILTIN(dover);
     ADD_BUILTIN(drot);
-
+    //
+    MoreBuiltInAtomics();
+    //
     maxBuiltinAddress = (*here) - 1;
 
   

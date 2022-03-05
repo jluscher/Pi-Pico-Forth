@@ -1,0 +1,48 @@
+https://github.com/djw1wahl/Pi-Pico-Forth
+
+
+            putkey seems to work without issue using putchar()
+putkey 189
+    tell 237
+    emit 508
+    quit 687, 688
+    
+    
+            serial_getchar does return with keystroke and EOF
+            EOF was found to be -1 in the cygwin compilation
+serial_getchar 194
+    llkey 201
+    
+    
+            serial_available may be useful?? for generating EOF?
+            nope not needed serial_getchar DOES return EOF as -1
+            but since serial_getchar is derived from Serial.read()
+            it does not block without serial_available()
+            AND therefore blocking in llkey never issues EOF
+            
+            AND this is true even for the script which never returns EOF
+            So whats all this EOF shit anyway?
+            
+serial_available 195
+    
+    
+            llkey tries to handle both keys and the init script, bull shit idea
+            
+llkey 198
+    getkey 224
+    
+    
+            suposedly getkey can return an EOF
+            but - it returns lineBuffer[0] which is only written when llkey does not
+            return EOF,... ?
+            only returns the ':' or '\n' or '\r'
+            hum,..
+            
+getkey 214
+    readWord 349, 355, 365
+    key 507
+    
+keyWaiting 206
+    getkey 218
+    key_p 521
+    quit 725
