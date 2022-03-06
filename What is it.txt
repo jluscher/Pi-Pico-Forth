@@ -1,8 +1,6 @@
 For a long time I had been searching for a simple FORTH written in C.
 Then I found this version, it is very minimal but seems to function.
-There are NO additions specific to the PICO like PIO control or
-anything from the PICO SDK. It is just a starting point for further 
-development. Watch this space for additions.
+Watch this space for additions.
 
 Upon invocation type <gpio> cr for a pin(s) state report.
 
