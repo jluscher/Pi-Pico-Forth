@@ -22,4 +22,4 @@ Earle F. Philhower III
 Install the files in a folder, and compile the pf.ino ++ others.
 Good luck.
 
-Upon invocation type <gpio> cr for a pin(s) state report.
+Upon invocation type 'gpio' return for a pin(s) state report.
