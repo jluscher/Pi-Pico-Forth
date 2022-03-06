@@ -4,6 +4,8 @@ There are NO additions specific to the PICO like PIO control or
 anything from the PICO SDK. It is just a starting point for further 
 development. Watch this space for additions.
 
+Upon invocation type <gpio> cr for a pin(s) state report.
+
 Should you try this out and make improvements please inform me
 at contact@eclektronix.com which is not my GITHUB registered email.
 

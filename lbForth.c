@@ -151,9 +151,7 @@ const char *initScript =
     ": D0= OR 0= ;\n"
     ": DMIN 2OVER 2OVER D< IF 2DROP ELSE 2NIP THEN ;\n"
     ": DMAX 2OVER 2OVER D> IF 2DROP ELSE 2NIP THEN ;\n" 
-    ForthExtensions_0 
-    ForthExtensions_1 
-    ForthExtensions_2 ;
+    ForthExtensions_Hardware_GPIO ;
   
 /******************************************************************************/
 // some of the work of dan

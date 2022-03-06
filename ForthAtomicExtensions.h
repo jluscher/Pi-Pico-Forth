@@ -20,3 +20,7 @@ void MoreBuiltInAtomics(void);
 cell f_gpio_get_dir(cell);
 cell f_gpio_get_drive_strength(cell);
 cell f_gpio_get_slew_rate(cell);
+cell f_gpio_is_pulled_up(cell);
+cell f_gpio_is_pulled_down(cell);
+cell f_gpio_is_input_hysteresis_enabled(cell);
+cell f_gpio_get(cell); 
