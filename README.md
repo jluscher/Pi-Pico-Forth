@@ -6,3 +6,14 @@ May also work on Arduino DUE, and the STM Nucleo boards, but not tested.
 All as free as the air that passes our lips.
 No warranty expressed or implied.
 No batteries required.
+
+Note: don't forget to add the following link to the File-Preferences-Additional Board Manager
+https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+
+And: Type Pico into the Tools-Board Manager, Select the Raspberru Pi Pico/RP2040 by
+Earle F. Philhower III
+
+Install the files in a folder, and compile the pf.ino ++ others.
+Good luck.
+
+
