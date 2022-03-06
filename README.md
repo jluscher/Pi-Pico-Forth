@@ -2,7 +2,13 @@
 A port of Forth (simple) written in C for Arduino IDE. 
 (Originally written by Leif Bruder Release 2014-04-04)
 
-May also work on Arduino DUE, and the STM Nucleo boards, but not tested.
+For a long time I had been searching for a simple FORTH written in C.
+Then I found this version, it is very minimal but seems to function.
+Watch this space for additions.
+
+Should you try this out and make improvements please inform me
+at contact@eclektronix.com which is not my GITHUB registered email.
+
 All as free as the air that passes our lips.
 No warranty expressed or implied.
 No batteries required.
@@ -16,4 +22,4 @@ Earle F. Philhower III
 Install the files in a folder, and compile the pf.ino ++ others.
 Good luck.
 
-
+Upon invocation type <gpio> cr for a pin(s) state report.
