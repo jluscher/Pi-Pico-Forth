@@ -20,5 +20,10 @@
 ": gpio_hists? gpio_histq if .\" Y \" exit then .\" N \" ;\n" \
 ": gpio_hists 30 0 do I gpio_hists? 2 spaces loop .\" [Yes/No](Histo) \" cr ;\n"\
 ": gpio_vals? gpio_valq if .\" H \" exit then .\" L \" ;\n" \
-": gpio_vals 30 0 do I dup gpio_vals? 2 spaces loop .\" [High/Low](Level) \" cr ;\n"\
-": gpio gpio_lbls gpio_vals gpio_dirs gpio_amps gpio_slews gpio_pulls gpio_hists ;\n" 
+": gpio_vals 30 0 do I gpio_vals? 2 spaces loop .\" [High/Low](Level) \" cr ;\n" \
+": gpio gpio_lbls gpio_vals gpio_dirs gpio_amps gpio_slews gpio_pulls gpio_hists ;\n" \
+": gpio_sio_init 30 0 do I gpio_sio loop ;\n" \
+": gpio_dirs_out 30 0 do I -1 gpio_setdir loop ;\n" \
+": gpio_dirs_in  30 0 do I  0 gpio_setdir loop ;\n" \
+": gpio_set_bits 30 0 do I -1 gpio_putbit loop ;\n" \
+": gpio_clr_bits 30 0 do I  0 gpio_putbit loop ;\n" 
