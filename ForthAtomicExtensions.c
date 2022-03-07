@@ -66,8 +66,15 @@ BUILTIN(79, "GPIO_SETDIR", gpio_setdir, 0)
 BUILTIN(80, "GPIO_PUTBIT", gpio_putbit, 0)
 {
     cell state  = pop();
-    cell gpio = pop();
+    cell gpio   = pop();
     f_gpio_put(gpio, state);
+}
+//
+BUILTIN(81, "GPIO_DRIVE", gpio_drive, 0)
+{
+    cell drive  = pop();
+    cell gpio   = pop();
+    f_gpio_set_drive_strength(gpio, drive);
 }
 //
 void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to this. See top of Common.h
@@ -81,6 +88,7 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(gpio_sio);   
   ADD_BUILTIN(gpio_setdir);
   ADD_BUILTIN(gpio_putbit);  
+  ADD_BUILTIN(gpio_drive);  
 }
 //
 cell f_gpio_get_dir(cell gpio){
@@ -121,4 +129,9 @@ void f_gpio_set_dir(cell gpio, cell dir){ // -1 == Out, 0 == In
 //
 void f_gpio_put(cell gpio, cell state){
   gpio_put(gpio, state);
+}
+//
+void f_gpio_set_drive_strength (cell gpio, cell drive){
+  drive &= 0x03;
+  gpio_set_drive_strength(gpio, drive);
 }

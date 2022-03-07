@@ -27,3 +27,4 @@ cell f_gpio_get(cell);
 void f_gpio_init(cell);
 void f_gpio_set_dir(cell, cell);
 void f_gpio_put(cell, cell);
+void f_gpio_set_drive_strength (cell, cell);
