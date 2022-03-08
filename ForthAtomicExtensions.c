@@ -1,6 +1,8 @@
 #include "ForthAtomicExtensions.h"
 #include <stdio.h>
 //
+void putkey(char);
+//
 BUILTIN(71, "GPIO_DIR", gpio_dir, 0)
 {
     cell gpio = pop();
@@ -15,7 +17,7 @@ BUILTIN(72, "GPIO_AMP", gpio_amp, 0)
     push(amps);
 }
 //
-BUILTIN(73, "GPIO_SLEW", gpio_slew, 0)
+BUILTIN(73, "GPIO_GETSLEW", gpio_getslew, 0)
 {
     cell gpio = pop();
     cell slew = f_gpio_get_slew_rate(gpio);
@@ -77,10 +79,55 @@ BUILTIN(81, "GPIO_DRIVE", gpio_drive, 0)
     f_gpio_set_drive_strength(gpio, drive);
 }
 //
+BUILTIN(82, "GPIO_SETSLEW", gpio_setslew, 0)
+{
+    cell slew   = pop();
+    cell gpio   = pop();
+    f_gpio_set_slew_rate(gpio, slew);
+}
+//
+BUILTIN(83, "CLS",      cls,            0)
+{ 
+                    // (char)27 == ESC{ape}
+  putkey((char)27); // clear screen
+  putkey('['     );
+  putkey('2'     );
+  putkey('J'     );  
+  putkey((char)27); // home cursor
+  putkey('['     );
+  putkey('f'     );   
+  putkey('\n'    );   
+}
+//
+BUILTIN(84, "GPIO_NOPULL", gpio_nopull, 0)
+{
+  cell gpio   = pop();
+  f_gpio_disable_pulls(gpio);
+}
+//
+BUILTIN(85, "GPIO_PULLUP", gpio_pullup, 0)
+{
+  cell gpio   = pop();
+  f_gpio_pull_up(gpio);
+}
+//
+BUILTIN(86, "GPIO_PULLDN", gpio_pulldn, 0)
+{
+  cell gpio   = pop();
+  f_gpio_pull_down(gpio);
+}
+//
+BUILTIN(87, "GPIO_PUTHYSTO", gpio_puthysto, 0)
+{
+  cell hysto  = pop();
+  cell gpio   = pop();
+  f_gpio_set_input_hysteresis_enabled(gpio, hysto);
+}
+//
 void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to this. See top of Common.h
   ADD_BUILTIN(gpio_dir);
   ADD_BUILTIN(gpio_amp);
-  ADD_BUILTIN(gpio_slew);
+  ADD_BUILTIN(gpio_getslew);
   ADD_BUILTIN(gpio_puq);
   ADD_BUILTIN(gpio_pdq);
   ADD_BUILTIN(gpio_histq);  
@@ -89,6 +136,12 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(gpio_setdir);
   ADD_BUILTIN(gpio_putbit);  
   ADD_BUILTIN(gpio_drive);  
+  ADD_BUILTIN(gpio_setslew); 
+  ADD_BUILTIN(cls); 
+  ADD_BUILTIN(gpio_nopull);  
+  ADD_BUILTIN(gpio_pullup);  
+  ADD_BUILTIN(gpio_pulldn); 
+  ADD_BUILTIN(gpio_puthysto);
 }
 //
 cell f_gpio_get_dir(cell gpio){
@@ -134,4 +187,25 @@ void f_gpio_put(cell gpio, cell state){
 void f_gpio_set_drive_strength (cell gpio, cell drive){
   drive &= 0x03;
   gpio_set_drive_strength(gpio, drive);
+}
+//
+void f_gpio_set_slew_rate(cell gpio, cell slew){
+  slew &= 0x01;
+  gpio_set_slew_rate(gpio, slew);
+}
+//
+void f_gpio_disable_pulls(cell gpio){
+  gpio_disable_pulls(gpio);
+}
+//
+void f_gpio_pull_up(cell gpio){
+  gpio_pull_up(gpio);
+}
+//
+void f_gpio_pull_down(cell gpio){
+  gpio_pull_down(gpio);
+}
+//
+void f_gpio_set_input_hysteresis_enabled(cell gpio, cell hyst){
+  gpio_set_input_hysteresis_enabled(gpio, hyst);
 }

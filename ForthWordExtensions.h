@@ -12,7 +12,7 @@
 ": gpio_amps  30 0 do I gpio_amp gpio_ma spaces loop .\" [I](ma) \" cr ;\n" \
 ": gpio_speed dup  0= if drop .\" S \"  \
          else     1 = if      .\" F \" then then ;\n" \
-": gpio_slews 30 0 do I gpio_slew gpio_speed 2 spaces loop .\" [Fast/Slow](Slew) \" cr ;\n" \
+": gpio_slews 30 0 do I gpio_getslew gpio_speed 2 spaces loop .\" [Fast/Slow](Slew) \" cr ;\n" \
 ": gpio_up? gpio_puq if -1 else 0 then ;\n" \
 ": gpio_dn? gpio_pdq if -1 else 0 then ;\n" \
 ": gpio_pulls? dup gpio_up? if .\" U \" drop exit then gpio_dn? if .\" D \" else .\" N \" then ;\n" \
