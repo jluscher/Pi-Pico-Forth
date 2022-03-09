@@ -13,6 +13,7 @@ All as free as the air that passes our lips.
 No warranty expressed or implied.
 No batteries required.
 
+These files are setup for use in the Arduino IDE.
 Note: don't forget to add the following link to the File-Preferences-Additional Board Manager
 https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
 
