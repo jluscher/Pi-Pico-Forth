@@ -7,16 +7,16 @@ gpio_dir                (gpio - dir)    Returns direction setting of the gpio bi
 gpio_putdir             (gpio dir -)    Set Input or Output direction of bit. [0,1]  => [In,Out]
 gpio_amp                (gpio - amp)    Returns drive strength of the gpio bit. [0,1,2,3] => [2,4,8,12]ma
 gpio_drive              (gpio value -)  Set Output Drive Current. [0,1,2,3] => [2,4,8,12]ma
-gpio_getslew            (gpio - slew)   Returns slew rate of the gpio bit. [Slow,Fast] => [0,Nonzero]
+gpio_getslew            (gpio - slew)   Returns slew rate of the gpio bit. [Slow,Fast] => [0,1]
 gpio_setslew            (gpio slew -)   Set slew rate of the gpio bit. [Slow,Fast] => [0,1]
-gpio_puq                (gpio - bool)   Returns State of Pull Up on gpio bit. [0,nonzero] => [Not PulledUp, PulledUp]
-gpio_pdq                (gpio - bool)   Returns State of Pull Down on gpio bit. [0,nonzero] => [Not PulledDn, PulledDn]
+gpio_puq                (gpio - bool)   Returns State of Pull Up on gpio bit. [0,1] => [Not PulledUp, PulledUp]
+gpio_pdq                (gpio - bool)   Returns State of Pull Down on gpio bit. [0,1] => [Not PulledDn, PulledDn]
 gpio_nopull             (gpio - )       Turn off bit pull up/dn.
 gpio_pullup             (gpio - )       Turn on  bit pull up.
 gpio_pulldn             (gpio - )       Turn on  bit pull dn.
-gpio_histq              (gpio - bool)   Returns State of Histo on gpio bit. [0,nonzero] => [NoHisto, HistoOn]
-gpio_puthysto           (gpio hysto -)  Set Hysto state of bit. [0,nonzero] => [NoHisto, HistoOn]
-gpio_valq               (gpio - value)  Returns State of gpio bit. [0,Nonzero] 
+gpio_histq              (gpio - bool)   Returns State of Histo on gpio bit. [0,1] => [NoHisto, HistoOn]
+gpio_puthysto           (gpio hysto -)  Set Hysto state of bit. [0,1] => [NoHisto, HistoOn]
+gpio_valq               (gpio - value)  Returns State of gpio bit. [0,1] 
 gpio_putbit             (gpio value -)  Set Output bit. [0,1] 
 ---
 Words Using BuiltIns    {some not listed, which are components of those listed.}
