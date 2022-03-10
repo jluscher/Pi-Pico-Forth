@@ -1,6 +1,6 @@
 #include "pico/stdlib.h"
 //
-#define MAX_BUILTIN_ID 88
+#define MAX_BUILTIN_ID 92
 //
 #define CELL_BASE_TYPE short
 #define DOUBLE_CELL_BASE_TYPE long

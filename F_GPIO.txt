@@ -28,3 +28,10 @@ gpio_dirs_out           ( - )           Set all bits as Outputs.
 gpio_dirs_in            ( - )           Set all bits as Inputs.
 gpio_set_bits           ( - )           Set all bits to logic high.
 gpio_clr_bits           ( - )           Set all bits to logic low.
+---
+ADC Words
+---
+adc_doinit              ( - )           Prepare ADC ports
+adc_gpioinit            (port - )       Init port(0,1,2,3) 3 == CPU temperature
+adc_port                (port - )       Select port to read.
+adc_get                 ( - value)      Read the ADC

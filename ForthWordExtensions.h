@@ -23,7 +23,8 @@
 ": gpio_vals 30 0 do I gpio_vals? 2 spaces loop .\" [High/Low](Level) \" cr ;\n" \
 ": gpio gpio_lbls gpio_vals gpio_dirs gpio_amps gpio_slews gpio_pulls gpio_hists ;\n" \
 ": gpio_sio_init 30 0 do I gpio_sio loop ;\n" \
-": gpio_dirs_out 30 0 do I -1 gpio_setdir loop ;\n" \
-": gpio_dirs_in  30 0 do I  0 gpio_setdir loop ;\n" \
+": gpio_dirs_out 30 0 do I -1 gpio_putdir loop ;\n" \
+": gpio_dirs_in  30 0 do I  0 gpio_putdir loop ;\n" \
 ": gpio_set_bits 30 0 do I -1 gpio_putbit loop ;\n" \
-": gpio_clr_bits 30 0 do I  0 gpio_putbit loop ;\n" 
+": gpio_clr_bits 30 0 do I  0 gpio_putbit loop ;\n" \
+": raw_temp adc_doinit 3 adc_gpioinit 3 adc_port adc_get ;\n"

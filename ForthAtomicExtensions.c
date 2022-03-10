@@ -1,5 +1,7 @@
 #include "ForthAtomicExtensions.h"
 #include <stdio.h>
+#include "hardware/gpio.h"
+#include "hardware/adc.h"
 //
 void putkey(char);
 //
@@ -58,7 +60,7 @@ BUILTIN(78, "GPIO_SIO", gpio_sio, 0)
     f_gpio_init(gpio);
 }
 //
-BUILTIN(79, "GPIO_SETDIR", gpio_setdir, 0)
+BUILTIN(79, "GPIO_PUTDIR", gpio_putdir, 0)
 {
     cell dir  = pop();
     cell gpio = pop();
@@ -124,6 +126,28 @@ BUILTIN(87, "GPIO_PUTHYSTO", gpio_puthysto, 0)
   f_gpio_set_input_hysteresis_enabled(gpio, hysto);
 }
 //
+BUILTIN(88, "ADC_DOINIT", adc_doinit, 0)
+{
+  f_adc_init();
+}
+//
+BUILTIN(89, "ADC_GPIOINIT", adc_gpioinit, 0)
+{
+  cell gpio   = pop();
+  f_adc_gpio_init(gpio);
+}
+//
+BUILTIN(90, "ADC_PORT", adc_port, 0)
+{
+  cell port   = pop();
+  f_adc_select_input(port);
+}
+//
+BUILTIN(91, "ADC_GET", adc_get, 0)
+{
+  push(f_adc_read());
+}
+//
 void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to this. See top of Common.h
   ADD_BUILTIN(gpio_dir);
   ADD_BUILTIN(gpio_amp);
@@ -133,7 +157,7 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(gpio_histq);  
   ADD_BUILTIN(gpio_valq);   
   ADD_BUILTIN(gpio_sio);   
-  ADD_BUILTIN(gpio_setdir);
+  ADD_BUILTIN(gpio_putdir);
   ADD_BUILTIN(gpio_putbit);  
   ADD_BUILTIN(gpio_drive);  
   ADD_BUILTIN(gpio_setslew); 
@@ -142,6 +166,10 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(gpio_pullup);  
   ADD_BUILTIN(gpio_pulldn); 
   ADD_BUILTIN(gpio_puthysto);
+  ADD_BUILTIN(adc_doinit);
+  ADD_BUILTIN(adc_gpioinit);  
+  ADD_BUILTIN(adc_port);
+  ADD_BUILTIN(adc_get);  
 }
 //
 cell f_gpio_get_dir(cell gpio){
@@ -208,4 +236,23 @@ void f_gpio_pull_down(cell gpio){
 //
 void f_gpio_set_input_hysteresis_enabled(cell gpio, cell hyst){
   gpio_set_input_hysteresis_enabled(gpio, hyst);
+}
+//
+// ADC functions
+//
+void f_adc_init(void){
+  adc_init();
+}
+//
+void f_adc_gpio_init(cell gpio){
+  adc_gpio_init(gpio);
+}
+//
+void f_adc_select_input(cell adcport){
+  adcport &= 0x03;
+  adc_select_input(adcport);
+}
+//
+cell f_adc_read (void){
+  return(adc_read());
 }

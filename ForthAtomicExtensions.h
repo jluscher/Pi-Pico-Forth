@@ -33,3 +33,10 @@ void f_gpio_put(cell, cell);
 void f_gpio_set_drive_strength (cell, cell);
 void f_gpio_set_slew_rate(cell, cell);
 void f_gpio_set_input_hysteresis_enabled(cell, cell);
+//
+// ADC functions
+//
+void f_adc_init(void);
+void f_adc_gpio_init(cell);
+void f_adc_select_input(cell);
+cell f_adc_read(void);
