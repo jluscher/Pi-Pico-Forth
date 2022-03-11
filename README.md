@@ -2,6 +2,12 @@
 A port of Forth (simple) written in C for Arduino IDE. 
 (Originally written by Leif Bruder Release 2014-04-04)
 
+Leif Bruder's C version was based on JONESFORTH by
+Richard WM Jones as described at:
+https://rwmj.wordpress.com/2010/08/07/jonesforth-git-repository/
+ans supported by his 'tutorial' with FORTH in assembly at:
+https://github.com/nornagon/jonesforth/blob/master/jonesforth.S
+
 For a long time I had been searching for a simple FORTH written in C.
 Then I found this version, it is very minimal but seems to function.
 Watch this space for additions.
