@@ -1,7 +1,8 @@
-#include "ForthAtomicExtensions.h"
 #include <stdio.h>
 #include "hardware/gpio.h"
 #include "hardware/adc.h"
+#include "ForthAtomicExtensions.h"
+#include "BlocksViaRamSPI.h"
 //
 void putkey(char);
 //
@@ -148,6 +149,47 @@ BUILTIN(91, "ADC_GET", adc_get, 0)
   push(f_adc_read());
 }
 //
+BUILTIN(92, "SPI_ID_GET", spi_id_get, 0)
+{
+  unsigned int buf[4];
+  dcell adr = (dcell)buf;
+  f_flash_get_unique_id(adr);
+  push((dcell)&buf[0]);
+  push((dcell)&buf[1]);
+  push((dcell)&buf[2]);
+  push((dcell)&buf[3]);
+}
+//
+BUILTIN(93, "SECTOR_ERASE", sector_erase, 0)
+{
+  cell sector = pop();
+  f_flash_sector_erase(sector);
+}
+//
+BUILTIN(94, "FLASH_STORE", flash_store, 0)
+{
+  dcell data        = dpop();
+  cell PageNumber   = pop();
+  cell SectorNumber = pop();
+  f_flash_store(SectorNumber, PageNumber, data);//enter <sector page dataptr flash_page_list - >
+}
+//
+BUILTIN(95, "FLASH_PAGE_LIST", flash_page_list, 0)
+{
+  cell Page   = pop(); // page is on top of stack
+  cell Sector = pop(); // enter <sector page flash_page_list - >
+  f_flash_page_list(Sector, Page);
+}
+//
+BUILTIN(96, "FLASH_PAGE_PATTERN", flash_page_pattern, 0)
+{
+  cell Page    = pop(); //(a,b,C -)
+  cell Sector  = pop(); //(a,B,c -)
+  cell type    = pop(); //(A,b,c -) // enter <type sector page flash_page_pattern>
+  dcell data  = (dcell)f_page_pattern(type);
+  f_flash_store(Sector, Page, data);
+}
+//
 void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to this. See top of Common.h
   ADD_BUILTIN(gpio_dir);
   ADD_BUILTIN(gpio_amp);
@@ -170,6 +212,11 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(adc_gpioinit);  
   ADD_BUILTIN(adc_port);
   ADD_BUILTIN(adc_get);  
+  ADD_BUILTIN(spi_id_get); 
+  ADD_BUILTIN(sector_erase); 
+  ADD_BUILTIN(flash_store); 
+  ADD_BUILTIN(flash_page_list); 
+  ADD_BUILTIN(flash_page_pattern); 
 }
 //
 cell f_gpio_get_dir(cell gpio){

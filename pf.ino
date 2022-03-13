@@ -30,6 +30,7 @@ extern "C" {
   int serial_available(void) { return(Serial.available()); }
   int serial_getchar(void)   { return (Serial.read()); }
   void serial_putchar(char c){ Serial.print(c); }
+  void serial_flush(){ Serial.flush(); }  
   int Forth(void);
 }
 

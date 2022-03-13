@@ -1,6 +1,6 @@
 #include "pico/stdlib.h"
 //
-#define MAX_BUILTIN_ID 92
+#define MAX_BUILTIN_ID 97
 //
 #define CELL_BASE_TYPE short
 #define DOUBLE_CELL_BASE_TYPE long
@@ -39,3 +39,8 @@ void addBuiltin(cell, const char*, const byte, builtin);
 void MoreBuiltInAtomics(void);
 cell pop(void);
 void push(cell);
+dcell dpop(void);
+void dpush(dcell);
+void tell(const char *);
+void tellnumber(cell);
+void serial_flush(void);
