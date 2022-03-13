@@ -5,7 +5,8 @@ extern "C" {
 #include <stdio.h>
 #include "Common.h"
 #include "ForthWordExtensions.h"
-#include "ForthAtomicExtensions.h"
+#include "ForthHardwareGPIO.h"
+#include "ForthHardwareADC.h"
 //
 // Pico Forth Port by Dan Wahl 2/9/2022. Thank you Leif Bruder where ever you are.
 // May work easily with other boards supported by Arduino IDE, but not tested.

@@ -1,4 +1,5 @@
-#include "ForthAtomicExtensions.h"
+#include "ForthHardwareGPIO.h"
+#include "ForthHardwareADC.h"
 //
 #define ForthExtensions_Hardware_GPIO \
 ": gpio_lbls 30 0 do I dup . 9 < if 2 spaces else space then loop .\"  Bit# \" cr ;\n" \

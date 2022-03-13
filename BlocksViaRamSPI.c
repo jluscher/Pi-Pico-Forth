@@ -13,6 +13,7 @@ void f_flash_sector_erase(cell SectorNumber){ // erase one sector = 4096 bytes
   int s = FLASH_SECTORS_AVAILABLE; 
   long Offset = (FLASH_SECTORS_OFFSET + (SectorNumber * FLASH_SECTOR_SIZE));  
   //
+  /*
   char buf[80];
   sprintf(buf,"FLASH_SECTORS_OFFSET %8.8X\n", FLASH_SECTORS_OFFSET);
   tell(buf);
@@ -25,12 +26,13 @@ void f_flash_sector_erase(cell SectorNumber){ // erase one sector = 4096 bytes
   sprintf(buf,"Available Sectors    %d\n", s);
   tell(buf); 
   serial_flush(); 
+  */
   //
   if( (SectorNumber >= 0) && (SectorNumber < s) ){
     uint32_t ints = save_and_disable_interrupts();
     flash_range_erase(Offset, FLASH_SECTOR_SIZE);
     restore_interrupts (ints);
-    tell("Interupts Restored\n");
+    //tell("Interupts Restored\n");
   }else{
     tell("Sector Erase Failed, sector number out of range: 0,1,2,...");
     tellnumber(s-1);
