@@ -1,32 +1,10 @@
 #include <stdio.h>
-#include "Common.h"
-#include "hardware/flash.h"
-#include "hardware/sync.h"
+#include "ScreenEditor.h"
 #include "BlocksViaRamSPI.h"
-//
-#define FLASH_SIZE            (2 * 1024 * 1024)
-#define FLASH_SECTORS_OFFSET  (1024 * 1024)
-#define FLASH_SECTORS_AVAILABLE ((FLASH_SIZE - FLASH_SECTORS_OFFSET) / FLASH_SECTOR_SIZE)
-#define PAGES_PER_SECTOR      (FLASH_SECTOR_SIZE / FLASH_PAGE_SIZE)
 //
 void f_flash_sector_erase(cell SectorNumber){ // erase one sector = 4096 bytes
   int s = FLASH_SECTORS_AVAILABLE; 
   long Offset = (FLASH_SECTORS_OFFSET + (SectorNumber * FLASH_SECTOR_SIZE));  
-  //
-  /*
-  char buf[80];
-  sprintf(buf,"FLASH_SECTORS_OFFSET %8.8X\n", FLASH_SECTORS_OFFSET);
-  tell(buf);
-  sprintf(buf,"SectorNumber         %d\n", SectorNumber);
-  tell(buf);
-  sprintf(buf,"FLASH_SECTOR_SIZE    %d\n", FLASH_SECTOR_SIZE);
-  tell(buf);
-  sprintf(buf,"Offset               %8.8X\n", Offset);
-  tell(buf); 
-  sprintf(buf,"Available Sectors    %d\n", s);
-  tell(buf); 
-  serial_flush(); 
-  */
   //
   if( (SectorNumber >= 0) && (SectorNumber < s) ){
     uint32_t ints = save_and_disable_interrupts();
@@ -124,8 +102,15 @@ unsigned char* f_page_pattern(cell type){
   //show_buffer(pattern_buf, 256);
   return(pattern_buf);
 }
+/*
+void f_flash_do_cmd(cell*, cell*, cell){
+  flash_do_cmd(cell*, cell*, cell);
+}
+*/
 //
-//void f_flash_do_cmd(cell*, cell*, cell){
-//  flash_do_cmd(cell*, cell*, cell);
-//}
-//
+void WipeAllSectors(void){
+  cell i;
+  for(i=0;i<FLASH_SECTORS_AVAILABLE;i++){
+    f_flash_sector_erase(i);
+  }
+}

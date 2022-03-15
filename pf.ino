@@ -4,7 +4,7 @@ char Title[80];
 char Communicate[80];
 
 void establishContact() {
-  strcpy(Title, "PICO_Forth_API Version: 0.03 ");
+  strcpy(Title, "PICO_Forth_API Version: 0.04 ");
   strcat(Title, __DATE__);
   strcat(Title, "  ");
   strcat(Title, __TIME__);
