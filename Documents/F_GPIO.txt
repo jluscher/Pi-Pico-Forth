@@ -41,7 +41,7 @@ SPI Flash Words, The chip allows for 100K Erase/sector
 spi_id_get              ( - n n n n)    Returns 64bit SPI ID
 sector_erase            (sec - )        Erase Sector (0->255) 1Mbyte == 256*4096
 flash_store             (sec pg adr - ) Store 256bytes(adr) in sec pg, adr is 32bit dpush()
-flash_page_list         (sec pg - )     List contnts of sec pg. See this code in order to understand how to read a page.
+flash_page_list         (sec pg - )     List contents of sec pg. See this code in order to understand how to read a page.
 flash_page_pattern      (n sec pg - )   Writes (sec,pg) with (0->255)+n, for testing
 
 
