@@ -3,10 +3,10 @@
 #include "BlocksViaRamSPI.h"
 //
 void f_flash_sector_erase(cell SectorNumber){ // erase one sector = 4096 bytes
-  int s = FLASH_SECTORS_AVAILABLE; 
+  cell s = FLASH_SECTORS_AVAILABLE; 
   long Offset = (FLASH_SECTORS_OFFSET + (SectorNumber * FLASH_SECTOR_SIZE));  
   //
-  if( (SectorNumber >= 0) && (SectorNumber < s) ){
+  if( ((short)SectorNumber >= 0) && (SectorNumber < s) ){
     uint32_t ints = save_and_disable_interrupts();
     flash_range_erase(Offset, FLASH_SECTOR_SIZE);
     restore_interrupts (ints);
@@ -32,11 +32,11 @@ void show_buffer(const uint8_t* data, cell number){ // for testing
 }
 //
 void f_flash_store(cell SectorNumber, cell PageNumber, dcell data){ // store one page = 256 bytes
-  int s = FLASH_SECTORS_AVAILABLE;
-  int p = PAGES_PER_SECTOR;
+  cell s = FLASH_SECTORS_AVAILABLE;
+  cell p = PAGES_PER_SECTOR;
   long Offset = (FLASH_SECTORS_OFFSET + (SectorNumber * FLASH_SECTOR_SIZE) + (PageNumber * FLASH_PAGE_SIZE) );
-  if( (SectorNumber >= 0) && (SectorNumber < s) ){                                     
-    if( (PageNumber >= 0) && (PageNumber < p) ){      
+  if( ((short)SectorNumber >= 0) && (SectorNumber < s) ){                                     
+    if( ((short)PageNumber >= 0) && (PageNumber < p) ){      
       //show_buffer((const uint8_t*)data, FLASH_PAGE_SIZE);
       uint32_t ints = save_and_disable_interrupts();
       flash_range_program(Offset, (const uint8_t*)data, FLASH_PAGE_SIZE);                                    
@@ -53,18 +53,18 @@ void f_flash_store(cell SectorNumber, cell PageNumber, dcell data){ // store one
 //
 void f_flash_page_list(cell SectorNumber, cell PageNumber){
   int i, len = FLASH_PAGE_SIZE;
-  char buf[8], mess[20];
+  char buf[8], mess[30];
   //
   sprintf(mess,"Sector(%d) Page(%d)\n",SectorNumber, PageNumber);
   tell(mess);  
-  int s = FLASH_SECTORS_AVAILABLE;
-  int p = PAGES_PER_SECTOR;
+  cell s = FLASH_SECTORS_AVAILABLE;
+  cell p = PAGES_PER_SECTOR;
   const uint8_t* Offset = (const uint8_t*)(XIP_BASE + FLASH_SECTORS_OFFSET + 
                                           (SectorNumber * FLASH_SECTOR_SIZE) +
                                           (PageNumber * FLASH_PAGE_SIZE) );
                                           
-  if( (SectorNumber >= 0) && (SectorNumber < s) ){                                     
-    if( (PageNumber >= 0) && (PageNumber < p) ){      
+  if( ((short)SectorNumber >= 0) && (SectorNumber < s) ){                                     
+    if( ((short)PageNumber >= 0) && (PageNumber < p) ){      
       for (i = 0; i < len; ++i) {
         sprintf(buf,"%02x", Offset[i]);
         tell(buf);
@@ -93,7 +93,6 @@ void f_flash_get_unique_id(dcell buf){
 unsigned char pattern_buf[256];
 unsigned char* f_page_pattern(cell type){
   cell i;
-  unsigned char s[8];
   tell("Pattern Inc Offset is: ");
   tellnumber(type);
   for(i=0;i<256;i++){

@@ -2,7 +2,10 @@ VT100 escape codes
 
 This document describes how to control a VT100 terminal. The entries are of the form "name, description, escape code".
 
-The name isn't important, and the description is just to help you find what you're looking for. What you have to do is send the "escape code" to the screen. These codes are often several characters long, but they all begin with ^[. This isn't the two characters ^ and [, but rather a representation of the ASCII code ESC (which is why these are called escape codes).
+The name isn't important, and the description is just to help you find what you're looking for. 
+What you have to do is send the "escape code" to the screen. These codes are often several characters long, but they all 
+begin with ^[. This isn't the two characters ^ and [, but rather a representation of the ASCII code ESC 
+(which is why these are called escape codes).
 
 ESC has the value:
 Ada	27, #8#33 #16#1B

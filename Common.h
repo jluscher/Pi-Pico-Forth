@@ -1,11 +1,15 @@
 #include "pico/stdlib.h"
-//
-#define MAX_BUILTIN_ID 97
+//C:\Program Files (x86)\Arduino\hardware\arduino\avr\platform.txt
+
+#define MAX_BUILTIN_ID 98
+#define NOECHO false
+#define ECHO true
 //
 #define CELL_BASE_TYPE short
 #define DOUBLE_CELL_BASE_TYPE long
 /* Basic memory configuration */
-#define MEM_SIZE 65536 /* main memory size in bytes */
+//#define MEM_SIZE 65536 /* main memory size in bytes */
+#define MEM_SIZE 32768 /* main memory size in bytes */
 #define STACK_SIZE 192 /* cells reserved for the stack */
 #define RSTACK_SIZE 64 /* cells reserved for the return stack */
 #define INPUT_LINE_SIZE 32 /* bytes reserved for the WORD buffer */
@@ -42,5 +46,8 @@ void push(cell);
 dcell dpop(void);
 void dpush(dcell);
 void tell(const char *);
-void tellnumber(cell);
+void tellnumber(dcell);
 void serial_flush(void);
+int  serial_getchar(bool);  
+int  serial_available(void);
+void serial_putchar(char c);

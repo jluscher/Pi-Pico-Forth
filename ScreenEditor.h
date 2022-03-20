@@ -1,3 +1,4 @@
+#include "Common.h"
 #include "hardware/flash.h"
 #include "hardware/sync.h"
 //
@@ -28,3 +29,4 @@ typedef struct{ // variuos pointers for present Block context
 //
 extern SectorData *FlashDataAdr;
 //
+void ScreenEditor(cell);

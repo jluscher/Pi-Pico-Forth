@@ -2,6 +2,7 @@
 #include "ForthHardwareGPIO.h"
 #include "ForthHardwareADC.h"
 #include "BlocksViaRamSPI.h"
+#include "ScreenEditor.h"
 //
 void putkey(char);
 //
@@ -189,6 +190,12 @@ BUILTIN(96, "FLASH_PAGE_PATTERN", flash_page_pattern, 0)
   f_flash_store(Sector, Page, data);
 }
 //
+BUILTIN(97, "SED", sed, 0)
+{
+  cell Screen = pop(); //screen #
+  ScreenEditor(Screen);
+}
+//
 void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to this. See top of Common.h
   ADD_BUILTIN(gpio_dir);
   ADD_BUILTIN(gpio_amp);
@@ -216,5 +223,5 @@ void MoreBuiltInAtomics(void){ // must increment MAX_BUILTIN_ID when adding to t
   ADD_BUILTIN(flash_store); 
   ADD_BUILTIN(flash_page_list); 
   ADD_BUILTIN(flash_page_pattern); 
+  ADD_BUILTIN(sed);   
 }
-

@@ -156,7 +156,7 @@ const char *initScript =
   
 /******************************************************************************/
 // some of the work of dan
-int  serial_getchar(void);   // find these in pf.ino near the bottom of file
+int  serial_getchar(bool);   // find these in pf.ino near the bottom of file
 int  serial_available(void);
 void serial_putchar(char c);
 void tell(const char*);      // proto here for debugging
@@ -171,9 +171,12 @@ void putkey(char c){ serial_putchar(c); } // wrapper
 
 int llkey()
 {
-    if (*initscript_pos)        return *(initscript_pos++); //the script controls
+    if (*initscript_pos){
+      //putkey(*(initscript_pos));
+      return *(initscript_pos++); //the script controls
+    }
     while(serial_available() <= 0){  } //block
-    return(serial_getchar());   
+    return(serial_getchar(ECHO));   
 }
 
 /* Anything waiting in the keyboard buffer? */
@@ -199,8 +202,9 @@ int getkey()
 
     charsInLineBuffer = 0; 
     
-    while ( c = llkey() )
+    while ( 1==1 )
     {
+        c = llkey();
         if ( c == (char)8){
           if (charsInLineBuffer >0) charsInLineBuffer-- ;
           continue;
@@ -222,9 +226,9 @@ void tell(const char *str)
         putkey(*str++);
 }
 //
-void tellnumber(cell n){
+void tellnumber(dcell n){
   char buf[16];
-  sprintf(buf, "%d\n",n);
+  sprintf(buf, "%lu\n",n);
   tell(buf);
 }
 
@@ -328,13 +332,14 @@ void writeMem(cell address, cell value)
 }
 
 /* Reading a word into the input line buffer */
+
 byte readWord()
 {
     char *line = (char*)memory;
     byte len = 0;
     int c;
 
-    while (c = getkey())
+    while ((c = getkey()))
     {
         if (c == ' ') continue;
         if ((c == '\n') || (c == '\r')){
@@ -342,7 +347,10 @@ byte readWord()
           continue;
         }
         if (c != '\\') break;
-        while (c = getkey()) if ((c == '\n') || (c == '\r')) break;
+        //while (c = getkey()) if ((c == '\n') || (c == '\r')) break;
+        while ((c = getkey())){
+          if ((c == '\n') || (c == '\r')) break;
+        }
     }
 
     while (c != ' ' && c != '\n' && c != '\r')
@@ -604,7 +612,8 @@ BUILTIN(38, "QUIT", quit, 0)
             command = readMem(commandAddress);
             if (*state && !immediate)
             {
-                if (command < MAX_BUILTIN_ID && command != docol_id)
+                //if (command < MAX_BUILTIN_ID && command != docol_id)
+                if ( (command < MAX_BUILTIN_ID) && (command != docol_id) )                
                     push(command);
                 else
                     push(commandAddress);
@@ -959,6 +968,7 @@ BUILTIN(70, "2ROT", drot, 0)
 void createWord(const char* name, byte len, byte flags)
 {
     cell newLatest = *here;
+    
     push(*latest);
     comma();
     push(len | flags);
@@ -969,7 +979,7 @@ void createWord(const char* name, byte len, byte flags)
         commaByte();
         name++;
     }
-    while (*here & (CELL_SIZE-1))
+    while (*here & (CELL_SIZE-1))//djw???
     {
         push(0);
         commaByte();
@@ -1015,7 +1025,35 @@ void addBuiltin(cell code, const char* name, const byte flags, builtin f)
     push(doExit_id);
     comma();
 }
-
+/*
+void ListPositions(char* mess){
+    tell(mess);
+    tell("byte       "); tellnumber(sizeof(byte));    
+    tell("int        "); tellnumber(sizeof(int));
+    tell("short      "); tellnumber(sizeof(short)); 
+    tell("long       "); tellnumber(sizeof(long));    
+    tell("CELL SIZE  "); tellnumber(sizeof(cell));
+    tell("DCELL SIZE "); tellnumber(sizeof(dcell));
+    tell("\n");    
+    tell("StatePtr   "); tellnumber(STATE_POSITION);
+    tell("state      "); tellnumber(*state);
+    tell("BasePtr    "); tellnumber(BASE_POSITION);
+    tell("base       "); tellnumber(*base);    
+    tell("LatestPtr  "); tellnumber(LATEST_POSITION);
+    tell("latest     "); tellnumber(*latest);     
+    tell("HerePtr    "); tellnumber(HERE_POSITION);
+    tell("here       "); tellnumber(*here);     
+    tell("StackPtr   "); tellnumber(STACK_POSITION);
+    tell("Stack      "); tellnumber(STACK_POSITION + CELL_SIZE);
+    tell("RstackPtr  "); tellnumber(RSTACK_POSITION);
+    tell("Rstact     "); tellnumber(RSTACK_POSITION + CELL_SIZE); 
+    tell("\n");
+    tell("HereStart  "); tellnumber(HERE_START);
+    tell("MemSize    "); tellnumber(MEM_SIZE);
+    tell("MaxBuiltin "); tellnumber(maxBuiltinAddress);    
+    tell("\n");    
+}
+*/
 /* Program setup and jump to outer interpreter */
 int Forth(void)
 {
@@ -1026,6 +1064,8 @@ int Forth(void)
         tell("Configuration error: DCELL_SIZE != 2*CELL_SIZE\n");
         return 1;
     }
+
+    for(int i=0;i<MEM_SIZE;i++) memory[i] = (unsigned char)0;
 
     state =  (cell*)&memory[STATE_POSITION];
     base =   (cell*)&memory[BASE_POSITION];
@@ -1116,13 +1156,13 @@ int Forth(void)
     ADD_BUILTIN(drot);
     //
     MoreBuiltInAtomics();
-    //
+
     maxBuiltinAddress = (*here) - 1;
 
-  
     if (errorFlag) return 1;
 
     initscript_pos = (char*)initScript;
+    
     quit();
     return 0;
 }
