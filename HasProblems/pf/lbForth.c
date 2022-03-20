@@ -172,7 +172,9 @@ void putkey(char c){ serial_putchar(c); } // wrapper
 int llkey()
 {
     if (*initscript_pos){
-      return *(initscript_pos++); //the script controls
+      putkey(*(initscript_pos++));
+      return((char)0);
+      //return *(initscript_pos++); //the script controls
     }
     while(serial_available() <= 0){  } //block
     return(serial_getchar(ECHO));   
