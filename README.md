@@ -3,7 +3,7 @@
 NOTE Not complete nor working, transitional code. Come back later.
 
 A port of Forth (simple) written in C for Arduino IDE. 
-Originally written by C.H.Ting, <-- Thank You!!
+<\n>Originally written by C.H.Ting, <-- Thank You!!
 
 For a long time I had been searching for a simple FORTH written in C.
 Then I found this version, it is very minimal but seems to function.
