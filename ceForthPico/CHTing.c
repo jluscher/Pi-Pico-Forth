@@ -448,8 +448,8 @@ void(*primitives[64])(void) = {
 
 // Macro Assembler
 
-int IMEDD = 0x80;
-int COMPO = 0x40;
+int IMEDD = 0x80;	// IMMEDIATE flag
+int COMPO = 0x40;	// HIDDEN / COMPILING flag
 int BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 0;
 
 void HEADER(int lex, const char seq[]) {
