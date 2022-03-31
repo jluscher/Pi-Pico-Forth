@@ -33,14 +33,19 @@ MemoryImage *M0;
 char Printf_Buf[80]; //djw
 void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 #define Printf(...) sprintf(Printf_Buf, __VA_ARGS__); tell(Printf_Buf);//djw
-#define TRACEtop Printf("top = %8X ", M0->top);
-#define TRACEP   Printf("  P = %8X ", M0->P);
-#define TRACEIP  Printf(" IP = %8X ", M0->IP);
-#define TRACEWP  Printf(" WP = %8X ", M0->WP);
-#define TRACES   Printf("  S = %8X ", M0->S);
-#define TRACER   Printf("  R = %8X ", M0->R);
-#define TRACEthd Printf("thd = %8X \n", M0->thread);
-#define TRACE    TRACEtop TRACEP TRACEIP TRACEWP TRACES TRACER TRACEthd
+#define TRACEtop Printf("top = %5X ", M0->top);
+#define TRACEP   Printf("  P = %5X ", M0->P);
+#define TRACEIP  Printf(" IP = %5X ", M0->IP);
+#define TRACEWP  Printf(" WP = %5X ", M0->WP);
+#define TRACES   Printf("  S = %5X ", M0->S);
+#define TRACE_S  Printf("  (%X %X %X %X)", M0->stack[(char)(M0->S)-2], M0->stack[(char)(M0->S)-1], M0->stack[(char)(M0->S)-0], M0->top);
+#define TRACER   Printf("  R = %5X ", M0->R);
+#define TRACEthd Printf("thd = %5X \n", M0->thread);
+#define TRACE_NL Printf(" \n");
+#define BEFORE TRACEP TRACE_S
+#define AFTER  TRACEP TRACE_S
+#define TRACE    TRACEtop TRACEP TRACEIP TRACEWP TRACES TRACER TRACEthd TRACE_NL
+#define DEBUG 1
 //
 // Virtual Forth Machine
 //
@@ -51,6 +56,10 @@ int  cdex=0;
 char bufrd[512];
 void qrx(void)
 {
+  #ifdef DEBUG   
+    BEFORE
+    Printf(" qrx\t"); 
+  #endif  
   int32_t in;
   int32_t charsintest;
   if(testdone != true){
@@ -71,53 +80,109 @@ void qrx(void)
     fpush(int32_t) bufrd[cdex++];
   }
   if (M0->top != 0) { fpush TRUE; }
+  #ifdef DEBUG   
+    AFTER
+  #endif    
 }
 //
 void txsto(void)
 {
+  #ifdef DEBUG   
+    BEFORE
+    Printf(" txsto\t"); 
+  #endif  
 	serial_putchar((char)M0->top); //djw 
 	fpop;
+  #ifdef DEBUG   
+    AFTER
+  #endif  
 }
 //
 void next(void)
 {
+  #ifdef DEBUG
+    BEFORE 
+    Printf(" next"); 
+  #endif
 	M0->P = M0->data[M0->IP >> 2];
 	M0->WP = M0->P + 4;
 	M0->IP += 4;
+  #ifdef DEBUG
+    Printf("\t"); 
+    AFTER 
+    Printf("\n"); 
+  #endif  
 }
 void dovar(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dovar\t"); 
+  #endif  
 	fpush M0->WP;
+  #ifdef DEBUG 
+    AFTER
+  #endif  
 }
 void docon(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" docon\t"); 
+  #endif  
 	fpush M0->data[M0->WP >> 2];
+  #ifdef DEBUG 
+    AFTER
+  #endif
 }
 void dolit(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dolit\t"); 
+  #endif
 	fpush M0->data[M0->IP >> 2];
 	M0->IP += 4;
 	next();
 }
 void dolist(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dolist\t"); 
+  #endif  
 	M0->rack[(char)++(M0->R)] = M0->IP;
 	M0->IP = M0->WP;
 	next();
 }
 void exitt(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" exitt\t"); 
+  #endif  
 	M0->IP = (int32_t)M0->rack[(char)(M0->R)--];
 	next();
 }
 void execu(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" execu\t"); 
+  #endif  
 	M0->P = M0->top;
 	M0->WP = M0->P + 4;
 	fpop;
+  #ifdef DEBUG 
+    AFTER
+  #endif 
 }
 void donext(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" donext\t"); 
+  #endif  
 	if (M0->rack[(char)M0->R]) {
 		M0->rack[(char)M0->R] -= 1;
 		M0->IP = M0->data[M0->IP >> 2];
@@ -130,6 +195,10 @@ void donext(void)
 }
 void qbran(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" qbran\t"); 
+  #endif  
 	if (M0->top == 0) M0->IP = M0->data[M0->IP >> 2];
 	else M0->IP += 4;
 	fpop;
@@ -137,113 +206,289 @@ void qbran(void)
 }
 void bran(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" bran\t"); 
+  #endif  
 	M0->IP = M0->data[M0->IP >> 2];
 	next();
 }
 void store(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" store\t"); 
+  #endif  
 	M0->data[M0->top >> 2] = M0->stack[(char)(M0->S)--];
 	fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void at(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" at\t"); 
+  #endif  
 	M0->top = M0->data[M0->top >> 2];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void cstor(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" cstor\t"); 
+  #endif  
 	M0->cData[M0->top] = (char)M0->stack[(char)(M0->S)--];
 	fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void cat(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" cat\t"); 
+  #endif  
 	M0->top = (int32_t)M0->cData[M0->top];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void rfrom(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" rfrom\t"); 
+  #endif  
 	fpush M0->rack[(char)(M0->R)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void rat(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" rat\t"); 
+  #endif  
 	fpush M0->rack[(char)M0->R];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void tor(void)
 {
-	M0->rack[(char)++(M0->R)] = M0->top;
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" tor\t"); 
+  #endif  
+	M0->rack[(char) ++(M0->R)] = M0->top;
 	fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void drop(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" drop\t"); 
+  #endif  
 	fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void dup(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dup\t"); 
+  #endif  
 	M0->stack[(char) ++(M0->S)] = M0->top;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void swap(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" swap\t"); 
+  #endif  
 	M0->WP = M0->top;
 	M0->top = M0->stack[(char)M0->S];
 	M0->stack[(char)M0->S] = M0->WP;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void over(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" over\t"); 
+  #endif  
 	fpush M0->stack[(char)(M0->S) - 1];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void zless(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" zless\t"); 
+  #endif  
 	M0->top = (M0->top < 0) LOGICAL;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void andd(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" andd\t"); 
+  #endif  
 	M0->top &= M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void orr(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" orr\t"); 
+  #endif  
 	M0->top |= M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void xorr(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" xorr\t"); 
+  #endif  
 	M0->top ^= M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void uplus(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" uplus\t"); 
+  #endif
 	M0->stack[(char)M0->S] += M0->top;
 	M0->top = LOWER(M0->stack[(char)M0->S], M0->top);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
-void nop(void){	next(); }
+void nop(void)
+{	
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" nop\t"); 
+  #endif  
+  next(); 
+}
 void qdup(void)
 {
+  #ifdef DEBUG
+    BEFORE 
+    Printf(" qdup\t"); 
+  #endif  
 	if (M0->top) M0->stack[(char) ++(M0->S)] = M0->top;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void rot(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" rot\t"); 
+  #endif  
 	M0->WP = M0->stack[(char)M0->S - 1];
 	M0->stack[(char)M0->S - 1] = M0->stack[(char)M0->S];
 	M0->stack[(char)M0->S] = M0->top;
 	M0->top = M0->WP;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void ddrop(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" ddrop\t"); 
+  #endif  
 	drop(); drop();
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void ddup(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" ddup\t"); 
+  #endif  
 	over(); over();
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void plus(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" plus\t"); 
+  #endif  
 	M0->top += M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void inver(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" inver\t"); 
+  #endif
 	M0->top = -M0->top - 1;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void negat(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" negat\t"); 
+  #endif
 	M0->top = 0 - M0->top;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void dnega(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dnega\t"); 
+  #endif  
 	inver();
 	tor();
 	inver();
@@ -251,34 +496,83 @@ void dnega(void)
 	uplus();
 	rfrom();
 	plus();
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void subb(void)
 {
+  #ifdef DEBUG
+    BEFORE 
+    Printf(" subb\t"); 
+  #endif  
 	M0->top = M0->stack[(char)(M0->S)--] - M0->top;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void abss(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" abss\t"); 
+  #endif  
 	if (M0->top < 0)
 		M0->top = -M0->top;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void great(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" great\t"); 
+  #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] > M0->top) LOGICAL;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void less(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" less\t"); 
+  #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] < M0->top) LOGICAL;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void equal(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" equal\t"); 
+  #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] == M0->top) LOGICAL;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void uless(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" uless\t"); 
+  #endif  
 	M0->top = LOWER(M0->stack[(char)M0->S], M0->top) LOGICAL; (char)(M0->S)--;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void ummod(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" ummod\t"); 
+  #endif  
 	M0->d = (int64_t)((uint32_t)M0->top);
 	M0->m = (int64_t)((uint32_t)M0->stack[(char)M0->S]);
 	M0->n = (int64_t)((uint32_t)M0->stack[(char)M0->S - 1]);
@@ -286,9 +580,16 @@ void ummod(void)
 	fpop;
 	M0->top = (uint32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (uint32_t)(M0->n % M0->d);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void msmod(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" msmod\t"); 
+  #endif  
 	M0->d = (int64_t)((int32_t)M0->top);
 	M0->m = (int64_t)((int32_t)M0->stack[(char)M0->S]);
 	M0->n = (int64_t)((int32_t)M0->stack[(char)M0->S - 1]);
@@ -296,45 +597,94 @@ void msmod(void)
 	fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (int32_t)(M0->n % M0->d);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void slmod(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" slmod\t"); 
+  #endif
 	if (M0->top != 0) {
 		M0->WP = M0->stack[(char)M0->S] / M0->top;
 		M0->stack[(char)M0->S] %= M0->top;
 		M0->top = M0->WP;
 	}
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void mod(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" mod\t"); 
+  #endif
 	M0->top = (M0->top) ? M0->stack[(char)(M0->S)--] % M0->top : M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void slash(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" slash\t"); 
+  #endif
 	M0->top = (M0->top) ? M0->stack[(char)(M0->S)--] / M0->top : (M0->stack[(char)(M0->S)--], 0);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void umsta(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" umsta\t"); 
+  #endif  
 	M0->d = (uint64_t)M0->top;
 	M0->m = (uint64_t)M0->stack[(char)M0->S];
 	M0->m *= M0->d;
 	M0->top = (uint32_t)(M0->m >> 32);
 	M0->stack[(char)M0->S] = (uint32_t)M0->m;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void star(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" star\t"); 
+  #endif
 	M0->top *= M0->stack[(char)(M0->S)--];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void mstar(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" mstar\t"); 
+  #endif
 	M0->d = (int64_t)M0->top;
 	M0->m = (int64_t)M0->stack[(char)M0->S];
 	M0->m *= M0->d;
 	M0->top = (int32_t)(M0->m >> 32);
 	M0->stack[(char)M0->S] = (int32_t)M0->m;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void ssmod(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" ssmod\t"); 
+  #endif
 	M0->d = (int64_t)M0->top;
 	M0->m = (int64_t)M0->stack[(char)M0->S];
 	M0->n = (int64_t)M0->stack[(char)M0->S - 1];
@@ -342,50 +692,109 @@ void ssmod(void)
 	fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (int32_t)(M0->n % M0->d);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void stasl(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" stasl\t"); 
+  #endif
 	M0->d = (int64_t)M0->top;
 	M0->m = (int64_t)M0->stack[(char)M0->S];
 	M0->n = (int64_t)M0->stack[(char)M0->S - 1];
 	M0->n *= M0->m;
 	fpop; fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void pick(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" pick\t"); 
+  #endif
 	M0->top = M0->stack[(char)M0->S - (char)M0->top];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void pstor(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" pstor\t"); 
+  #endif
 	M0->data[M0->top >> 2] += M0->stack[(char)(M0->S)--], fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void dstor(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dstor\t"); 
+  #endif
 	M0->data[M0->top >> 2] = M0->stack[(char)(M0->S)--];
 	M0->data[(M0->top >> 2) + 1] = M0->stack[(char)(M0->S)--];
 	fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void dat(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" dat\t"); 
+  #endif
   M0->WP = M0->top >> 2;
 	M0->top = M0->data[M0->WP + 1];
 	fpush M0->data[M0->WP];
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void count(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" count\t"); 
+  #endif
 	M0->stack[(char) ++(M0->S)] = M0->top + 1;
 	M0->top = M0->cData[M0->top]; // djw???
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void maxf(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" maxf\t"); 
+  #endif
 	if (M0->top < M0->stack[(char)M0->S]) fpop;
 	else (char)(M0->S)--;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 void minf(void)
 {
+  #ifdef DEBUG 
+    BEFORE
+    Printf(" minf\t"); 
+  #endif
 	if (M0->top < M0->stack[(char)M0->S]) (char) (M0->S)--;
 	else fpop;
+  #ifdef DEBUG 
+    AFTER 
+  #endif 
 }
 
 void(*primitives[64])(void) = {
@@ -834,8 +1243,8 @@ int CHT_Forth(void)
   //
   for(unsigned int i=0;i<Mem_Size;i++){ AllOfThisMemory[i] = (unsigned char) 0; }
   //
-  Printf("Sizeof(ThisMemory) = %X\n", sizeof(ThisMemory));
-  Printf("Sizeof(M0->data) = %X, Sizeof(M0->cData) = %X\n", sizeof(M0->data), sizeof(M0->cData));
+  Printf("Sizeof(ThisMemory) = %d\n\n", sizeof(ThisMemory));
+  //Printf("Sizeof(M0->data) = %X, Sizeof(M0->cData) = %X\n", sizeof(M0->data), sizeof(M0->cData));
 	//
   M0->P = 512; // kernel words location
   M0->R = 0;
@@ -1417,7 +1826,10 @@ int CHT_Forth(void)
 	M0->top = 0;
 	//
 	while (TRUE) {
-    TRACE    
+    //TRACE    
+    #ifdef DEBUG 
+      Printf(" \n"); 
+    #endif
  		primitives[(unsigned char)M0->cData[M0->P++]]();
 	}
 }
