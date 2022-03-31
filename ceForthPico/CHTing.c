@@ -36,10 +36,14 @@
 int32_t rack[256] = { 0 };
 int32_t stack[256] = { 0 };
 int64_t d, n, m;
-unsigned char R = 0;
-unsigned char S = 0;
+unsigned char R = 0; // Return Stack pointer [rack]
+unsigned char S = 0; // Parameter Stack pointer [stack]
 int32_t top = 0;
-int32_t  P, IP, WP, thread, len;
+int32_t P;      // Pointer - to Forth deffinition (address of deffinition's link)
+int32_t IP;     // Interpretation Pointer - [beginning of 'NEXT' Forth 'word']
+int32_t WP;     // Word Pointer (to Forth word's Name - starting with len)
+int32_t thread; // thread - of ??
+int32_t len;    // (flags ? : length) Forth word's Name (i.e. data)
 unsigned char bytecode, c;
 //
 int32_t data[16000] = {};
