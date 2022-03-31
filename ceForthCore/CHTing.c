@@ -41,7 +41,6 @@ void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 #define TRACER   Printf("  R = %8X ", M0->R);
 #define TRACEthd Printf("thd = %8X \n", M0->thread);
 #define TRACE    TRACEtop TRACEP TRACEIP TRACEWP TRACES TRACER TRACEthd
-//#define TRACE //
 //
 // Virtual Forth Machine
 //
@@ -470,7 +469,7 @@ void HEADER(int lex, const char seq[]) {
 	M0->thread = M0->P;
 	M0->cData[M0->P++] = (unsigned char)lex & 0xFF; //djw ???
 	for (int i = 0; i < len; i++){ M0->cData[M0->P++] = seq[i]; }
-	while (M0->P & 3) { M0->cData[M0->P++] = (unsigned char)0; } //djw
+	while (M0->P & 3) { M0->cData[M0->P++] = (unsigned char)0; } //djw looks like padding
 }
 int CODE(int len, ...) {
 	int addr = M0->P;
@@ -1418,7 +1417,7 @@ int CHT_Forth(void)
 	M0->top = 0;
 	//
 	while (TRUE) {
-    //TRACE    
+    TRACE    
  		primitives[(unsigned char)M0->cData[M0->P++]]();
 	}
 }
