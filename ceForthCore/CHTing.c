@@ -475,28 +475,39 @@ int IMEDD = 0x80;
 int COMPO = 0x40;
 int BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 0;
 //
+// P  is the byte code index 0->255
+// IP ia the integer index, a 32bit item
+//
 void HEADER(int lex, const char seq[]) {
-	M->IP = M->P >> 2;
-	int len = lex & 31;
-	M->data[M->IP++] = M->thread;
-	M->P = M->IP << 2;
-	M->thread = M->P;
-	M->cData[M->P++] = (unsigned char)lex & 0xFF; //djw ???
-	for (int i = 0; i < len; i++){ M->cData[M->P++] = seq[i]; }
-  while (M->P & 3) { M->cData[M->P++] = (unsigned char)0; } //djw looks like padding 
+	M->IP = M->P >> 2;            // Present byte code index is made into the IP
+	int len = lex & 31;           // strip off the IMMEDIATE and COMPILE only bits
+	M->data[M->IP++] = M->thread; // Last link is place here in this new HEADER
+	M->P = M->IP << 2;            // P now indexes into the HEADER by 4bytes
+	M->thread = M->P;             // pass P to next link 
+	M->cData[M->P++] = (unsigned char)lex & 0xFF; // put length into this new HEADER
+	for (int i = 0; i < len; i++){ M->cData[M->P++] = seq[i]; } // deposit name characters
+  while (M->P & 3) { M->cData[M->P++] = (unsigned char)0; }   // pad (char)0 to word boundary.
 }
+//                      HEADER Builds this:
+// b3  b2  b1  b0      // byte addresses
+// --threadadr--       // thread address inserts at IP
+// c2  c1  c0 len      // name field length and byte sequence
+// c6  c5  c4  c3      // more of name depending on length
+//  0   0   0  c7      // padded to word boundary
+// **  **  **  **      // CODE or Other contructors continue to build the word here
 //
 int CODE(int len, ...) {
-	int addr = M->P;
+	int addr = M->P;      // save preset byte index into dictionary
 	va_list argList;
 	va_start(argList, len);
 	for (; len; len--) {
-		int j = va_arg(argList, int);
-		M->cData[M->P++] = (unsigned char) j; // djw
+		int j = va_arg(argList, int);         // first parameter passed in CODE list is a length
+		M->cData[M->P++] = (unsigned char) j; // byte codes and other things are inserted into the word
 	}
 	va_end(argList);
-	return addr;
+	return addr;          // return the byte index which is place into a int to identify this CFA
 }
+// b2  b1  b0  len      // list of byte codes inserted where ** above are stored
 //
 int COLON(int len, ...) {
 	int addr = M->P;
