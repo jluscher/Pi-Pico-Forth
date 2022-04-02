@@ -30,7 +30,7 @@ MemoryImage *M0;
 // 
 // Tracing macros
 //
-char Printf_Buf[80]; //djw
+char Printf_Buf[128]; //djw
 void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 #define Printf(...) sprintf(Printf_Buf, __VA_ARGS__); tell(Printf_Buf);//djw
 #define TRACEtop Printf("top = %5X ", M0->top);
@@ -38,14 +38,20 @@ void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 #define TRACEIP  Printf(" IP = %5X ", M0->IP);
 #define TRACEWP  Printf(" WP = %5X ", M0->WP);
 #define TRACES   Printf("  S = %5X ", M0->S);
-#define TRACE_S  Printf("  (%X %X %X %X)", M0->stack[(char)(M0->S)-2], M0->stack[(char)(M0->S)-1], M0->stack[(char)(M0->S)-0], M0->top);
+#define TRACE_S  Printf("  (%X %X %X %X)",  M0->stack[(char)(M0->S)-2], \
+                                            M0->stack[(char)(M0->S)-1], \
+                                            M0->stack[(char)(M0->S)-0], \
+                                            M0->top);
 #define TRACER   Printf("  R = %5X ", M0->R);
 #define TRACEthd Printf("thd = %5X \n", M0->thread);
 #define TRACE_NL Printf(" \n");
-#define BEFORE TRACEP TRACE_S
-#define AFTER  TRACEP TRACE_S
+#define BLINE  { Printf("\nBefore"); for(int i=0;i<4;i++){ Printf("-"); } Printf("\n"); }
+#define ALINE  { Printf("\nAfter "); for(int i=0;i<4;i++){ Printf("-"); } Printf("\n"); }
+#define BEFORE BLINE TRACEP TRACE_S
+#define AFTER  TRACEP TRACE_S ALINE
 #define TRACE    TRACEtop TRACEP TRACEIP TRACEWP TRACES TRACER TRACEthd TRACE_NL
-#define DEBUG 1
+#define DEBUGASM 1
+//#define DECOMPILE 1
 //
 // Virtual Forth Machine
 //
@@ -56,7 +62,7 @@ int  cdex=0;
 char bufrd[512];
 void qrx(void)
 {
-  #ifdef DEBUG   
+  #ifdef DEBUGASM  
     BEFORE
     Printf(" qrx\t"); 
   #endif  
@@ -80,34 +86,38 @@ void qrx(void)
     fpush(int32_t) bufrd[cdex++];
   }
   if (M0->top != 0) { fpush TRUE; }
-  #ifdef DEBUG   
+  #ifdef DEBUGASMASM   
     AFTER
   #endif    
 }
 //
 void txsto(void)
 {
-  #ifdef DEBUG   
+  #ifdef DEBUGASM   
     BEFORE
     Printf(" txsto\t"); 
   #endif  
+  if((char)M0->top == 0x5F){ 
+    TRACE 
+    exit(0);
+  }
 	serial_putchar((char)M0->top); //djw 
 	fpop;
-  #ifdef DEBUG   
+  #ifdef DEBUGASM   
     AFTER
   #endif  
 }
 //
 void next(void)
 {
-  #ifdef DEBUG
+  #ifdef DEBUGASM
     BEFORE 
     Printf(" next"); 
   #endif
 	M0->P = M0->data[M0->IP >> 2];
 	M0->WP = M0->P + 4;
 	M0->IP += 4;
-  #ifdef DEBUG
+  #ifdef DEBUGASM
     Printf("\t"); 
     AFTER 
     Printf("\n"); 
@@ -115,29 +125,29 @@ void next(void)
 }
 void dovar(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dovar\t"); 
   #endif  
 	fpush M0->WP;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER
   #endif  
 }
 void docon(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" docon\t"); 
   #endif  
 	fpush M0->data[M0->WP >> 2];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER
   #endif
 }
 void dolit(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dolit\t"); 
   #endif
@@ -147,7 +157,7 @@ void dolit(void)
 }
 void dolist(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dolist\t"); 
   #endif  
@@ -157,7 +167,7 @@ void dolist(void)
 }
 void exitt(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" exitt\t"); 
   #endif  
@@ -166,20 +176,20 @@ void exitt(void)
 }
 void execu(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" execu\t"); 
   #endif  
 	M0->P = M0->top;
 	M0->WP = M0->P + 4;
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER
   #endif 
 }
 void donext(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" donext\t"); 
   #endif  
@@ -195,7 +205,7 @@ void donext(void)
 }
 void qbran(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" qbran\t"); 
   #endif  
@@ -206,7 +216,7 @@ void qbran(void)
 }
 void bran(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" bran\t"); 
   #endif  
@@ -215,189 +225,189 @@ void bran(void)
 }
 void store(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" store\t"); 
   #endif  
 	M0->data[M0->top >> 2] = M0->stack[(char)(M0->S)--];
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void at(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" at\t"); 
   #endif  
 	M0->top = M0->data[M0->top >> 2];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void cstor(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" cstor\t"); 
   #endif  
 	M0->cData[M0->top] = (char)M0->stack[(char)(M0->S)--];
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void cat(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" cat\t"); 
   #endif  
 	M0->top = (int32_t)M0->cData[M0->top];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void rfrom(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" rfrom\t"); 
   #endif  
 	fpush M0->rack[(char)(M0->R)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void rat(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" rat\t"); 
   #endif  
 	fpush M0->rack[(char)M0->R];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void tor(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" tor\t"); 
   #endif  
 	M0->rack[(char) ++(M0->R)] = M0->top;
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void drop(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" drop\t"); 
   #endif  
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void dup(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dup\t"); 
   #endif  
 	M0->stack[(char) ++(M0->S)] = M0->top;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void swap(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" swap\t"); 
   #endif  
 	M0->WP = M0->top;
 	M0->top = M0->stack[(char)M0->S];
 	M0->stack[(char)M0->S] = M0->WP;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void over(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" over\t"); 
   #endif  
 	fpush M0->stack[(char)(M0->S) - 1];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void zless(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" zless\t"); 
   #endif  
 	M0->top = (M0->top < 0) LOGICAL;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void andd(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" andd\t"); 
   #endif  
 	M0->top &= M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void orr(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" orr\t"); 
   #endif  
 	M0->top |= M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void xorr(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" xorr\t"); 
   #endif  
 	M0->top ^= M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void uplus(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" uplus\t"); 
   #endif
 	M0->stack[(char)M0->S] += M0->top;
 	M0->top = LOWER(M0->stack[(char)M0->S], M0->top);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void nop(void)
 {	
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" nop\t"); 
   #endif  
@@ -405,18 +415,18 @@ void nop(void)
 }
 void qdup(void)
 {
-  #ifdef DEBUG
+  #ifdef DEBUGASM
     BEFORE 
     Printf(" qdup\t"); 
   #endif  
 	if (M0->top) M0->stack[(char) ++(M0->S)] = M0->top;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void rot(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" rot\t"); 
   #endif  
@@ -424,68 +434,68 @@ void rot(void)
 	M0->stack[(char)M0->S - 1] = M0->stack[(char)M0->S];
 	M0->stack[(char)M0->S] = M0->top;
 	M0->top = M0->WP;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void ddrop(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" ddrop\t"); 
   #endif  
 	drop(); drop();
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void ddup(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" ddup\t"); 
   #endif  
 	over(); over();
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void plus(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" plus\t"); 
   #endif  
 	M0->top += M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void inver(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" inver\t"); 
   #endif
 	M0->top = -M0->top - 1;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void negat(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" negat\t"); 
   #endif
 	M0->top = 0 - M0->top;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void dnega(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dnega\t"); 
   #endif  
@@ -496,80 +506,80 @@ void dnega(void)
 	uplus();
 	rfrom();
 	plus();
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void subb(void)
 {
-  #ifdef DEBUG
+  #ifdef DEBUGASM
     BEFORE 
     Printf(" subb\t"); 
   #endif  
 	M0->top = M0->stack[(char)(M0->S)--] - M0->top;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void abss(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" abss\t"); 
   #endif  
 	if (M0->top < 0)
 		M0->top = -M0->top;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void great(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" great\t"); 
   #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] > M0->top) LOGICAL;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void less(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" less\t"); 
   #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] < M0->top) LOGICAL;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void equal(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" equal\t"); 
   #endif  
 	M0->top = (M0->stack[(char)(M0->S)--] == M0->top) LOGICAL;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void uless(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" uless\t"); 
   #endif  
 	M0->top = LOWER(M0->stack[(char)M0->S], M0->top) LOGICAL; (char)(M0->S)--;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void ummod(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" ummod\t"); 
   #endif  
@@ -580,13 +590,13 @@ void ummod(void)
 	fpop;
 	M0->top = (uint32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (uint32_t)(M0->n % M0->d);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void msmod(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" msmod\t"); 
   #endif  
@@ -597,13 +607,13 @@ void msmod(void)
 	fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (int32_t)(M0->n % M0->d);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void slmod(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" slmod\t"); 
   #endif
@@ -612,35 +622,35 @@ void slmod(void)
 		M0->stack[(char)M0->S] %= M0->top;
 		M0->top = M0->WP;
 	}
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void mod(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" mod\t"); 
   #endif
 	M0->top = (M0->top) ? M0->stack[(char)(M0->S)--] % M0->top : M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void slash(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" slash\t"); 
   #endif
 	M0->top = (M0->top) ? M0->stack[(char)(M0->S)--] / M0->top : (M0->stack[(char)(M0->S)--], 0);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void umsta(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" umsta\t"); 
   #endif  
@@ -649,24 +659,24 @@ void umsta(void)
 	M0->m *= M0->d;
 	M0->top = (uint32_t)(M0->m >> 32);
 	M0->stack[(char)M0->S] = (uint32_t)M0->m;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void star(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" star\t"); 
   #endif
 	M0->top *= M0->stack[(char)(M0->S)--];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void mstar(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" mstar\t"); 
   #endif
@@ -675,13 +685,13 @@ void mstar(void)
 	M0->m *= M0->d;
 	M0->top = (int32_t)(M0->m >> 32);
 	M0->stack[(char)M0->S] = (int32_t)M0->m;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void ssmod(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" ssmod\t"); 
   #endif
@@ -692,13 +702,13 @@ void ssmod(void)
 	fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
 	M0->stack[(char)M0->S] = (int32_t)(M0->n % M0->d);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void stasl(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" stasl\t"); 
   #endif
@@ -708,91 +718,91 @@ void stasl(void)
 	M0->n *= M0->m;
 	fpop; fpop;
 	M0->top = (int32_t)(M0->n / M0->d);
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void pick(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" pick\t"); 
   #endif
 	M0->top = M0->stack[(char)M0->S - (char)M0->top];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void pstor(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" pstor\t"); 
   #endif
 	M0->data[M0->top >> 2] += M0->stack[(char)(M0->S)--], fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void dstor(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dstor\t"); 
   #endif
 	M0->data[M0->top >> 2] = M0->stack[(char)(M0->S)--];
 	M0->data[(M0->top >> 2) + 1] = M0->stack[(char)(M0->S)--];
 	fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void dat(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" dat\t"); 
   #endif
   M0->WP = M0->top >> 2;
 	M0->top = M0->data[M0->WP + 1];
 	fpush M0->data[M0->WP];
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void count(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" count\t"); 
   #endif
 	M0->stack[(char) ++(M0->S)] = M0->top + 1;
 	M0->top = M0->cData[M0->top]; // djw???
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void maxf(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" maxf\t"); 
   #endif
 	if (M0->top < M0->stack[(char)M0->S]) fpop;
 	else (char)(M0->S)--;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
 void minf(void)
 {
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     BEFORE
     Printf(" minf\t"); 
   #endif
 	if (M0->top < M0->stack[(char)M0->S]) (char) (M0->S)--;
 	else fpop;
-  #ifdef DEBUG 
+  #ifdef DEBUGASM 
     AFTER 
   #endif 
 }
@@ -870,39 +880,96 @@ int IMEDD = 0x80;
 int COMPO = 0x40;
 int BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 0;
 //
+#ifdef DECOMPILE
+int32_t Linenum =0;
+#endif 
+//
 void HEADER(int lex, const char seq[]) {
 	M0->IP = M0->P >> 2;
 	int len = lex & 31;
 	M0->data[M0->IP++] = M0->thread;
+  //
+#ifdef DECOMPILE
+  int32_t LinkFrom = M0->thread;
+#endif
+  //
 	M0->P = M0->IP << 2;
 	M0->thread = M0->P;
+ //
+#ifdef DECOMPILE
+  int32_t LinkTo = M0->thread;
+#endif
+  // 
 	M0->cData[M0->P++] = (unsigned char)lex & 0xFF; //djw ???
 	for (int i = 0; i < len; i++){ M0->cData[M0->P++] = seq[i]; }
-	while (M0->P & 3) { M0->cData[M0->P++] = (unsigned char)0; } //djw looks like padding
+  //
+#ifdef DECOMPILE
+  int32_t NumPadding = M0->P & 3;
+#endif
+  //
+  while (M0->P & 3) { M0->cData[M0->P++] = (unsigned char)0; } //djw looks like padding 
+  //
+#ifdef DECOMPILE
+  int i;
+  Printf("%5d ",Linenum++);
+  for (i = 0; i < len; i++){  Printf_Buf[i] = seq[i]; }
+  Printf_Buf[i] = (char)'\t';
+  Printf_Buf[++i] = (char)0;  
+  tell(Printf_Buf);
+  Printf(" \tLast:%5X Next:%5X Pad:%2d\t", LinkFrom, LinkTo, NumPadding);
+#endif
 }
+//
 int CODE(int len, ...) {
 	int addr = M0->P;
 	va_list argList;
 	va_start(argList, len);
+#ifdef DECOMPILE
+  uint32_t carray[128];
+  int32_t cnt=0;
+  int32_t i=0;
+#endif
 	for (; len; len--) {
 		int j = va_arg(argList, int);
 		M0->cData[M0->P++] = (unsigned char) j; // djw
+#ifdef DECOMPILE
+    carray[cnt++] = j;
+#endif    
 	}
 	va_end(argList);
+#ifdef DECOMPILE
+    Printf("ASM#'s: ");
+    do{Printf(" %3X", carray[i++])}while(i != cnt);
+    Printf("  Return: %5X\n",addr);
+#endif    
 	return addr;
 }
+//
 int COLON(int len, ...) {
 	int addr = M0->P;
 	M0->IP = M0->P >> 2;
 	M0->data[M0->IP++] = 6; // dolist
 	va_list argList;
 	va_start(argList, len);
+#ifdef DECOMPILE
+  uint32_t carray[128];
+  int32_t cnt=0;
+  int32_t i=0;
+#endif
 	for (; len; len--) {
 		int j = va_arg(argList, int);
 		M0->data[M0->IP++] = j;
+#ifdef DECOMPILE
+    carray[cnt++] = j;
+#endif  
 	}
 	M0->P = M0->IP << 2;
 	va_end(argList);
+#ifdef DECOMPILE
+    Printf("TOK#'s: ");
+    do{Printf(" %3X", carray[i++])}while(i != cnt);
+    Printf("  Return: %5X\n",addr);
+#endif   
 	return addr;
 }
 int LABEL(int len, ...) {
@@ -1825,11 +1892,15 @@ int CHT_Forth(void)
 	M0->R = 0;
 	M0->top = 0;
 	//
+  unsigned char Token ; // for debugging
 	while (TRUE) {
-    //TRACE    
-    #ifdef DEBUG 
+    TRACE    
+    #ifdef DEBUGASM 
       Printf(" \n"); 
     #endif
- 		primitives[(unsigned char)M0->cData[M0->P++]]();
+    Token = M0->cData[M0->P++];
+    //Printf("Token = %X\n", Token);
+    primitives[Token]();    
+ 		//primitives[(unsigned char)M0->cData[M0->P++]]();
 	}
 }

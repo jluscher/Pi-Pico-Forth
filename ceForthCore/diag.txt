@@ -1,0 +1,1545 @@
+
+  P =   3FD   (0 0 1F28 DCC) dup          P =   3FD   (0 1F28 DCC DCC)
+  P =   3FE   (0 1F28 DCC DCC) next       P =   37C   (0 1F28 DCC DCC)
+
+  P =   37D   (0 1F28 DCC DCC) qbran      P =   37D   (0 0 1F28 DCC) next         P =   3FC   (0 0 1F28 DCC)
+
+  P =   3FD   (0 0 1F28 DCC) dup          P =   3FD   (0 1F28 DCC DCC)
+  P =   3FE   (0 1F28 DCC DCC) next       P =   3A4   (0 1F28 DCC DCC)
+
+  P =   3A5   (0 1F28 DCC DCC) at         P =   3A5   (0 1F28 DCC 7C222403)
+  P =   3A6   (0 1F28 DCC 7C222403) next          P =   32C   (0 1F28 DCC 7C222403)
+
+  P =   32D   (0 1F28 DCC 7C222403) dolit         P =   32D   (1F28 DCC 7C222403 FFFFFF3F) next   P =   434   (1F28 DCC 7C222403 FFFFFF3F)
+
+  P =   435   (1F28 DCC 7C222403 FFFFFF3F) andd   P =   435   (0 1F28 DCC 7C222403)
+  P =   436   (0 1F28 DCC 7C222403) next          P =   AC0   (0 1F28 DCC 7C222403)
+
+  P =   AC1   (0 1F28 DCC 7C222403) dolist        P =   AC1   (0 1F28 DCC 7C222403) next          P =   32C   (0 1F28 DCC 7C222403)
+
+  P =   32D   (0 1F28 DCC 7C222403) dolit         P =   32D   (1F28 DCC 7C222403 5F5F5F5F) next   P =   434   (1F28 DCC 7C222403 5F5F5F5F)
+
+  P =   435   (1F28 DCC 7C222403 5F5F5F5F) andd   P =   435   (0 1F28 DCC 5C020403)
+  P =   436   (0 1F28 DCC 5C020403) next          P =   34C   (0 1F28 DCC 5C020403)
+
+  P =   34D   (0 1F28 DCC 5C020403) exitt         P =   34D   (0 1F28 DCC 5C020403) next          P =   3D4   (0 1F28 DCC 5C020403)
+
+  P =   3D5   (0 1F28 DCC 5C020403) rat   P =   3D5   (1F28 DCC 5C020403 58454803)
+  P =   3D6   (1F28 DCC 5C020403 58454803) next   P =   AC0   (1F28 DCC 5C020403 58454803)
+
+  P =   AC1   (1F28 DCC 5C020403 58454803) dolist         P =   AC1   (1F28 DCC 5C020403 58454803) next   P =   32C   (1F28 DCC 5C020403 58454803)
+
+  P =   32D   (1F28 DCC 5C020403 58454803) dolit          P =   32D   (DCC 5C020403 58454803 5F5F5F5F) next       P =   434   (DCC 5C020403 58454803 5F5F5F5F)
+
+  P =   435   (DCC 5C020403 58454803 5F5F5F5F) andd       P =   435   (1F28 DCC 5C020403 58454803)
+  P =   436   (1F28 DCC 5C020403 58454803) next   P =   34C   (1F28 DCC 5C020403 58454803)
+
+  P =   34D   (1F28 DCC 5C020403 58454803) exitt          P =   34D   (1F28 DCC 5C020403 58454803) next   P =   44C   (1F28 DCC 5C020403 58454803)
+
+  P =   44D   (1F28 DCC 5C020403 58454803) xorr   P =   44D   (0 1F28 DCC 4474C00)
+  P =   44E   (0 1F28 DCC 4474C00) next   P =   37C   (0 1F28 DCC 4474C00)
+
+  P =   37D   (0 1F28 DCC 4474C00) qbran          P =   37D   (0 0 1F28 DCC) next         P =   630   (0 0 1F28 DCC)
+
+  P =   631   (0 0 1F28 DCC) docon        P =   631   (0 1F28 DCC 4)
+  P =   632   (0 1F28 DCC 4) plus         P =   632   (0 0 1F28 DD0)
+  P =   633   (0 0 1F28 DD0) next         P =   32C   (0 0 1F28 DD0)
+
+  P =   32D   (0 0 1F28 DD0) dolit        P =   32D   (0 1F28 DD0 FFFFFFFF) next          P =   38C   (0 1F28 DD0 FFFFFFFF)
+
+  P =   38D   (0 1F28 DD0 FFFFFFFF) bran          P =   38D   (0 1F28 DD0 FFFFFFFF) next          P =   38C   (0 1F28 DD0 FFFFFFFF)
+
+  P =   38D   (0 1F28 DD0 FFFFFFFF) bran          P =   38D   (0 1F28 DD0 FFFFFFFF) next          P =   37C   (0 1F28 DD0 FFFFFFFF)
+
+  P =   37D   (0 1F28 DD0 FFFFFFFF) qbran         P =   37D   (0 0 1F28 DD0) next         P =   644   (0 0 1F28 DD0)
+
+  P =   645   (0 0 1F28 DD0) docon        P =   645   (0 1F28 DD0 4)
+  P =   646   (0 1F28 DD0 4) subb         P =   646   (0 0 1F28 DCC)
+  P =   647   (0 0 1F28 DCC) next         P =   644   (0 0 1F28 DCC)
+
+  P =   645   (0 0 1F28 DCC) docon        P =   645   (0 1F28 DCC 4)
+  P =   646   (0 1F28 DCC 4) subb         P =   646   (0 0 1F28 DC8)
+  P =   647   (0 0 1F28 DC8) next         P =   38C   (0 0 1F28 DC8)
+
+  P =   38D   (0 0 1F28 DC8) bran         P =   38D   (0 0 1F28 DC8) next         P =   3A4   (0 0 1F28 DC8)
+
+  P =   3A5   (0 0 1F28 DC8) at   P =   3A5   (0 0 1F28 D98)
+  P =   3A6   (0 0 1F28 D98) next         P =   3FC   (0 0 1F28 D98)
+
+  P =   3FD   (0 0 1F28 D98) dup          P =   3FD   (0 1F28 D98 D98)
+  P =   3FE   (0 1F28 D98 D98) next       P =   37C   (0 1F28 D98 D98)
+
+  P =   37D   (0 1F28 D98 D98) qbran      P =   37D   (0 0 1F28 D98) next         P =   3FC   (0 0 1F28 D98)
+
+  P =   3FD   (0 0 1F28 D98) dup          P =   3FD   (0 1F28 D98 D98)
+  P =   3FE   (0 1F28 D98 D98) next       P =   3A4   (0 1F28 D98 D98)
+
+  P =   3A5   (0 1F28 D98 D98) at         P =   3A5   (0 1F28 D98 246F6403)
+  P =   3A6   (0 1F28 D98 246F6403) next          P =   32C   (0 1F28 D98 246F6403)
+
+  P =   32D   (0 1F28 D98 246F6403) dolit         P =   32D   (1F28 D98 246F6403 FFFFFF3F) next   P =   434   (1F28 D98 246F6403 FFFFFF3F)
+
+  P =   435   (1F28 D98 246F6403 FFFFFF3F) andd   P =   435   (0 1F28 D98 246F6403)
+  P =   436   (0 1F28 D98 246F6403) next          P =   AC0   (0 1F28 D98 246F6403)
+
+  P =   AC1   (0 1F28 D98 246F6403) dolist        P =   AC1   (0 1F28 D98 246F6403) next          P =   32C   (0 1F28 D98 246F6403)
+
+  P =   32D   (0 1F28 D98 246F6403) dolit         P =   32D   (1F28 D98 246F6403 5F5F5F5F) next   P =   434   (1F28 D98 246F6403 5F5F5F5F)
+
+  P =   435   (1F28 D98 246F6403 5F5F5F5F) andd   P =   435   (0 1F28 D98 44F4403)
+  P =   436   (0 1F28 D98 44F4403) next   P =   34C   (0 1F28 D98 44F4403)
+
+  P =   34D   (0 1F28 D98 44F4403) exitt          P =   34D   (0 1F28 D98 44F4403) next   P =   3D4   (0 1F28 D98 44F4403)
+
+  P =   3D5   (0 1F28 D98 44F4403) rat    P =   3D5   (1F28 D98 44F4403 58454803)
+  P =   3D6   (1F28 D98 44F4403 58454803) next    P =   AC0   (1F28 D98 44F4403 58454803)
+
+  P =   AC1   (1F28 D98 44F4403 58454803) dolist          P =   AC1   (1F28 D98 44F4403 58454803) next    P =   32C   (1F28 D98 44F4403 58454803)
+
+  P =   32D   (1F28 D98 44F4403 58454803) dolit   P =   32D   (D98 44F4403 58454803 5F5F5F5F) next        P =   434   (D98 44F4403 58454803 5F5F5F5F)
+
+  P =   435   (D98 44F4403 58454803 5F5F5F5F) andd        P =   435   (1F28 D98 44F4403 58454803)
+  P =   436   (1F28 D98 44F4403 58454803) next    P =   34C   (1F28 D98 44F4403 58454803)
+
+  P =   34D   (1F28 D98 44F4403 58454803) exitt   P =   34D   (1F28 D98 44F4403 58454803) next    P =   44C   (1F28 D98 44F4403 58454803)
+
+  P =   44D   (1F28 D98 44F4403 58454803) xorr    P =   44D   (0 1F28 D98 5C0A0C00)
+  P =   44E   (0 1F28 D98 5C0A0C00) next          P =   37C   (0 1F28 D98 5C0A0C00)
+
+  P =   37D   (0 1F28 D98 5C0A0C00) qbran         P =   37D   (0 0 1F28 D98) next         P =   630   (0 0 1F28 D98)
+
+  P =   631   (0 0 1F28 D98) docon        P =   631   (0 1F28 D98 4)
+  P =   632   (0 1F28 D98 4) plus         P =   632   (0 0 1F28 D9C)
+  P =   633   (0 0 1F28 D9C) next         P =   32C   (0 0 1F28 D9C)
+
+  P =   32D   (0 0 1F28 D9C) dolit        P =   32D   (0 1F28 D9C FFFFFFFF) next          P =   38C   (0 1F28 D9C FFFFFFFF)
+
+  P =   38D   (0 1F28 D9C FFFFFFFF) bran          P =   38D   (0 1F28 D9C FFFFFFFF) next          P =   38C   (0 1F28 D9C FFFFFFFF)
+
+  P =   38D   (0 1F28 D9C FFFFFFFF) bran          P =   38D   (0 1F28 D9C FFFFFFFF) next          P =   37C   (0 1F28 D9C FFFFFFFF)
+
+  P =   37D   (0 1F28 D9C FFFFFFFF) qbran         P =   37D   (0 0 1F28 D9C) next         P =   644   (0 0 1F28 D9C)
+
+  P =   645   (0 0 1F28 D9C) docon        P =   645   (0 1F28 D9C 4)
+  P =   646   (0 1F28 D9C 4) subb         P =   646   (0 0 1F28 D98)
+  P =   647   (0 0 1F28 D98) next         P =   644   (0 0 1F28 D98)
+
+  P =   645   (0 0 1F28 D98) docon        P =   645   (0 1F28 D98 4)
+  P =   646   (0 1F28 D98 4) subb         P =   646   (0 0 1F28 D94)
+  P =   647   (0 0 1F28 D94) next         P =   38C   (0 0 1F28 D94)
+
+  P =   38D   (0 0 1F28 D94) bran         P =   38D   (0 0 1F28 D94) next         P =   3A4   (0 0 1F28 D94)
+
+  P =   3A5   (0 0 1F28 D94) at   P =   3A5   (0 0 1F28 D70)
+  P =   3A6   (0 0 1F28 D70) next         P =   3FC   (0 0 1F28 D70)
+
+  P =   3FD   (0 0 1F28 D70) dup          P =   3FD   (0 1F28 D70 D70)
+  P =   3FE   (0 1F28 D70 D70) next       P =   37C   (0 1F28 D70 D70)
+
+  P =   37D   (0 1F28 D70 D70) qbran      P =   37D   (0 0 1F28 D70) next         P =   3FC   (0 0 1F28 D70)
+
+  P =   3FD   (0 0 1F28 D70) dup          P =   3FD   (0 1F28 D70 D70)
+  P =   3FE   (0 1F28 D70 D70) next       P =   3A4   (0 1F28 D70 D70)
+
+  P =   3A5   (0 1F28 D70 D70) at         P =   3A5   (0 1F28 D70 524302)
+  P =   3A6   (0 1F28 D70 524302) next    P =   32C   (0 1F28 D70 524302)
+
+  P =   32D   (0 1F28 D70 524302) dolit   P =   32D   (1F28 D70 524302 FFFFFF3F) next     P =   434   (1F28 D70 524302 FFFFFF3F)
+
+  P =   435   (1F28 D70 524302 FFFFFF3F) andd     P =   435   (0 1F28 D70 524302)
+  P =   436   (0 1F28 D70 524302) next    P =   AC0   (0 1F28 D70 524302)
+
+  P =   AC1   (0 1F28 D70 524302) dolist          P =   AC1   (0 1F28 D70 524302) next    P =   32C   (0 1F28 D70 524302)
+
+  P =   32D   (0 1F28 D70 524302) dolit   P =   32D   (1F28 D70 524302 5F5F5F5F) next     P =   434   (1F28 D70 524302 5F5F5F5F)
+
+  P =   435   (1F28 D70 524302 5F5F5F5F) andd     P =   435   (0 1F28 D70 524302)
+  P =   436   (0 1F28 D70 524302) next    P =   34C   (0 1F28 D70 524302)
+
+  P =   34D   (0 1F28 D70 524302) exitt   P =   34D   (0 1F28 D70 524302) next    P =   3D4   (0 1F28 D70 524302)
+
+  P =   3D5   (0 1F28 D70 524302) rat     P =   3D5   (1F28 D70 524302 58454803)
+  P =   3D6   (1F28 D70 524302 58454803) next     P =   AC0   (1F28 D70 524302 58454803)
+
+  P =   AC1   (1F28 D70 524302 58454803) dolist   P =   AC1   (1F28 D70 524302 58454803) next     P =   32C   (1F28 D70 524302 58454803)
+
+  P =   32D   (1F28 D70 524302 58454803) dolit    P =   32D   (D70 524302 58454803 5F5F5F5F) next         P =   434   (D70 524302 58454803 5F5F5F5F)
+
+  P =   435   (D70 524302 58454803 5F5F5F5F) andd         P =   435   (1F28 D70 524302 58454803)
+  P =   436   (1F28 D70 524302 58454803) next     P =   34C   (1F28 D70 524302 58454803)
+
+  P =   34D   (1F28 D70 524302 58454803) exitt    P =   34D   (1F28 D70 524302 58454803) next     P =   44C   (1F28 D70 524302 58454803)
+
+  P =   44D   (1F28 D70 524302 58454803) xorr     P =   44D   (0 1F28 D70 58170B01)
+  P =   44E   (0 1F28 D70 58170B01) next          P =   37C   (0 1F28 D70 58170B01)
+
+  P =   37D   (0 1F28 D70 58170B01) qbran         P =   37D   (0 0 1F28 D70) next         P =   630   (0 0 1F28 D70)
+
+  P =   631   (0 0 1F28 D70) docon        P =   631   (0 1F28 D70 4)
+  P =   632   (0 1F28 D70 4) plus         P =   632   (0 0 1F28 D74)
+  P =   633   (0 0 1F28 D74) next         P =   32C   (0 0 1F28 D74)
+
+  P =   32D   (0 0 1F28 D74) dolit        P =   32D   (0 1F28 D74 FFFFFFFF) next          P =   38C   (0 1F28 D74 FFFFFFFF)
+
+  P =   38D   (0 1F28 D74 FFFFFFFF) bran          P =   38D   (0 1F28 D74 FFFFFFFF) next          P =   38C   (0 1F28 D74 FFFFFFFF)
+
+  P =   38D   (0 1F28 D74 FFFFFFFF) bran          P =   38D   (0 1F28 D74 FFFFFFFF) next          P =   37C   (0 1F28 D74 FFFFFFFF)
+
+  P =   37D   (0 1F28 D74 FFFFFFFF) qbran         P =   37D   (0 0 1F28 D74) next         P =   644   (0 0 1F28 D74)
+
+  P =   645   (0 0 1F28 D74) docon        P =   645   (0 1F28 D74 4)
+  P =   646   (0 1F28 D74 4) subb         P =   646   (0 0 1F28 D70)
+  P =   647   (0 0 1F28 D70) next         P =   644   (0 0 1F28 D70)
+
+  P =   645   (0 0 1F28 D70) docon        P =   645   (0 1F28 D70 4)
+  P =   646   (0 1F28 D70 4) subb         P =   646   (0 0 1F28 D6C)
+  P =   647   (0 0 1F28 D6C) next         P =   38C   (0 0 1F28 D6C)
+
+  P =   38D   (0 0 1F28 D6C) bran         P =   38D   (0 0 1F28 D6C) next         P =   3A4   (0 0 1F28 D6C)
+
+  P =   3A5   (0 0 1F28 D6C) at   P =   3A5   (0 0 1F28 D38)
+  P =   3A6   (0 0 1F28 D38) next         P =   3FC   (0 0 1F28 D38)
+
+  P =   3FD   (0 0 1F28 D38) dup          P =   3FD   (0 1F28 D38 D38)
+  P =   3FE   (0 1F28 D38 D38) next       P =   37C   (0 1F28 D38 D38)
+
+  P =   37D   (0 1F28 D38 D38) qbran      P =   37D   (0 0 1F28 D38) next         P =   3FC   (0 0 1F28 D38)
+
+  P =   3FD   (0 0 1F28 D38) dup          P =   3FD   (0 1F28 D38 D38)
+  P =   3FE   (0 1F28 D38 D38) next       P =   3A4   (0 1F28 D38 D38)
+
+  P =   3A5   (0 1F28 D38 D38) at         P =   3A5   (0 1F28 D38 50595404)
+  P =   3A6   (0 1F28 D38 50595404) next          P =   32C   (0 1F28 D38 50595404)
+
+  P =   32D   (0 1F28 D38 50595404) dolit         P =   32D   (1F28 D38 50595404 FFFFFF3F) next   P =   434   (1F28 D38 50595404 FFFFFF3F)
+
+  P =   435   (1F28 D38 50595404 FFFFFF3F) andd   P =   435   (0 1F28 D38 50595404)
+  P =   436   (0 1F28 D38 50595404) next          P =   AC0   (0 1F28 D38 50595404)
+
+  P =   AC1   (0 1F28 D38 50595404) dolist        P =   AC1   (0 1F28 D38 50595404) next          P =   32C   (0 1F28 D38 50595404)
+
+  P =   32D   (0 1F28 D38 50595404) dolit         P =   32D   (1F28 D38 50595404 5F5F5F5F) next   P =   434   (1F28 D38 50595404 5F5F5F5F)
+
+  P =   435   (1F28 D38 50595404 5F5F5F5F) andd   P =   435   (0 1F28 D38 50595404)
+  P =   436   (0 1F28 D38 50595404) next          P =   34C   (0 1F28 D38 50595404)
+
+  P =   34D   (0 1F28 D38 50595404) exitt         P =   34D   (0 1F28 D38 50595404) next          P =   3D4   (0 1F28 D38 50595404)
+
+  P =   3D5   (0 1F28 D38 50595404) rat   P =   3D5   (1F28 D38 50595404 58454803)
+  P =   3D6   (1F28 D38 50595404 58454803) next   P =   AC0   (1F28 D38 50595404 58454803)
+
+  P =   AC1   (1F28 D38 50595404 58454803) dolist         P =   AC1   (1F28 D38 50595404 58454803) next   P =   32C   (1F28 D38 50595404 58454803)
+
+  P =   32D   (1F28 D38 50595404 58454803) dolit          P =   32D   (D38 50595404 58454803 5F5F5F5F) next       P =   434   (D38 50595404 58454803 5F5F5F5F)
+
+  P =   435   (D38 50595404 58454803 5F5F5F5F) andd       P =   435   (1F28 D38 50595404 58454803)
+  P =   436   (1F28 D38 50595404 58454803) next   P =   34C   (1F28 D38 50595404 58454803)
+
+  P =   34D   (1F28 D38 50595404 58454803) exitt          P =   34D   (1F28 D38 50595404 58454803) next   P =   44C   (1F28 D38 50595404 58454803)
+
+  P =   44D   (1F28 D38 50595404 58454803) xorr   P =   44D   (0 1F28 D38 81C1C07)
+  P =   44E   (0 1F28 D38 81C1C07) next   P =   37C   (0 1F28 D38 81C1C07)
+
+  P =   37D   (0 1F28 D38 81C1C07) qbran          P =   37D   (0 0 1F28 D38) next         P =   630   (0 0 1F28 D38)
+
+  P =   631   (0 0 1F28 D38) docon        P =   631   (0 1F28 D38 4)
+  P =   632   (0 1F28 D38 4) plus         P =   632   (0 0 1F28 D3C)
+  P =   633   (0 0 1F28 D3C) next         P =   32C   (0 0 1F28 D3C)
+
+  P =   32D   (0 0 1F28 D3C) dolit        P =   32D   (0 1F28 D3C FFFFFFFF) next          P =   38C   (0 1F28 D3C FFFFFFFF)
+
+  P =   38D   (0 1F28 D3C FFFFFFFF) bran          P =   38D   (0 1F28 D3C FFFFFFFF) next          P =   38C   (0 1F28 D3C FFFFFFFF)
+
+  P =   38D   (0 1F28 D3C FFFFFFFF) bran          P =   38D   (0 1F28 D3C FFFFFFFF) next          P =   37C   (0 1F28 D3C FFFFFFFF)
+
+  P =   37D   (0 1F28 D3C FFFFFFFF) qbran         P =   37D   (0 0 1F28 D3C) next         P =   644   (0 0 1F28 D3C)
+
+  P =   645   (0 0 1F28 D3C) docon        P =   645   (0 1F28 D3C 4)
+  P =   646   (0 1F28 D3C 4) subb         P =   646   (0 0 1F28 D38)
+  P =   647   (0 0 1F28 D38) next         P =   644   (0 0 1F28 D38)
+
+  P =   645   (0 0 1F28 D38) docon        P =   645   (0 1F28 D38 4)
+  P =   646   (0 1F28 D38 4) subb         P =   646   (0 0 1F28 D34)
+  P =   647   (0 0 1F28 D34) next         P =   38C   (0 0 1F28 D34)
+
+  P =   38D   (0 0 1F28 D34) bran         P =   38D   (0 0 1F28 D34) next         P =   3A4   (0 0 1F28 D34)
+
+  P =   3A5   (0 0 1F28 D34) at   P =   3A5   (0 0 1F28 D1C)
+  P =   3A6   (0 0 1F28 D1C) next         P =   3FC   (0 0 1F28 D1C)
+
+  P =   3FD   (0 0 1F28 D1C) dup          P =   3FD   (0 1F28 D1C D1C)
+  P =   3FE   (0 1F28 D1C D1C) next       P =   37C   (0 1F28 D1C D1C)
+
+  P =   37D   (0 1F28 D1C D1C) qbran      P =   37D   (0 0 1F28 D1C) next         P =   3FC   (0 0 1F28 D1C)
+
+  P =   3FD   (0 0 1F28 D1C) dup          P =   3FD   (0 1F28 D1C D1C)
+  P =   3FE   (0 1F28 D1C D1C) next       P =   3A4   (0 1F28 D1C D1C)
+
+  P =   3A5   (0 1F28 D1C D1C) at         P =   3A5   (0 1F28 D1C 41505306)
+  P =   3A6   (0 1F28 D1C 41505306) next          P =   32C   (0 1F28 D1C 41505306)
+
+  P =   32D   (0 1F28 D1C 41505306) dolit         P =   32D   (1F28 D1C 41505306 FFFFFF3F) next   P =   434   (1F28 D1C 41505306 FFFFFF3F)
+
+  P =   435   (1F28 D1C 41505306 FFFFFF3F) andd   P =   435   (0 1F28 D1C 41505306)
+  P =   436   (0 1F28 D1C 41505306) next          P =   AC0   (0 1F28 D1C 41505306)
+
+  P =   AC1   (0 1F28 D1C 41505306) dolist        P =   AC1   (0 1F28 D1C 41505306) next          P =   32C   (0 1F28 D1C 41505306)
+
+  P =   32D   (0 1F28 D1C 41505306) dolit         P =   32D   (1F28 D1C 41505306 5F5F5F5F) next   P =   434   (1F28 D1C 41505306 5F5F5F5F)
+
+  P =   435   (1F28 D1C 41505306 5F5F5F5F) andd   P =   435   (0 1F28 D1C 41505306)
+  P =   436   (0 1F28 D1C 41505306) next          P =   34C   (0 1F28 D1C 41505306)
+
+  P =   34D   (0 1F28 D1C 41505306) exitt         P =   34D   (0 1F28 D1C 41505306) next          P =   3D4   (0 1F28 D1C 41505306)
+
+  P =   3D5   (0 1F28 D1C 41505306) rat   P =   3D5   (1F28 D1C 41505306 58454803)
+  P =   3D6   (1F28 D1C 41505306 58454803) next   P =   AC0   (1F28 D1C 41505306 58454803)
+
+  P =   AC1   (1F28 D1C 41505306 58454803) dolist         P =   AC1   (1F28 D1C 41505306 58454803) next   P =   32C   (1F28 D1C 41505306 58454803)
+
+  P =   32D   (1F28 D1C 41505306 58454803) dolit          P =   32D   (D1C 41505306 58454803 5F5F5F5F) next       P =   434   (D1C 41505306 58454803 5F5F5F5F)
+
+  P =   435   (D1C 41505306 58454803 5F5F5F5F) andd       P =   435   (1F28 D1C 41505306 58454803)
+  P =   436   (1F28 D1C 41505306 58454803) next   P =   34C   (1F28 D1C 41505306 58454803)
+
+  P =   34D   (1F28 D1C 41505306 58454803) exitt          P =   34D   (1F28 D1C 41505306 58454803) next   P =   44C   (1F28 D1C 41505306 58454803)
+
+  P =   44D   (1F28 D1C 41505306 58454803) xorr   P =   44D   (0 1F28 D1C 19151B05)
+  P =   44E   (0 1F28 D1C 19151B05) next          P =   37C   (0 1F28 D1C 19151B05)
+
+  P =   37D   (0 1F28 D1C 19151B05) qbran         P =   37D   (0 0 1F28 D1C) next         P =   630   (0 0 1F28 D1C)
+
+  P =   631   (0 0 1F28 D1C) docon        P =   631   (0 1F28 D1C 4)
+  P =   632   (0 1F28 D1C 4) plus         P =   632   (0 0 1F28 D20)
+  P =   633   (0 0 1F28 D20) next         P =   32C   (0 0 1F28 D20)
+
+  P =   32D   (0 0 1F28 D20) dolit        P =   32D   (0 1F28 D20 FFFFFFFF) next          P =   38C   (0 1F28 D20 FFFFFFFF)
+
+  P =   38D   (0 1F28 D20 FFFFFFFF) bran          P =   38D   (0 1F28 D20 FFFFFFFF) next          P =   38C   (0 1F28 D20 FFFFFFFF)
+
+  P =   38D   (0 1F28 D20 FFFFFFFF) bran          P =   38D   (0 1F28 D20 FFFFFFFF) next          P =   37C   (0 1F28 D20 FFFFFFFF)
+
+  P =   37D   (0 1F28 D20 FFFFFFFF) qbran         P =   37D   (0 0 1F28 D20) next         P =   644   (0 0 1F28 D20)
+
+  P =   645   (0 0 1F28 D20) docon        P =   645   (0 1F28 D20 4)
+  P =   646   (0 1F28 D20 4) subb         P =   646   (0 0 1F28 D1C)
+  P =   647   (0 0 1F28 D1C) next         P =   644   (0 0 1F28 D1C)
+
+  P =   645   (0 0 1F28 D1C) docon        P =   645   (0 1F28 D1C 4)
+  P =   646   (0 1F28 D1C 4) subb         P =   646   (0 0 1F28 D18)
+  P =   647   (0 0 1F28 D18) next         P =   38C   (0 0 1F28 D18)
+
+  P =   38D   (0 0 1F28 D18) bran         P =   38D   (0 0 1F28 D18) next         P =   3A4   (0 0 1F28 D18)
+
+  P =   3A5   (0 0 1F28 D18) at   P =   3A5   (0 0 1F28 CD8)
+  P =   3A6   (0 0 1F28 CD8) next         P =   3FC   (0 0 1F28 CD8)
+
+  P =   3FD   (0 0 1F28 CD8) dup          P =   3FD   (0 1F28 CD8 CD8)
+  P =   3FE   (0 1F28 CD8 CD8) next       P =   37C   (0 1F28 CD8 CD8)
+
+  P =   37D   (0 1F28 CD8 CD8) qbran      P =   37D   (0 0 1F28 CD8) next         P =   3FC   (0 0 1F28 CD8)
+
+  P =   3FD   (0 0 1F28 CD8) dup          P =   3FD   (0 1F28 CD8 CD8)
+  P =   3FE   (0 1F28 CD8 CD8) next       P =   3A4   (0 1F28 CD8 CD8)
+
+  P =   3A5   (0 1F28 CD8 CD8) at         P =   3A5   (0 1F28 CD8 41484305)
+  P =   3A6   (0 1F28 CD8 41484305) next          P =   32C   (0 1F28 CD8 41484305)
+
+  P =   32D   (0 1F28 CD8 41484305) dolit         P =   32D   (1F28 CD8 41484305 FFFFFF3F) next   P =   434   (1F28 CD8 41484305 FFFFFF3F)
+
+  P =   435   (1F28 CD8 41484305 FFFFFF3F) andd   P =   435   (0 1F28 CD8 41484305)
+  P =   436   (0 1F28 CD8 41484305) next          P =   AC0   (0 1F28 CD8 41484305)
+
+  P =   AC1   (0 1F28 CD8 41484305) dolist        P =   AC1   (0 1F28 CD8 41484305) next          P =   32C   (0 1F28 CD8 41484305)
+
+  P =   32D   (0 1F28 CD8 41484305) dolit         P =   32D   (1F28 CD8 41484305 5F5F5F5F) next   P =   434   (1F28 CD8 41484305 5F5F5F5F)
+
+  P =   435   (1F28 CD8 41484305 5F5F5F5F) andd   P =   435   (0 1F28 CD8 41484305)
+  P =   436   (0 1F28 CD8 41484305) next          P =   34C   (0 1F28 CD8 41484305)
+
+  P =   34D   (0 1F28 CD8 41484305) exitt         P =   34D   (0 1F28 CD8 41484305) next          P =   3D4   (0 1F28 CD8 41484305)
+
+  P =   3D5   (0 1F28 CD8 41484305) rat   P =   3D5   (1F28 CD8 41484305 58454803)
+  P =   3D6   (1F28 CD8 41484305 58454803) next   P =   AC0   (1F28 CD8 41484305 58454803)
+
+  P =   AC1   (1F28 CD8 41484305 58454803) dolist         P =   AC1   (1F28 CD8 41484305 58454803) next   P =   32C   (1F28 CD8 41484305 58454803)
+
+  P =   32D   (1F28 CD8 41484305 58454803) dolit          P =   32D   (CD8 41484305 58454803 5F5F5F5F) next       P =   434   (CD8 41484305 58454803 5F5F5F5F)
+
+  P =   435   (CD8 41484305 58454803 5F5F5F5F) andd       P =   435   (1F28 CD8 41484305 58454803)
+  P =   436   (1F28 CD8 41484305 58454803) next   P =   34C   (1F28 CD8 41484305 58454803)
+
+  P =   34D   (1F28 CD8 41484305 58454803) exitt          P =   34D   (1F28 CD8 41484305 58454803) next   P =   44C   (1F28 CD8 41484305 58454803)
+
+  P =   44D   (1F28 CD8 41484305 58454803) xorr   P =   44D   (0 1F28 CD8 190D0B06)
+  P =   44E   (0 1F28 CD8 190D0B06) next          P =   37C   (0 1F28 CD8 190D0B06)
+
+  P =   37D   (0 1F28 CD8 190D0B06) qbran         P =   37D   (0 0 1F28 CD8) next         P =   630   (0 0 1F28 CD8)
+
+  P =   631   (0 0 1F28 CD8) docon        P =   631   (0 1F28 CD8 4)
+  P =   632   (0 1F28 CD8 4) plus         P =   632   (0 0 1F28 CDC)
+  P =   633   (0 0 1F28 CDC) next         P =   32C   (0 0 1F28 CDC)
+
+  P =   32D   (0 0 1F28 CDC) dolit        P =   32D   (0 1F28 CDC FFFFFFFF) next          P =   38C   (0 1F28 CDC FFFFFFFF)
+
+  P =   38D   (0 1F28 CDC FFFFFFFF) bran          P =   38D   (0 1F28 CDC FFFFFFFF) next          P =   38C   (0 1F28 CDC FFFFFFFF)
+
+  P =   38D   (0 1F28 CDC FFFFFFFF) bran          P =   38D   (0 1F28 CDC FFFFFFFF) next          P =   37C   (0 1F28 CDC FFFFFFFF)
+
+  P =   37D   (0 1F28 CDC FFFFFFFF) qbran         P =   37D   (0 0 1F28 CDC) next         P =   644   (0 0 1F28 CDC)
+
+  P =   645   (0 0 1F28 CDC) docon        P =   645   (0 1F28 CDC 4)
+  P =   646   (0 1F28 CDC 4) subb         P =   646   (0 0 1F28 CD8)
+  P =   647   (0 0 1F28 CD8) next         P =   644   (0 0 1F28 CD8)
+
+  P =   645   (0 0 1F28 CD8) docon        P =   645   (0 1F28 CD8 4)
+  P =   646   (0 1F28 CD8 4) subb         P =   646   (0 0 1F28 CD4)
+  P =   647   (0 0 1F28 CD4) next         P =   38C   (0 0 1F28 CD4)
+
+  P =   38D   (0 0 1F28 CD4) bran         P =   38D   (0 0 1F28 CD4) next         P =   3A4   (0 0 1F28 CD4)
+
+  P =   3A5   (0 0 1F28 CD4) at   P =   3A5   (0 0 1F28 CBC)
+  P =   3A6   (0 0 1F28 CBC) next         P =   3FC   (0 0 1F28 CBC)
+
+  P =   3FD   (0 0 1F28 CBC) dup          P =   3FD   (0 1F28 CBC CBC)
+  P =   3FE   (0 1F28 CBC CBC) next       P =   37C   (0 1F28 CBC CBC)
+
+  P =   37D   (0 1F28 CBC CBC) qbran      P =   37D   (0 0 1F28 CBC) next         P =   3FC   (0 0 1F28 CBC)
+
+  P =   3FD   (0 0 1F28 CBC) dup          P =   3FD   (0 1F28 CBC CBC)
+  P =   3FE   (0 1F28 CBC CBC) next       P =   3A4   (0 1F28 CBC CBC)
+
+  P =   3A5   (0 1F28 CBC CBC) at         P =   3A5   (0 1F28 CBC 41505305)
+  P =   3A6   (0 1F28 CBC 41505305) next          P =   32C   (0 1F28 CBC 41505305)
+
+  P =   32D   (0 1F28 CBC 41505305) dolit         P =   32D   (1F28 CBC 41505305 FFFFFF3F) next   P =   434   (1F28 CBC 41505305 FFFFFF3F)
+
+  P =   435   (1F28 CBC 41505305 FFFFFF3F) andd   P =   435   (0 1F28 CBC 41505305)
+  P =   436   (0 1F28 CBC 41505305) next          P =   AC0   (0 1F28 CBC 41505305)
+
+  P =   AC1   (0 1F28 CBC 41505305) dolist        P =   AC1   (0 1F28 CBC 41505305) next          P =   32C   (0 1F28 CBC 41505305)
+
+  P =   32D   (0 1F28 CBC 41505305) dolit         P =   32D   (1F28 CBC 41505305 5F5F5F5F) next   P =   434   (1F28 CBC 41505305 5F5F5F5F)
+
+  P =   435   (1F28 CBC 41505305 5F5F5F5F) andd   P =   435   (0 1F28 CBC 41505305)
+  P =   436   (0 1F28 CBC 41505305) next          P =   34C   (0 1F28 CBC 41505305)
+
+  P =   34D   (0 1F28 CBC 41505305) exitt         P =   34D   (0 1F28 CBC 41505305) next          P =   3D4   (0 1F28 CBC 41505305)
+
+  P =   3D5   (0 1F28 CBC 41505305) rat   P =   3D5   (1F28 CBC 41505305 58454803)
+  P =   3D6   (1F28 CBC 41505305 58454803) next   P =   AC0   (1F28 CBC 41505305 58454803)
+
+  P =   AC1   (1F28 CBC 41505305 58454803) dolist         P =   AC1   (1F28 CBC 41505305 58454803) next   P =   32C   (1F28 CBC 41505305 58454803)
+
+  P =   32D   (1F28 CBC 41505305 58454803) dolit          P =   32D   (CBC 41505305 58454803 5F5F5F5F) next       P =   434   (CBC 41505305 58454803 5F5F5F5F)
+
+  P =   435   (CBC 41505305 58454803 5F5F5F5F) andd       P =   435   (1F28 CBC 41505305 58454803)
+  P =   436   (1F28 CBC 41505305 58454803) next   P =   34C   (1F28 CBC 41505305 58454803)
+
+  P =   34D   (1F28 CBC 41505305 58454803) exitt          P =   34D   (1F28 CBC 41505305 58454803) next   P =   44C   (1F28 CBC 41505305 58454803)
+
+  P =   44D   (1F28 CBC 41505305 58454803) xorr   P =   44D   (0 1F28 CBC 19151B06)
+  P =   44E   (0 1F28 CBC 19151B06) next          P =   37C   (0 1F28 CBC 19151B06)
+
+  P =   37D   (0 1F28 CBC 19151B06) qbran         P =   37D   (0 0 1F28 CBC) next         P =   630   (0 0 1F28 CBC)
+
+  P =   631   (0 0 1F28 CBC) docon        P =   631   (0 1F28 CBC 4)
+  P =   632   (0 1F28 CBC 4) plus         P =   632   (0 0 1F28 CC0)
+  P =   633   (0 0 1F28 CC0) next         P =   32C   (0 0 1F28 CC0)
+
+  P =   32D   (0 0 1F28 CC0) dolit        P =   32D   (0 1F28 CC0 FFFFFFFF) next          P =   38C   (0 1F28 CC0 FFFFFFFF)
+
+  P =   38D   (0 1F28 CC0 FFFFFFFF) bran          P =   38D   (0 1F28 CC0 FFFFFFFF) next          P =   38C   (0 1F28 CC0 FFFFFFFF)
+
+  P =   38D   (0 1F28 CC0 FFFFFFFF) bran          P =   38D   (0 1F28 CC0 FFFFFFFF) next          P =   37C   (0 1F28 CC0 FFFFFFFF)
+
+  P =   37D   (0 1F28 CC0 FFFFFFFF) qbran         P =   37D   (0 0 1F28 CC0) next         P =   644   (0 0 1F28 CC0)
+
+  P =   645   (0 0 1F28 CC0) docon        P =   645   (0 1F28 CC0 4)
+  P =   646   (0 1F28 CC0 4) subb         P =   646   (0 0 1F28 CBC)
+  P =   647   (0 0 1F28 CBC) next         P =   644   (0 0 1F28 CBC)
+
+  P =   645   (0 0 1F28 CBC) docon        P =   645   (0 1F28 CBC 4)
+  P =   646   (0 1F28 CBC 4) subb         P =   646   (0 0 1F28 CB8)
+  P =   647   (0 0 1F28 CB8) next         P =   38C   (0 0 1F28 CB8)
+
+  P =   38D   (0 0 1F28 CB8) bran         P =   38D   (0 0 1F28 CB8) next         P =   3A4   (0 0 1F28 CB8)
+
+  P =   3A5   (0 0 1F28 CB8) at   P =   3A5   (0 0 1F28 B84)
+  P =   3A6   (0 0 1F28 B84) next         P =   3FC   (0 0 1F28 B84)
+
+  P =   3FD   (0 0 1F28 B84) dup          P =   3FD   (0 1F28 B84 B84)
+  P =   3FE   (0 1F28 B84 B84) next       P =   37C   (0 1F28 B84 B84)
+
+  P =   37D   (0 1F28 B84 B84) qbran      P =   37D   (0 0 1F28 B84) next         P =   3FC   (0 0 1F28 B84)
+
+  P =   3FD   (0 0 1F28 B84) dup          P =   3FD   (0 1F28 B84 B84)
+  P =   3FE   (0 1F28 B84 B84) next       P =   3A4   (0 1F28 B84 B84)
+
+  P =   3A5   (0 1F28 B84 B84) at         P =   3A5   (0 1F28 B84 4D554E07)
+  P =   3A6   (0 1F28 B84 4D554E07) next          P =   32C   (0 1F28 B84 4D554E07)
+
+  P =   32D   (0 1F28 B84 4D554E07) dolit         P =   32D   (1F28 B84 4D554E07 FFFFFF3F) next   P =   434   (1F28 B84 4D554E07 FFFFFF3F)
+
+  P =   435   (1F28 B84 4D554E07 FFFFFF3F) andd   P =   435   (0 1F28 B84 4D554E07)
+  P =   436   (0 1F28 B84 4D554E07) next          P =   AC0   (0 1F28 B84 4D554E07)
+
+  P =   AC1   (0 1F28 B84 4D554E07) dolist        P =   AC1   (0 1F28 B84 4D554E07) next          P =   32C   (0 1F28 B84 4D554E07)
+
+  P =   32D   (0 1F28 B84 4D554E07) dolit         P =   32D   (1F28 B84 4D554E07 5F5F5F5F) next   P =   434   (1F28 B84 4D554E07 5F5F5F5F)
+
+  P =   435   (1F28 B84 4D554E07 5F5F5F5F) andd   P =   435   (0 1F28 B84 4D554E07)
+  P =   436   (0 1F28 B84 4D554E07) next          P =   34C   (0 1F28 B84 4D554E07)
+
+  P =   34D   (0 1F28 B84 4D554E07) exitt         P =   34D   (0 1F28 B84 4D554E07) next          P =   3D4   (0 1F28 B84 4D554E07)
+
+  P =   3D5   (0 1F28 B84 4D554E07) rat   P =   3D5   (1F28 B84 4D554E07 58454803)
+  P =   3D6   (1F28 B84 4D554E07 58454803) next   P =   AC0   (1F28 B84 4D554E07 58454803)
+
+  P =   AC1   (1F28 B84 4D554E07 58454803) dolist         P =   AC1   (1F28 B84 4D554E07 58454803) next   P =   32C   (1F28 B84 4D554E07 58454803)
+
+  P =   32D   (1F28 B84 4D554E07 58454803) dolit          P =   32D   (B84 4D554E07 58454803 5F5F5F5F) next       P =   434   (B84 4D554E07 58454803 5F5F5F5F)
+
+  P =   435   (B84 4D554E07 58454803 5F5F5F5F) andd       P =   435   (1F28 B84 4D554E07 58454803)
+  P =   436   (1F28 B84 4D554E07 58454803) next   P =   34C   (1F28 B84 4D554E07 58454803)
+
+  P =   34D   (1F28 B84 4D554E07 58454803) exitt          P =   34D   (1F28 B84 4D554E07 58454803) next   P =   44C   (1F28 B84 4D554E07 58454803)
+
+  P =   44D   (1F28 B84 4D554E07 58454803) xorr   P =   44D   (0 1F28 B84 15100604)
+  P =   44E   (0 1F28 B84 15100604) next          P =   37C   (0 1F28 B84 15100604)
+
+  P =   37D   (0 1F28 B84 15100604) qbran         P =   37D   (0 0 1F28 B84) next         P =   630   (0 0 1F28 B84)
+
+  P =   631   (0 0 1F28 B84) docon        P =   631   (0 1F28 B84 4)
+  P =   632   (0 1F28 B84 4) plus         P =   632   (0 0 1F28 B88)
+  P =   633   (0 0 1F28 B88) next         P =   32C   (0 0 1F28 B88)
+
+  P =   32D   (0 0 1F28 B88) dolit        P =   32D   (0 1F28 B88 FFFFFFFF) next          P =   38C   (0 1F28 B88 FFFFFFFF)
+
+  P =   38D   (0 1F28 B88 FFFFFFFF) bran          P =   38D   (0 1F28 B88 FFFFFFFF) next          P =   38C   (0 1F28 B88 FFFFFFFF)
+
+  P =   38D   (0 1F28 B88 FFFFFFFF) bran          P =   38D   (0 1F28 B88 FFFFFFFF) next          P =   37C   (0 1F28 B88 FFFFFFFF)
+
+  P =   37D   (0 1F28 B88 FFFFFFFF) qbran         P =   37D   (0 0 1F28 B88) next         P =   644   (0 0 1F28 B88)
+
+  P =   645   (0 0 1F28 B88) docon        P =   645   (0 1F28 B88 4)
+  P =   646   (0 1F28 B88 4) subb         P =   646   (0 0 1F28 B84)
+  P =   647   (0 0 1F28 B84) next         P =   644   (0 0 1F28 B84)
+
+  P =   645   (0 0 1F28 B84) docon        P =   645   (0 1F28 B84 4)
+  P =   646   (0 1F28 B84 4) subb         P =   646   (0 0 1F28 B80)
+  P =   647   (0 0 1F28 B80) next         P =   38C   (0 0 1F28 B80)
+
+  P =   38D   (0 0 1F28 B80) bran         P =   38D   (0 0 1F28 B80) next         P =   3A4   (0 0 1F28 B80)
+
+  P =   3A5   (0 0 1F28 B80) at   P =   3A5   (0 0 1F28 B18)
+  P =   3A6   (0 0 1F28 B18) next         P =   3FC   (0 0 1F28 B18)
+
+  P =   3FD   (0 0 1F28 B18) dup          P =   3FD   (0 1F28 B18 B18)
+  P =   3FE   (0 1F28 B18 B18) next       P =   37C   (0 1F28 B18 B18)
+
+  P =   37D   (0 1F28 B18 B18) qbran      P =   37D   (0 0 1F28 B18) next         P =   3FC   (0 0 1F28 B18)
+
+  P =   3FD   (0 0 1F28 B18) dup          P =   3FD   (0 1F28 B18 B18)
+  P =   3FE   (0 1F28 B18 B18) next       P =   3A4   (0 1F28 B18 B18)
+
+  P =   3A5   (0 1F28 B18 B18) at         P =   3A5   (0 1F28 B18 47494406)
+  P =   3A6   (0 1F28 B18 47494406) next          P =   32C   (0 1F28 B18 47494406)
+
+  P =   32D   (0 1F28 B18 47494406) dolit         P =   32D   (1F28 B18 47494406 FFFFFF3F) next   P =   434   (1F28 B18 47494406 FFFFFF3F)
+
+  P =   435   (1F28 B18 47494406 FFFFFF3F) andd   P =   435   (0 1F28 B18 47494406)
+  P =   436   (0 1F28 B18 47494406) next          P =   AC0   (0 1F28 B18 47494406)
+
+  P =   AC1   (0 1F28 B18 47494406) dolist        P =   AC1   (0 1F28 B18 47494406) next          P =   32C   (0 1F28 B18 47494406)
+
+  P =   32D   (0 1F28 B18 47494406) dolit         P =   32D   (1F28 B18 47494406 5F5F5F5F) next   P =   434   (1F28 B18 47494406 5F5F5F5F)
+
+  P =   435   (1F28 B18 47494406 5F5F5F5F) andd   P =   435   (0 1F28 B18 47494406)
+  P =   436   (0 1F28 B18 47494406) next          P =   34C   (0 1F28 B18 47494406)
+
+  P =   34D   (0 1F28 B18 47494406) exitt         P =   34D   (0 1F28 B18 47494406) next          P =   3D4   (0 1F28 B18 47494406)
+
+  P =   3D5   (0 1F28 B18 47494406) rat   P =   3D5   (1F28 B18 47494406 58454803)
+  P =   3D6   (1F28 B18 47494406 58454803) next   P =   AC0   (1F28 B18 47494406 58454803)
+
+  P =   AC1   (1F28 B18 47494406 58454803) dolist         P =   AC1   (1F28 B18 47494406 58454803) next   P =   32C   (1F28 B18 47494406 58454803)
+
+  P =   32D   (1F28 B18 47494406 58454803) dolit          P =   32D   (B18 47494406 58454803 5F5F5F5F) next       P =   434   (B18 47494406 58454803 5F5F5F5F)
+
+  P =   435   (B18 47494406 58454803 5F5F5F5F) andd       P =   435   (1F28 B18 47494406 58454803)
+  P =   436   (1F28 B18 47494406 58454803) next   P =   34C   (1F28 B18 47494406 58454803)
+
+  P =   34D   (1F28 B18 47494406 58454803) exitt          P =   34D   (1F28 B18 47494406 58454803) next   P =   44C   (1F28 B18 47494406 58454803)
+
+  P =   44D   (1F28 B18 47494406 58454803) xorr   P =   44D   (0 1F28 B18 1F0C0C05)
+  P =   44E   (0 1F28 B18 1F0C0C05) next          P =   37C   (0 1F28 B18 1F0C0C05)
+
+  P =   37D   (0 1F28 B18 1F0C0C05) qbran         P =   37D   (0 0 1F28 B18) next         P =   630   (0 0 1F28 B18)
+
+  P =   631   (0 0 1F28 B18) docon        P =   631   (0 1F28 B18 4)
+  P =   632   (0 1F28 B18 4) plus         P =   632   (0 0 1F28 B1C)
+  P =   633   (0 0 1F28 B1C) next         P =   32C   (0 0 1F28 B1C)
+
+  P =   32D   (0 0 1F28 B1C) dolit        P =   32D   (0 1F28 B1C FFFFFFFF) next          P =   38C   (0 1F28 B1C FFFFFFFF)
+
+  P =   38D   (0 1F28 B1C FFFFFFFF) bran          P =   38D   (0 1F28 B1C FFFFFFFF) next          P =   38C   (0 1F28 B1C FFFFFFFF)
+
+  P =   38D   (0 1F28 B1C FFFFFFFF) bran          P =   38D   (0 1F28 B1C FFFFFFFF) next          P =   37C   (0 1F28 B1C FFFFFFFF)
+
+  P =   37D   (0 1F28 B1C FFFFFFFF) qbran         P =   37D   (0 0 1F28 B1C) next         P =   644   (0 0 1F28 B1C)
+
+  P =   645   (0 0 1F28 B1C) docon        P =   645   (0 1F28 B1C 4)
+  P =   646   (0 1F28 B1C 4) subb         P =   646   (0 0 1F28 B18)
+  P =   647   (0 0 1F28 B18) next         P =   644   (0 0 1F28 B18)
+
+  P =   645   (0 0 1F28 B18) docon        P =   645   (0 1F28 B18 4)
+  P =   646   (0 1F28 B18 4) subb         P =   646   (0 0 1F28 B14)
+  P =   647   (0 0 1F28 B14) next         P =   38C   (0 0 1F28 B14)
+
+  P =   38D   (0 0 1F28 B14) bran         P =   38D   (0 0 1F28 B14) next         P =   3A4   (0 0 1F28 B14)
+
+  P =   3A5   (0 0 1F28 B14) at   P =   3A5   (0 0 1F28 AD8)
+  P =   3A6   (0 0 1F28 AD8) next         P =   3FC   (0 0 1F28 AD8)
+
+  P =   3FD   (0 0 1F28 AD8) dup          P =   3FD   (0 1F28 AD8 AD8)
+  P =   3FE   (0 1F28 AD8 AD8) next       P =   37C   (0 1F28 AD8 AD8)
+
+  P =   37D   (0 1F28 AD8 AD8) qbran      P =   37D   (0 0 1F28 AD8) next         P =   3FC   (0 0 1F28 AD8)
+
+  P =   3FD   (0 0 1F28 AD8) dup          P =   3FD   (0 1F28 AD8 AD8)
+  P =   3FE   (0 1F28 AD8 AD8) next       P =   3A4   (0 1F28 AD8 AD8)
+
+  P =   3A5   (0 1F28 AD8 AD8) at         P =   3A5   (0 1F28 AD8 70753E06)
+  P =   3A6   (0 1F28 AD8 70753E06) next          P =   32C   (0 1F28 AD8 70753E06)
+
+  P =   32D   (0 1F28 AD8 70753E06) dolit         P =   32D   (1F28 AD8 70753E06 FFFFFF3F) next   P =   434   (1F28 AD8 70753E06 FFFFFF3F)
+
+  P =   435   (1F28 AD8 70753E06 FFFFFF3F) andd   P =   435   (0 1F28 AD8 70753E06)
+  P =   436   (0 1F28 AD8 70753E06) next          P =   AC0   (0 1F28 AD8 70753E06)
+
+  P =   AC1   (0 1F28 AD8 70753E06) dolist        P =   AC1   (0 1F28 AD8 70753E06) next          P =   32C   (0 1F28 AD8 70753E06)
+
+  P =   32D   (0 1F28 AD8 70753E06) dolit         P =   32D   (1F28 AD8 70753E06 5F5F5F5F) next   P =   434   (1F28 AD8 70753E06 5F5F5F5F)
+
+  P =   435   (1F28 AD8 70753E06 5F5F5F5F) andd   P =   435   (0 1F28 AD8 50551E06)
+  P =   436   (0 1F28 AD8 50551E06) next          P =   34C   (0 1F28 AD8 50551E06)
+
+  P =   34D   (0 1F28 AD8 50551E06) exitt         P =   34D   (0 1F28 AD8 50551E06) next          P =   3D4   (0 1F28 AD8 50551E06)
+
+  P =   3D5   (0 1F28 AD8 50551E06) rat   P =   3D5   (1F28 AD8 50551E06 58454803)
+  P =   3D6   (1F28 AD8 50551E06 58454803) next   P =   AC0   (1F28 AD8 50551E06 58454803)
+
+  P =   AC1   (1F28 AD8 50551E06 58454803) dolist         P =   AC1   (1F28 AD8 50551E06 58454803) next   P =   32C   (1F28 AD8 50551E06 58454803)
+
+  P =   32D   (1F28 AD8 50551E06 58454803) dolit          P =   32D   (AD8 50551E06 58454803 5F5F5F5F) next       P =   434   (AD8 50551E06 58454803 5F5F5F5F)
+
+  P =   435   (AD8 50551E06 58454803 5F5F5F5F) andd       P =   435   (1F28 AD8 50551E06 58454803)
+  P =   436   (1F28 AD8 50551E06 58454803) next   P =   34C   (1F28 AD8 50551E06 58454803)
+
+  P =   34D   (1F28 AD8 50551E06 58454803) exitt          P =   34D   (1F28 AD8 50551E06 58454803) next   P =   44C   (1F28 AD8 50551E06 58454803)
+
+  P =   44D   (1F28 AD8 50551E06 58454803) xorr   P =   44D   (0 1F28 AD8 8105605)
+  P =   44E   (0 1F28 AD8 8105605) next   P =   37C   (0 1F28 AD8 8105605)
+
+  P =   37D   (0 1F28 AD8 8105605) qbran          P =   37D   (0 0 1F28 AD8) next         P =   630   (0 0 1F28 AD8)
+
+  P =   631   (0 0 1F28 AD8) docon        P =   631   (0 1F28 AD8 4)
+  P =   632   (0 1F28 AD8 4) plus         P =   632   (0 0 1F28 ADC)
+  P =   633   (0 0 1F28 ADC) next         P =   32C   (0 0 1F28 ADC)
+
+  P =   32D   (0 0 1F28 ADC) dolit        P =   32D   (0 1F28 ADC FFFFFFFF) next          P =   38C   (0 1F28 ADC FFFFFFFF)
+
+  P =   38D   (0 1F28 ADC FFFFFFFF) bran          P =   38D   (0 1F28 ADC FFFFFFFF) next          P =   38C   (0 1F28 ADC FFFFFFFF)
+
+  P =   38D   (0 1F28 ADC FFFFFFFF) bran          P =   38D   (0 1F28 ADC FFFFFFFF) next          P =   37C   (0 1F28 ADC FFFFFFFF)
+
+  P =   37D   (0 1F28 ADC FFFFFFFF) qbran         P =   37D   (0 0 1F28 ADC) next         P =   644   (0 0 1F28 ADC)
+
+  P =   645   (0 0 1F28 ADC) docon        P =   645   (0 1F28 ADC 4)
+  P =   646   (0 1F28 ADC 4) subb         P =   646   (0 0 1F28 AD8)
+  P =   647   (0 0 1F28 AD8) next         P =   644   (0 0 1F28 AD8)
+
+  P =   645   (0 0 1F28 AD8) docon        P =   645   (0 1F28 AD8 4)
+  P =   646   (0 1F28 AD8 4) subb         P =   646   (0 0 1F28 AD4)
+  P =   647   (0 0 1F28 AD4) next         P =   38C   (0 0 1F28 AD4)
+
+  P =   38D   (0 0 1F28 AD4) bran         P =   38D   (0 0 1F28 AD4) next         P =   3A4   (0 0 1F28 AD4)
+
+  P =   3A5   (0 0 1F28 AD4) at   P =   3A5   (0 0 1F28 AB8)
+  P =   3A6   (0 0 1F28 AB8) next         P =   3FC   (0 0 1F28 AB8)
+
+  P =   3FD   (0 0 1F28 AB8) dup          P =   3FD   (0 1F28 AB8 AB8)
+  P =   3FE   (0 1F28 AB8 AB8) next       P =   37C   (0 1F28 AB8 AB8)
+
+  P =   37D   (0 1F28 AB8 AB8) qbran      P =   37D   (0 0 1F28 AB8) next         P =   3FC   (0 0 1F28 AB8)
+
+  P =   3FD   (0 0 1F28 AB8) dup          P =   3FD   (0 1F28 AB8 AB8)
+  P =   3FE   (0 1F28 AB8 AB8) next       P =   3A4   (0 1F28 AB8 AB8)
+
+  P =   3A5   (0 1F28 AB8 AB8) at         P =   3A5   (0 1F28 AB8 70757706)
+  P =   3A6   (0 1F28 AB8 70757706) next          P =   32C   (0 1F28 AB8 70757706)
+
+  P =   32D   (0 1F28 AB8 70757706) dolit         P =   32D   (1F28 AB8 70757706 FFFFFF3F) next   P =   434   (1F28 AB8 70757706 FFFFFF3F)
+
+  P =   435   (1F28 AB8 70757706 FFFFFF3F) andd   P =   435   (0 1F28 AB8 70757706)
+  P =   436   (0 1F28 AB8 70757706) next          P =   AC0   (0 1F28 AB8 70757706)
+
+  P =   AC1   (0 1F28 AB8 70757706) dolist        P =   AC1   (0 1F28 AB8 70757706) next          P =   32C   (0 1F28 AB8 70757706)
+
+  P =   32D   (0 1F28 AB8 70757706) dolit         P =   32D   (1F28 AB8 70757706 5F5F5F5F) next   P =   434   (1F28 AB8 70757706 5F5F5F5F)
+
+  P =   435   (1F28 AB8 70757706 5F5F5F5F) andd   P =   435   (0 1F28 AB8 50555706)
+  P =   436   (0 1F28 AB8 50555706) next          P =   34C   (0 1F28 AB8 50555706)
+
+  P =   34D   (0 1F28 AB8 50555706) exitt         P =   34D   (0 1F28 AB8 50555706) next          P =   3D4   (0 1F28 AB8 50555706)
+
+  P =   3D5   (0 1F28 AB8 50555706) rat   P =   3D5   (1F28 AB8 50555706 58454803)
+  P =   3D6   (1F28 AB8 50555706 58454803) next   P =   AC0   (1F28 AB8 50555706 58454803)
+
+  P =   AC1   (1F28 AB8 50555706 58454803) dolist         P =   AC1   (1F28 AB8 50555706 58454803) next   P =   32C   (1F28 AB8 50555706 58454803)
+
+  P =   32D   (1F28 AB8 50555706 58454803) dolit          P =   32D   (AB8 50555706 58454803 5F5F5F5F) next       P =   434   (AB8 50555706 58454803 5F5F5F5F)
+
+  P =   435   (AB8 50555706 58454803 5F5F5F5F) andd       P =   435   (1F28 AB8 50555706 58454803)
+  P =   436   (1F28 AB8 50555706 58454803) next   P =   34C   (1F28 AB8 50555706 58454803)
+
+  P =   34D   (1F28 AB8 50555706 58454803) exitt          P =   34D   (1F28 AB8 50555706 58454803) next   P =   44C   (1F28 AB8 50555706 58454803)
+
+  P =   44D   (1F28 AB8 50555706 58454803) xorr   P =   44D   (0 1F28 AB8 8101F05)
+  P =   44E   (0 1F28 AB8 8101F05) next   P =   37C   (0 1F28 AB8 8101F05)
+
+  P =   37D   (0 1F28 AB8 8101F05) qbran          P =   37D   (0 0 1F28 AB8) next         P =   630   (0 0 1F28 AB8)
+
+  P =   631   (0 0 1F28 AB8) docon        P =   631   (0 1F28 AB8 4)
+  P =   632   (0 1F28 AB8 4) plus         P =   632   (0 0 1F28 ABC)
+  P =   633   (0 0 1F28 ABC) next         P =   32C   (0 0 1F28 ABC)
+
+  P =   32D   (0 0 1F28 ABC) dolit        P =   32D   (0 1F28 ABC FFFFFFFF) next          P =   38C   (0 1F28 ABC FFFFFFFF)
+
+  P =   38D   (0 1F28 ABC FFFFFFFF) bran          P =   38D   (0 1F28 ABC FFFFFFFF) next          P =   38C   (0 1F28 ABC FFFFFFFF)
+
+  P =   38D   (0 1F28 ABC FFFFFFFF) bran          P =   38D   (0 1F28 ABC FFFFFFFF) next          P =   37C   (0 1F28 ABC FFFFFFFF)
+
+  P =   37D   (0 1F28 ABC FFFFFFFF) qbran         P =   37D   (0 0 1F28 ABC) next         P =   644   (0 0 1F28 ABC)
+
+  P =   645   (0 0 1F28 ABC) docon        P =   645   (0 1F28 ABC 4)
+  P =   646   (0 1F28 ABC 4) subb         P =   646   (0 0 1F28 AB8)
+  P =   647   (0 0 1F28 AB8) next         P =   644   (0 0 1F28 AB8)
+
+  P =   645   (0 0 1F28 AB8) docon        P =   645   (0 1F28 AB8 4)
+  P =   646   (0 1F28 AB8 4) subb         P =   646   (0 0 1F28 AB4)
+  P =   647   (0 0 1F28 AB4) next         P =   38C   (0 0 1F28 AB4)
+
+  P =   38D   (0 0 1F28 AB4) bran         P =   38D   (0 0 1F28 AB4) next         P =   3A4   (0 0 1F28 AB4)
+
+  P =   3A5   (0 0 1F28 AB4) at   P =   3A5   (0 0 1F28 A94)
+  P =   3A6   (0 0 1F28 A94) next         P =   3FC   (0 0 1F28 A94)
+
+  P =   3FD   (0 0 1F28 A94) dup          P =   3FD   (0 1F28 A94 A94)
+  P =   3FE   (0 1F28 A94 A94) next       P =   37C   (0 1F28 A94 A94)
+
+  P =   37D   (0 1F28 A94 A94) qbran      P =   37D   (0 0 1F28 A94) next         P =   3FC   (0 0 1F28 A94)
+
+  P =   3FD   (0 0 1F28 A94) dup          P =   3FD   (0 1F28 A94 A94)
+  P =   3FE   (0 1F28 A94 A94) next       P =   3A4   (0 1F28 A94 A94)
+
+  P =   3A5   (0 1F28 A94 A94) at         P =   3A5   (0 1F28 A94 43454407)
+  P =   3A6   (0 1F28 A94 43454407) next          P =   32C   (0 1F28 A94 43454407)
+
+  P =   32D   (0 1F28 A94 43454407) dolit         P =   32D   (1F28 A94 43454407 FFFFFF3F) next   P =   434   (1F28 A94 43454407 FFFFFF3F)
+
+  P =   435   (1F28 A94 43454407 FFFFFF3F) andd   P =   435   (0 1F28 A94 43454407)
+  P =   436   (0 1F28 A94 43454407) next          P =   AC0   (0 1F28 A94 43454407)
+
+  P =   AC1   (0 1F28 A94 43454407) dolist        P =   AC1   (0 1F28 A94 43454407) next          P =   32C   (0 1F28 A94 43454407)
+
+  P =   32D   (0 1F28 A94 43454407) dolit         P =   32D   (1F28 A94 43454407 5F5F5F5F) next   P =   434   (1F28 A94 43454407 5F5F5F5F)
+
+  P =   435   (1F28 A94 43454407 5F5F5F5F) andd   P =   435   (0 1F28 A94 43454407)
+  P =   436   (0 1F28 A94 43454407) next          P =   34C   (0 1F28 A94 43454407)
+
+  P =   34D   (0 1F28 A94 43454407) exitt         P =   34D   (0 1F28 A94 43454407) next          P =   3D4   (0 1F28 A94 43454407)
+
+  P =   3D5   (0 1F28 A94 43454407) rat   P =   3D5   (1F28 A94 43454407 58454803)
+  P =   3D6   (1F28 A94 43454407 58454803) next   P =   AC0   (1F28 A94 43454407 58454803)
+
+  P =   AC1   (1F28 A94 43454407 58454803) dolist         P =   AC1   (1F28 A94 43454407 58454803) next   P =   32C   (1F28 A94 43454407 58454803)
+
+  P =   32D   (1F28 A94 43454407 58454803) dolit          P =   32D   (A94 43454407 58454803 5F5F5F5F) next       P =   434   (A94 43454407 58454803 5F5F5F5F)
+
+  P =   435   (A94 43454407 58454803 5F5F5F5F) andd       P =   435   (1F28 A94 43454407 58454803)
+  P =   436   (1F28 A94 43454407 58454803) next   P =   34C   (1F28 A94 43454407 58454803)
+
+  P =   34D   (1F28 A94 43454407 58454803) exitt          P =   34D   (1F28 A94 43454407 58454803) next   P =   44C   (1F28 A94 43454407 58454803)
+
+  P =   44D   (1F28 A94 43454407 58454803) xorr   P =   44D   (0 1F28 A94 1B000C04)
+  P =   44E   (0 1F28 A94 1B000C04) next          P =   37C   (0 1F28 A94 1B000C04)
+
+  P =   37D   (0 1F28 A94 1B000C04) qbran         P =   37D   (0 0 1F28 A94) next         P =   630   (0 0 1F28 A94)
+
+  P =   631   (0 0 1F28 A94) docon        P =   631   (0 1F28 A94 4)
+  P =   632   (0 1F28 A94 4) plus         P =   632   (0 0 1F28 A98)
+  P =   633   (0 0 1F28 A98) next         P =   32C   (0 0 1F28 A98)
+
+  P =   32D   (0 0 1F28 A98) dolit        P =   32D   (0 1F28 A98 FFFFFFFF) next          P =   38C   (0 1F28 A98 FFFFFFFF)
+
+  P =   38D   (0 1F28 A98 FFFFFFFF) bran          P =   38D   (0 1F28 A98 FFFFFFFF) next          P =   38C   (0 1F28 A98 FFFFFFFF)
+
+  P =   38D   (0 1F28 A98 FFFFFFFF) bran          P =   38D   (0 1F28 A98 FFFFFFFF) next          P =   37C   (0 1F28 A98 FFFFFFFF)
+
+  P =   37D   (0 1F28 A98 FFFFFFFF) qbran         P =   37D   (0 0 1F28 A98) next         P =   644   (0 0 1F28 A98)
+
+  P =   645   (0 0 1F28 A98) docon        P =   645   (0 1F28 A98 4)
+  P =   646   (0 1F28 A98 4) subb         P =   646   (0 0 1F28 A94)
+  P =   647   (0 0 1F28 A94) next         P =   644   (0 0 1F28 A94)
+
+  P =   645   (0 0 1F28 A94) docon        P =   645   (0 1F28 A94 4)
+  P =   646   (0 1F28 A94 4) subb         P =   646   (0 0 1F28 A90)
+  P =   647   (0 0 1F28 A90) next         P =   38C   (0 0 1F28 A90)
+
+  P =   38D   (0 0 1F28 A90) bran         P =   38D   (0 0 1F28 A90) next         P =   3A4   (0 0 1F28 A90)
+
+  P =   3A5   (0 0 1F28 A90) at   P =   3A5   (0 0 1F28 A74)
+  P =   3A6   (0 0 1F28 A74) next         P =   3FC   (0 0 1F28 A74)
+
+  P =   3FD   (0 0 1F28 A74) dup          P =   3FD   (0 1F28 A74 A74)
+  P =   3FE   (0 1F28 A74 A74) next       P =   37C   (0 1F28 A74 A74)
+
+  P =   37D   (0 1F28 A74 A74) qbran      P =   37D   (0 0 1F28 A74) next         P =   3FC   (0 0 1F28 A74)
+
+  P =   3FD   (0 0 1F28 A74) dup          P =   3FD   (0 1F28 A74 A74)
+  P =   3FE   (0 1F28 A74 A74) next       P =   3A4   (0 1F28 A74 A74)
+
+  P =   3A5   (0 1F28 A74 A74) at         P =   3A5   (0 1F28 A74 58454803)
+  P =   3A6   (0 1F28 A74 58454803) next          P =   32C   (0 1F28 A74 58454803)
+
+  P =   32D   (0 1F28 A74 58454803) dolit         P =   32D   (1F28 A74 58454803 FFFFFF3F) next   P =   434   (1F28 A74 58454803 FFFFFF3F)
+
+  P =   435   (1F28 A74 58454803 FFFFFF3F) andd   P =   435   (0 1F28 A74 58454803)
+  P =   436   (0 1F28 A74 58454803) next          P =   AC0   (0 1F28 A74 58454803)
+
+  P =   AC1   (0 1F28 A74 58454803) dolist        P =   AC1   (0 1F28 A74 58454803) next          P =   32C   (0 1F28 A74 58454803)
+
+  P =   32D   (0 1F28 A74 58454803) dolit         P =   32D   (1F28 A74 58454803 5F5F5F5F) next   P =   434   (1F28 A74 58454803 5F5F5F5F)
+
+  P =   435   (1F28 A74 58454803 5F5F5F5F) andd   P =   435   (0 1F28 A74 58454803)
+  P =   436   (0 1F28 A74 58454803) next          P =   34C   (0 1F28 A74 58454803)
+
+  P =   34D   (0 1F28 A74 58454803) exitt         P =   34D   (0 1F28 A74 58454803) next          P =   3D4   (0 1F28 A74 58454803)
+
+  P =   3D5   (0 1F28 A74 58454803) rat   P =   3D5   (1F28 A74 58454803 58454803)
+  P =   3D6   (1F28 A74 58454803 58454803) next   P =   AC0   (1F28 A74 58454803 58454803)
+
+  P =   AC1   (1F28 A74 58454803 58454803) dolist         P =   AC1   (1F28 A74 58454803 58454803) next   P =   32C   (1F28 A74 58454803 58454803)
+
+  P =   32D   (1F28 A74 58454803 58454803) dolit          P =   32D   (A74 58454803 58454803 5F5F5F5F) next       P =   434   (A74 58454803 58454803 5F5F5F5F)
+
+  P =   435   (A74 58454803 58454803 5F5F5F5F) andd       P =   435   (1F28 A74 58454803 58454803)
+  P =   436   (1F28 A74 58454803 58454803) next   P =   34C   (1F28 A74 58454803 58454803)
+
+  P =   34D   (1F28 A74 58454803 58454803) exitt          P =   34D   (1F28 A74 58454803 58454803) next   P =   44C   (1F28 A74 58454803 58454803)
+
+  P =   44D   (1F28 A74 58454803 58454803) xorr   P =   44D   (0 1F28 A74 0)
+  P =   44E   (0 1F28 A74 0) next         P =   37C   (0 1F28 A74 0)
+
+  P =   37D   (0 1F28 A74 0) qbran        P =   37D   (0 0 1F28 A74) next         P =   630   (0 0 1F28 A74)
+
+  P =   631   (0 0 1F28 A74) docon        P =   631   (0 1F28 A74 4)
+  P =   632   (0 1F28 A74 4) plus         P =   632   (0 0 1F28 A78)
+  P =   633   (0 0 1F28 A78) next         P =   2D8   (0 0 1F28 A78)
+
+  P =   2D9   (0 0 1F28 A78) docon        P =   2D9   (0 1F28 A78 AC)
+  P =   2DA   (0 1F28 A78 AC) next        P =   3A4   (0 1F28 A78 AC)
+
+  P =   3A5   (0 1F28 A78 AC) at          P =   3A5   (0 1F28 A78 58454803)
+  P =   3A6   (0 1F28 A78 58454803) next          P =  1138   (0 1F28 A78 58454803)
+
+  P =  1139   (0 1F28 A78 58454803) dolist        P =  1139   (0 1F28 A78 58454803) next          P =   32C   (0 1F28 A78 58454803)
+
+  P =   32D   (0 1F28 A78 58454803) dolit         P =   32D   (1F28 A78 58454803 1F) next         P =   434   (1F28 A78 58454803 1F)
+
+  P =   435   (1F28 A78 58454803 1F) andd         P =   435   (0 1F28 A78 3)
+  P =   436   (0 1F28 A78 3) next         P =   66C   (0 1F28 A78 3)
+
+  P =   66D   (0 1F28 A78 3) docon        P =   66D   (1F28 A78 3 4)
+  P =   66E   (1F28 A78 3 4) slash        P =   66E   (0 1F28 A78 0)
+  P =   66F   (0 1F28 A78 0) next         P =   3E0   (0 1F28 A78 0)
+
+  P =   3E1   (0 1F28 A78 0) tor          P =   3E1   (0 0 1F28 A78)
+  P =   3E2   (0 0 1F28 A78) next         P =   38C   (0 0 1F28 A78)
+
+  P =   38D   (0 0 1F28 A78) bran         P =   38D   (0 0 1F28 A78) next         P =   36C   (0 0 1F28 A78)
+
+  P =   36D   (0 0 1F28 A78) donext       P =   36D   (0 0 1F28 A78) next         P =   32C   (0 0 1F28 A78)
+
+  P =   32D   (0 0 1F28 A78) dolit        P =   32D   (0 1F28 A78 0) next         P =   34C   (0 1F28 A78 0)
+
+  P =   34D   (0 1F28 A78 0) exitt        P =   34D   (0 1F28 A78 0) next         P =   38C   (0 1F28 A78 0)
+
+  P =   38D   (0 1F28 A78 0) bran         P =   38D   (0 1F28 A78 0) next         P =   37C   (0 1F28 A78 0)
+
+  P =   37D   (0 1F28 A78 0) qbran        P =   37D   (0 0 1F28 A78) next         P =   3C8   (0 0 1F28 A78)
+
+  P =   3C9   (0 0 1F28 A78) rfrom        P =   3C9   (0 1F28 A78 58454803)
+  P =   3CA   (0 1F28 A78 58454803) next          P =   3F0   (0 1F28 A78 58454803)
+
+  P =   3F1   (0 1F28 A78 58454803) drop          P =   3F1   (0 0 1F28 A78)
+  P =   3F2   (0 0 1F28 A78) next         P =   40C   (0 0 1F28 A78)
+
+  P =   40D   (0 0 1F28 A78) swap         P =   40D   (0 0 A78 1F28)
+  P =   40E   (0 0 A78 1F28) next         P =   3F0   (0 0 A78 1F28)
+
+  P =   3F1   (0 0 A78 1F28) drop         P =   3F1   (0 0 0 A78)
+  P =   3F2   (0 0 0 A78) next    P =   644   (0 0 0 A78)
+
+  P =   645   (0 0 0 A78) docon   P =   645   (0 0 A78 4)
+  P =   646   (0 0 A78 4) subb    P =   646   (0 0 0 A74)
+  P =   647   (0 0 0 A74) next    P =   3FC   (0 0 0 A74)
+
+  P =   3FD   (0 0 0 A74) dup     P =   3FD   (0 0 A74 A74)
+  P =   3FE   (0 0 A74 A74) next          P =  110C   (0 0 A74 A74)
+
+  P =  110D   (0 0 A74 A74) dolist        P =  110D   (0 0 A74 A74) next          P =   5E4   (0 0 A74 A74)
+
+  P =   5E5   (0 0 A74 A74) count         P =   5E5   (0 A74 A75 3)
+  P =   5E6   (0 A74 A75 3) next          P =   32C   (0 A74 A75 3)
+
+  P =   32D   (0 A74 A75 3) dolit         P =   32D   (A74 A75 3 1F) next         P =   434   (A74 A75 3 1F)
+
+  P =   435   (A74 A75 3 1F) andd         P =   435   (0 A74 A75 3)
+  P =   436   (0 A74 A75 3) next          P =   4B0   (0 A74 A75 3)
+
+  P =   4B1   (0 A74 A75 3) plus          P =   4B1   (0 0 A74 A78)
+  P =   4B2   (0 0 A74 A78) next          P =   770   (0 0 A74 A78)
+
+  P =   771   (0 0 A74 A78) dolist        P =   771   (0 0 A74 A78) next          P =   32C   (0 0 A74 A78)
+
+  P =   32D   (0 0 A74 A78) dolit         P =   32D   (0 A74 A78 3) next          P =   4B0   (0 A74 A78 3)
+
+  P =   4B1   (0 A74 A78 3) plus          P =   4B1   (0 0 A74 A7B)
+  P =   4B2   (0 0 A74 A7B) next          P =   32C   (0 0 A74 A7B)
+
+  P =   32D   (0 0 A74 A7B) dolit         P =   32D   (0 A74 A7B FFFFFFFC) next   P =   434   (0 A74 A7B FFFFFFFC)
+
+  P =   435   (0 A74 A7B FFFFFFFC) andd   P =   435   (0 0 A74 A78)
+  P =   436   (0 0 A74 A78) next          P =   34C   (0 0 A74 A78)
+
+  P =   34D   (0 0 A74 A78) exitt         P =   34D   (0 0 A74 A78) next          P =   34C   (0 0 A74 A78)
+
+  P =   34D   (0 0 A74 A78) exitt         P =   34D   (0 0 A74 A78) next          P =   40C   (0 0 A74 A78)
+
+  P =   40D   (0 0 A74 A78) swap          P =   40D   (0 0 A78 A74)
+  P =   40E   (0 0 A78 A74) next          P =   34C   (0 0 A78 A74)
+
+  P =   34D   (0 0 A78 A74) exitt         P =   34D   (0 0 A78 A74) next          P =   34C   (0 0 A78 A74)
+
+  P =   34D   (0 0 A78 A74) exitt         P =   34D   (0 0 A78 A74) next          P =   478   (0 0 A78 A74)
+
+  P =   479   (0 0 A78 A74) qdup          P =   479   (0 A78 A74 A74)
+  P =   47A   (0 A78 A74 A74) next        P =   37C   (0 A78 A74 A74)
+
+  P =   37D   (0 A78 A74 A74) qbran       P =   37D   (0 0 A78 A74) next          P =   3BC   (0 0 A78 A74)
+
+  P =   3BD   (0 0 A78 A74) cat   P =   3BD   (0 0 A78 3)
+  P =   3BE   (0 0 A78 3) next    P =   32C   (0 0 A78 3)
+
+  P =   32D   (0 0 A78 3) dolit   P =   32D   (0 A78 3 40) next   P =   434   (0 A78 3 40)
+
+  P =   435   (0 A78 3 40) andd   P =   435   (0 0 A78 0)
+  P =   436   (0 0 A78 0) next    P =  14BC   (0 0 A78 0)
+
+  P =  14BD   (0 0 A78 0) dolist          P =  14BD   (0 0 A78 0) next    P =   37C   (0 0 A78 0)
+
+  P =   37D   (0 0 A78 0) qbran   P =   37D   (0 0 0 A78) next    P =   D9C   (0 0 0 A78)
+
+  P =   D9D   (0 0 0 A78) dolist          P =   D9D   (0 0 0 A78) next    P =   3C8   (0 0 0 A78)
+
+  P =   3C9   (0 0 0 A78) rfrom   P =   3C9   (0 0 A78 14DC)
+  P =   3CA   (0 0 A78 14DC) next         P =   3D4   (0 0 A78 14DC)
+
+  P =   3D5   (0 0 A78 14DC) rat          P =   3D5   (0 A78 14DC 1558)
+  P =   3D6   (0 A78 14DC 1558) next      P =   3C8   (0 A78 14DC 1558)
+
+  P =   3C9   (0 A78 14DC 1558) rfrom     P =   3C9   (A78 14DC 1558 1558)
+  P =   3CA   (A78 14DC 1558 1558) next   P =   5E4   (A78 14DC 1558 1558)
+
+  P =   5E5   (A78 14DC 1558 1558) count          P =   5E5   (14DC 1558 1559 D)
+  P =   5E6   (14DC 1558 1559 D) next     P =   4B0   (14DC 1558 1559 D)
+
+  P =   4B1   (14DC 1558 1559 D) plus     P =   4B1   (A78 14DC 1558 1566)
+  P =   4B2   (A78 14DC 1558 1566) next   P =   770   (A78 14DC 1558 1566)
+
+  P =   771   (A78 14DC 1558 1566) dolist         P =   771   (A78 14DC 1558 1566) next   P =   32C   (A78 14DC 1558 1566)
+
+  P =   32D   (A78 14DC 1558 1566) dolit          P =   32D   (14DC 1558 1566 3) next     P =   4B0   (14DC 1558 1566 3)
+
+  P =   4B1   (14DC 1558 1566 3) plus     P =   4B1   (A78 14DC 1558 1569)
+  P =   4B2   (A78 14DC 1558 1569) next   P =   32C   (A78 14DC 1558 1569)
+
+  P =   32D   (A78 14DC 1558 1569) dolit          P =   32D   (14DC 1558 1569 FFFFFFFC) next      P =   434   (14DC 1558 1569 FFFFFFFC)
+
+  P =   435   (14DC 1558 1569 FFFFFFFC) andd      P =   435   (A78 14DC 1558 1568)
+  P =   436   (A78 14DC 1558 1568) next   P =   34C   (A78 14DC 1558 1568)
+
+  P =   34D   (A78 14DC 1558 1568) exitt          P =   34D   (A78 14DC 1558 1568) next   P =   3E0   (A78 14DC 1558 1568)
+
+  P =   3E1   (A78 14DC 1558 1568) tor    P =   3E1   (0 A78 14DC 1558)
+  P =   3E2   (0 A78 14DC 1558) next      P =   40C   (0 A78 14DC 1558)
+
+  P =   40D   (0 A78 14DC 1558) swap      P =   40D   (0 A78 1558 14DC)
+  P =   40E   (0 A78 1558 14DC) next      P =   3E0   (0 A78 1558 14DC)
+
+  P =   3E1   (0 A78 1558 14DC) tor       P =   3E1   (0 0 A78 1558)
+  P =   3E2   (0 0 A78 1558) next         P =   34C   (0 0 A78 1558)
+
+  P =   34D   (0 0 A78 1558) exitt        P =   34D   (0 0 A78 1558) next         P =   3F0   (0 0 A78 1558)
+
+  P =   3F1   (0 0 A78 1558) drop         P =   3F1   (0 0 0 A78)
+  P =   3F2   (0 0 0 A78) next    P =   34C   (0 0 0 A78)
+
+  P =   34D   (0 0 0 A78) exitt   P =   34D   (0 0 0 A78) next    P =   35C   (0 0 0 A78)
+
+  P =   35D   (0 0 0 A78) execu   P =   A78   (0 0 0 0)
+  P =   A79   (0 0 0 0) dolist    P =   A79   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 10) next     P =   268   (0 0 0 10)
+
+  P =   269   (0 0 0 10) docon    P =   269   (0 0 10 94)
+  P =   26A   (0 0 10 94) next    P =   398   (0 0 10 94)
+
+  P =   399   (0 0 10 94) store   P =   399   (0 0 0 0)
+  P =   39A   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   38C   (0 0 0 0)
+
+  P =   38D   (0 0 0 0) bran      P =   38D   (0 0 0 0) next      P =  10B4   (0 0 0 0)
+
+  P =  10B5   (0 0 0 0) dolist    P =  10B5   (0 0 0 0) next      P =   608   (0 0 0 0)
+
+  P =   609   (0 0 0 0) docon     P =   609   (0 0 0 20)
+  P =   60A   (0 0 0 20) next     P =  1068   (0 0 0 20)
+
+  P =  1069   (0 0 0 20) dolist   P =  1069   (0 0 0 20) next     P =   3E0   (0 0 0 20)
+
+  P =   3E1   (0 0 0 20) tor      P =   3E1   (0 0 0 0)
+  P =   3E2   (0 0 0 0) next      P =   7D4   (0 0 0 0)
+
+  P =   7D5   (0 0 0 0) dolist    P =   7D5   (0 0 0 0) next      P =   254   (0 0 0 0)
+
+  P =   255   (0 0 0 0) docon     P =   255   (0 0 0 90)
+  P =   256   (0 0 0 90) next     P =   3A4   (0 0 0 90)
+
+  P =   3A5   (0 0 0 90) at       P =   3A5   (0 0 0 100)
+  P =   3A6   (0 0 0 100) next    P =   34C   (0 0 0 100)
+
+  P =   34D   (0 0 0 100) exitt   P =   34D   (0 0 0 100) next    P =   22C   (0 0 0 100)
+
+  P =   22D   (0 0 0 100) docon   P =   22D   (0 0 100 88)
+  P =   22E   (0 0 100 88) next   P =   3A4   (0 0 100 88)
+
+  P =   3A5   (0 0 100 88) at     P =   3A5   (0 0 100 4)
+  P =   3A6   (0 0 100 4) next    P =   4B0   (0 0 100 4)
+
+  P =   4B1   (0 0 100 4) plus    P =   4B1   (0 0 0 104)
+  P =   4B2   (0 0 0 104) next    P =   240   (0 0 0 104)
+
+  P =   241   (0 0 0 104) docon   P =   241   (0 0 104 8C)
+  P =   242   (0 0 104 8C) next   P =   3A4   (0 0 104 8C)
+
+  P =   3A5   (0 0 104 8C) at     P =   3A5   (0 0 104 4)
+  P =   3A6   (0 0 104 4) next    P =   22C   (0 0 104 4)
+
+  P =   22D   (0 0 104 4) docon   P =   22D   (0 104 4 88)
+  P =   22E   (0 104 4 88) next   P =   3A4   (0 104 4 88)
+
+  P =   3A5   (0 104 4 88) at     P =   3A5   (0 104 4 4)
+  P =   3A6   (0 104 4 4) next    P =   4E8   (0 104 4 4)
+
+  P =   4E9   (0 104 4 4) subb    P =   4E9   (0 0 104 0)
+  P =   4EA   (0 0 104 0) next    P =   3C8   (0 0 104 0)
+
+  P =   3C9   (0 0 104 0) rfrom   P =   3C9   (0 104 0 20)
+  P =   3CA   (0 104 0 20) next   P =   EE0   (0 104 0 20)
+
+  P =   EE1   (0 104 0 20) dolist         P =   EE1   (0 104 0 20) next   P =   2D8   (0 104 0 20)
+
+  P =   2D9   (0 104 0 20) docon          P =   2D9   (104 0 20 AC)
+  P =   2DA   (104 0 20 AC) next          P =   3B0   (104 0 20 AC)
+
+  P =   3B1   (104 0 20 AC) cstor         P =   3B1   (0 0 104 0)
+  P =   3B2   (0 0 104 0) next    P =   41C   (0 0 104 0)
+
+  P =   41D   (0 0 104 0) over    P =   41D   (0 104 0 104)
+  P =   41E   (0 104 0 104) next          P =   3E0   (0 104 0 104)
+
+  P =   3E1   (0 104 0 104) tor   P =   3E1   (0 0 104 0)
+  P =   3E2   (0 0 104 0) next    P =   3FC   (0 0 104 0)
+
+  P =   3FD   (0 0 104 0) dup     P =   3FD   (0 104 0 0)
+  P =   3FE   (0 104 0 0) next    P =   37C   (0 104 0 0)
+
+  P =   37D   (0 104 0 0) qbran   P =   37D   (0 0 104 0) next    P =   41C   (0 0 104 0)
+
+  P =   41D   (0 0 104 0) over    P =   41D   (0 104 0 104)
+  P =   41E   (0 104 0 104) next          P =   3C8   (0 104 0 104)
+
+  P =   3C9   (0 104 0 104) rfrom         P =   3C9   (104 0 104 104)
+  P =   3CA   (104 0 104 104) next        P =   4E8   (104 0 104 104)
+
+  P =   4E9   (104 0 104 104) subb        P =   4E9   (0 104 0 0)
+  P =   4EA   (0 104 0 0) next    P =   34C   (0 104 0 0)
+
+  P =   34D   (0 104 0 0) exitt   P =   34D   (0 104 0 0) next    P =   22C   (0 104 0 0)
+
+  P =   22D   (0 104 0 0) docon   P =   22D   (104 0 0 88)
+  P =   22E   (104 0 0 88) next   P =   5BC   (104 0 0 88)
+
+  P =   5BD   (104 0 0 88) pstor          P =   5BD   (0 0 104 0)
+  P =   5BE   (0 0 104 0) next    P =   34C   (0 0 104 0)
+
+  P =   34D   (0 0 104 0) exitt   P =   34D   (0 0 104 0) next    P =   32C   (0 0 104 0)
+
+  P =   32D   (0 0 104 0) dolit   P =   32D   (0 104 0 1F) next   P =   5FC   (0 104 0 1F)
+
+  P =   5FD   (0 104 0 1F) minf   P =   5FD   (0 0 104 0)
+  P =   5FE   (0 0 104 0) next    P =   79C   (0 0 104 0)
+
+  P =   79D   (0 0 104 0) dolist          P =   79D   (0 0 104 0) next    P =   28C   (0 0 104 0)
+
+  P =   28D   (0 0 104 0) docon   P =   28D   (0 104 0 9C)
+  P =   28E   (0 104 0 9C) next   P =   3A4   (0 104 0 9C)
+
+  P =   3A5   (0 104 0 9C) at     P =   3A5   (0 104 0 1F20)
+  P =   3A6   (0 104 0 1F20) next         P =   34C   (0 104 0 1F20)
+
+  P =   34D   (0 104 0 1F20) exitt        P =   34D   (0 104 0 1F20) next         P =   630   (0 104 0 1F20)
+
+  P =   631   (0 104 0 1F20) docon        P =   631   (104 0 1F20 4)
+  P =   632   (104 0 1F20 4) plus         P =   632   (0 104 0 1F24)
+  P =   633   (0 104 0 1F24) next         P =  1010   (0 104 0 1F24)
+
+  P =  1011   (0 104 0 1F24) dolist       P =  1011   (0 104 0 1F24) next         P =   3FC   (0 104 0 1F24)
+
+  P =   3FD   (0 104 0 1F24) dup          P =   3FD   (104 0 1F24 1F24)
+  P =   3FE   (104 0 1F24 1F24) next      P =   3E0   (104 0 1F24 1F24)
+
+  P =   3E1   (104 0 1F24 1F24) tor       P =   3E1   (0 104 0 1F24)
+  P =   3E2   (0 104 0 1F24) next         P =   4A4   (0 104 0 1F24)
+
+  P =   4A5   (0 104 0 1F24) ddup         P =   4A5   (0 104 0 1F24) over         P =   4A5   (104 0 1F24 0)  P =   4A5   (104 0 1F24 0) over     P =   4A5   (0 1F24 0 1F24)  P =   4A5   (0 1F24 0 1F24)
+  P =   4A6   (0 1F24 0 1F24) next        P =   4B0   (0 1F24 0 1F24)
+
+  P =   4B1   (0 1F24 0 1F24) plus        P =   4B1   (104 0 1F24 1F24)
+  P =   4B2   (104 0 1F24 1F24) next      P =   32C   (104 0 1F24 1F24)
+
+  P =   32D   (104 0 1F24 1F24) dolit     P =   32D   (0 1F24 1F24 FFFFFFFC) next         P =   434   (0 1F24 1F24 FFFFFFFC)
+
+  P =   435   (0 1F24 1F24 FFFFFFFC) andd         P =   435   (104 0 1F24 1F24)
+  P =   436   (104 0 1F24 1F24) next      P =   32C   (104 0 1F24 1F24)
+
+  P =   32D   (104 0 1F24 1F24) dolit     P =   32D   (0 1F24 1F24 0) next        P =   40C   (0 1F24 1F24 0)
+
+  P =   40D   (0 1F24 1F24 0) swap        P =   40D   (0 1F24 0 1F24)
+  P =   40E   (0 1F24 0 1F24) next        P =   398   (0 1F24 0 1F24)
+
+  P =   399   (0 1F24 0 1F24) store       P =   399   (0 104 0 1F24)
+  P =   39A   (0 104 0 1F24) next         P =   4A4   (0 104 0 1F24)
+
+  P =   4A5   (0 104 0 1F24) ddup         P =   4A5   (0 104 0 1F24) over         P =   4A5   (104 0 1F24 0)  P =   4A5   (104 0 1F24 0) over     P =   4A5   (0 1F24 0 1F24)  P =   4A5   (0 1F24 0 1F24)
+  P =   4A6   (0 1F24 0 1F24) next        P =   3B0   (0 1F24 0 1F24)
+
+  P =   3B1   (0 1F24 0 1F24) cstor       P =   3B1   (0 104 0 1F24)
+  P =   3B2   (0 104 0 1F24) next         P =   67C   (0 104 0 1F24)
+
+  P =   67D   (0 104 0 1F24) docon        P =   67D   (104 0 1F24 1)
+  P =   67E   (104 0 1F24 1) plus         P =   67E   (0 104 0 1F25)
+  P =   67F   (0 104 0 1F25) next         P =   40C   (0 104 0 1F25)
+
+  P =   40D   (0 104 0 1F25) swap         P =   40D   (0 104 1F25 0)
+  P =   40E   (0 104 1F25 0) next         P =   81C   (0 104 1F25 0)
+
+  P =   81D   (0 104 1F25 0) dolist       P =   81D   (0 104 1F25 0) next         P =   3E0   (0 104 1F25 0)
+
+  P =   3E1   (0 104 1F25 0) tor          P =   3E1   (0 0 104 1F25)
+  P =   3E2   (0 0 104 1F25) next         P =   38C   (0 0 104 1F25)
+
+  P =   38D   (0 0 104 1F25) bran         P =   38D   (0 0 104 1F25) next         P =   36C   (0 0 104 1F25)
+
+  P =   36D   (0 0 104 1F25) donext       P =   36D   (0 0 104 1F25) next         P =   494   (0 0 104 1F25)
+
+  P =   495   (0 0 104 1F25) ddrop        P =   495   (0 0 104 1F25) drop         P =   495   (0 0 0 104)  P =   495   (0 0 0 104) drop   P =   495   (0 0 0 0)  P =   495   (0 0 0 0)
+  P =   496   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   3C8   (0 0 0 0)
+
+  P =   3C9   (0 0 0 0) rfrom     P =   3C9   (0 0 0 1F24)
+  P =   3CA   (0 0 0 1F24) next   P =   34C   (0 0 0 1F24)
+
+  P =   34D   (0 0 0 1F24) exitt          P =   34D   (0 0 0 1F24) next   P =   34C   (0 0 0 1F24)
+
+  P =   34D   (0 0 0 1F24) exitt          P =   34D   (0 0 0 1F24) next   P =   3FC   (0 0 0 1F24)
+
+  P =   3FD   (0 0 0 1F24) dup    P =   3FD   (0 0 1F24 1F24)
+  P =   3FE   (0 0 1F24 1F24) next        P =   3A4   (0 0 1F24 1F24)
+
+  P =   3A5   (0 0 1F24 1F24) at          P =   3A5   (0 0 1F24 0)
+  P =   3A6   (0 0 1F24 0) next   P =   37C   (0 0 1F24 0)
+
+  P =   37D   (0 0 1F24 0) qbran          P =   37D   (0 0 0 1F24) next   P =   3F0   (0 0 0 1F24)
+
+  P =   3F1   (0 0 0 1F24) drop   P =   3F1   (0 0 0 0)
+  P =   3F2   (0 0 0 0) next      P =  15B4   (0 0 0 0)
+
+  P =  15B5   (0 0 0 0) dolist    P =  15B5   (0 0 0 0) next      P =   D74   (0 0 0 0)
+
+  P =   D75   (0 0 0 0) dolist    P =   D75   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 A) next      P =   32C   (0 0 0 A)
+
+  P =   32D   (0 0 0 A) dolit     P =   32D   (0 0 A D) next      P =   6E4   (0 0 A D)
+
+  P =   6E5   (0 0 A D) dolist    P =   6E5   (0 0 A D) next      P =   30C   (0 0 A D)
+
+  P =   30D   (0 0 A D) txsto
+  P =   30D   (0 0 0 A)
+  P =   30E   (0 0 0 A) next      P =   34C   (0 0 0 A)
+
+  P =   34D   (0 0 0 A) exitt     P =   34D   (0 0 0 A) next      P =   6E4   (0 0 0 A)
+
+  P =   6E5   (0 0 0 A) dolist    P =   6E5   (0 0 0 A) next      P =   30C   (0 0 0 A)
+
+  P =   30D   (0 0 0 A) txsto
+  P =   30D   (0 0 0 0)
+  P =   30E   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 1530) next   P =   2B4   (0 0 0 1530)
+
+  P =   2B5   (0 0 0 1530) docon          P =   2B5   (0 0 1530 A4)
+  P =   2B6   (0 0 1530 A4) next          P =   3A4   (0 0 1530 A4)
+
+  P =   3A5   (0 0 1530 A4) at    P =   3A5   (0 0 1530 1530)
+  P =   3A6   (0 0 1530 1530) next        P =   500   (0 0 1530 1530)
+
+  P =   501   (0 0 1530 1530) equal       P =   501   (0 0 0 FFFFFFFF)
+  P =   502   (0 0 0 FFFFFFFF) next       P =   37C   (0 0 0 FFFFFFFF)
+
+  P =   37D   (0 0 0 FFFFFFFF) qbran      P =   37D   (0 0 0 0) next      P =   3E0   (0 0 0 0)
+
+  P =   3E1   (0 0 0 0) tor       P =   3E1   (0 0 0 0)
+  P =   3E2   (0 0 0 0) next      P =   3E0   (0 0 0 0)
+
+  P =   3E1   (0 0 0 0) tor       P =   3E1   (0 0 0 0)
+  P =   3E2   (0 0 0 0) next      P =   3E0   (0 0 0 0)
+
+  P =   3E1   (0 0 0 0) tor       P =   3E1   (0 0 0 0)
+  P =   3E2   (0 0 0 0) next      P =   3FC   (0 0 0 0)
+
+  P =   3FD   (0 0 0 0) dup       P =   3FD   (0 0 0 0)
+  P =   3FE   (0 0 0 0) next      P =   E84   (0 0 0 0)
+
+  P =   E85   (0 0 0 0) dolist    P =   E85   (0 0 0 0) next      P =   268   (0 0 0 0)
+
+  P =   269   (0 0 0 0) docon     P =   269   (0 0 0 94)
+  P =   26A   (0 0 0 94) next     P =   3A4   (0 0 0 94)
+
+  P =   3A5   (0 0 0 94) at       P =   3A5   (0 0 0 10)
+  P =   3A6   (0 0 0 10) next     P =   32C   (0 0 0 10)
+
+  P =   32D   (0 0 0 10) dolit    P =   32D   (0 0 10 A) next     P =   44C   (0 0 10 A)
+
+  P =   44D   (0 0 10 A) xorr     P =   44D   (0 0 0 1A)
+  P =   44E   (0 0 0 1A) next     P =   37C   (0 0 0 1A)
+
+  P =   37D   (0 0 0 1A) qbran    P =   37D   (0 0 0 0) next      P =   E60   (0 0 0 0)
+
+  P =   E61   (0 0 0 0) dolist    P =   E61   (0 0 0 0) next      P =   960   (0 0 0 0)
+
+  P =   961   (0 0 0 0) dolist    P =   961   (0 0 0 0) next      P =   7B4   (0 0 0 0)
+
+  P =   7B5   (0 0 0 0) dolist    P =   7B5   (0 0 0 0) next      P =   79C   (0 0 0 0)
+
+  P =   79D   (0 0 0 0) dolist    P =   79D   (0 0 0 0) next      P =   28C   (0 0 0 0)
+
+  P =   28D   (0 0 0 0) docon     P =   28D   (0 0 0 9C)
+  P =   28E   (0 0 0 9C) next     P =   3A4   (0 0 0 9C)
+
+  P =   3A5   (0 0 0 9C) at       P =   3A5   (0 0 0 1F20)
+  P =   3A6   (0 0 0 1F20) next   P =   34C   (0 0 0 1F20)
+
+  P =   34D   (0 0 0 1F20) exitt          P =   34D   (0 0 0 1F20) next   P =   32C   (0 0 0 1F20)
+
+  P =   32D   (0 0 0 1F20) dolit          P =   32D   (0 0 1F20 50) next          P =   4B0   (0 0 1F20 50)
+
+  P =   4B1   (0 0 1F20 50) plus          P =   4B1   (0 0 0 1F70)
+  P =   4B2   (0 0 0 1F70) next   P =   34C   (0 0 0 1F70)
+
+  P =   34D   (0 0 0 1F70) exitt          P =   34D   (0 0 0 1F70) next   P =   208   (0 0 0 1F70)
+
+  P =   209   (0 0 0 1F70) docon          P =   209   (0 0 1F70 80)
+  P =   20A   (0 0 1F70 80) next          P =   398   (0 0 1F70 80)
+
+  P =   399   (0 0 1F70 80) store         P =   399   (0 0 0 0)
+  P =   39A   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   9CC   (0 0 0 0)
+
+  P =   9CD   (0 0 0 0) dolist    P =   9CD   (0 0 0 0) next      P =   9AC   (0 0 0 0)
+
+  P =   9AD   (0 0 0 0) dolist    P =   9AD   (0 0 0 0) next      P =   268   (0 0 0 0)
+
+  P =   269   (0 0 0 0) docon     P =   269   (0 0 0 94)
+  P =   26A   (0 0 0 94) next     P =   3A4   (0 0 0 94)
+
+  P =   3A5   (0 0 0 94) at       P =   3A5   (0 0 0 10)
+  P =   3A6   (0 0 0 10) next     P =   938   (0 0 0 10)
+
+  P =   939   (0 0 0 10) dolist   P =   939   (0 0 0 10) next     P =   32C   (0 0 0 10)
+
+  P =   32D   (0 0 0 10) dolit    P =   32D   (0 0 10 0) next     P =   40C   (0 0 10 0)
+
+  P =   40D   (0 0 10 0) swap     P =   40D   (0 0 0 10)
+  P =   40E   (0 0 0 10) next     P =   528   (0 0 0 10)
+
+  P =   529   (0 0 0 10) ummod    P =   529   (0 0 0 0)
+  P =   52A   (0 0 0 0) next      P =   40C   (0 0 0 0)
+
+  P =   40D   (0 0 0 0) swap      P =   40D   (0 0 0 0)
+  P =   40E   (0 0 0 0) next      P =   8F8   (0 0 0 0)
+
+  P =   8F9   (0 0 0 0) dolist    P =   8F9   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 9) next      P =   41C   (0 0 0 9)
+
+  P =   41D   (0 0 0 9) over      P =   41D   (0 0 9 0)
+  P =   41E   (0 0 9 0) next      P =   518   (0 0 9 0)
+
+  P =   519   (0 0 9 0) less      P =   519   (0 0 0 0)
+  P =   51A   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 7) next      P =   434   (0 0 0 7)
+
+  P =   435   (0 0 0 7) andd      P =   435   (0 0 0 0)
+  P =   436   (0 0 0 0) next      P =   4B0   (0 0 0 0)
+
+  P =   4B1   (0 0 0 0) plus      P =   4B1   (0 0 0 0)
+  P =   4B2   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 30) next     P =   4B0   (0 0 0 30)
+
+  P =   4B1   (0 0 0 30) plus     P =   4B1   (0 0 0 30)
+  P =   4B2   (0 0 0 30) next     P =   34C   (0 0 0 30)
+
+  P =   34D   (0 0 0 30) exitt    P =   34D   (0 0 0 30) next     P =   34C   (0 0 0 30)
+
+  P =   34D   (0 0 0 30) exitt    P =   34D   (0 0 0 30) next     P =   980   (0 0 0 30)
+
+  P =   981   (0 0 0 30) dolist   P =   981   (0 0 0 30) next     P =   208   (0 0 0 30)
+
+  P =   209   (0 0 0 30) docon    P =   209   (0 0 30 80)
+  P =   20A   (0 0 30 80) next    P =   3A4   (0 0 30 80)
+
+  P =   3A5   (0 0 30 80) at      P =   3A5   (0 0 30 1F70)
+  P =   3A6   (0 0 30 1F70) next          P =   68C   (0 0 30 1F70)
+
+  P =   68D   (0 0 30 1F70) docon         P =   68D   (0 30 1F70 1)
+  P =   68E   (0 30 1F70 1) subb          P =   68E   (0 0 30 1F6F)
+  P =   68F   (0 0 30 1F6F) next          P =   3FC   (0 0 30 1F6F)
+
+  P =   3FD   (0 0 30 1F6F) dup   P =   3FD   (0 30 1F6F 1F6F)
+  P =   3FE   (0 30 1F6F 1F6F) next       P =   208   (0 30 1F6F 1F6F)
+
+  P =   209   (0 30 1F6F 1F6F) docon      P =   209   (30 1F6F 1F6F 80)
+  P =   20A   (30 1F6F 1F6F 80) next      P =   398   (30 1F6F 1F6F 80)
+
+  P =   399   (30 1F6F 1F6F 80) store     P =   399   (0 0 30 1F6F)
+  P =   39A   (0 0 30 1F6F) next          P =   3B0   (0 0 30 1F6F)
+
+  P =   3B1   (0 0 30 1F6F) cstor         P =   3B1   (0 0 0 0)
+  P =   3B2   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   3FC   (0 0 0 0)
+
+  P =   3FD   (0 0 0 0) dup       P =   3FD   (0 0 0 0)
+  P =   3FE   (0 0 0 0) next      P =   37C   (0 0 0 0)
+
+  P =   37D   (0 0 0 0) qbran     P =   37D   (0 0 0 0) next      P =   34C   (0 0 0 0)
+
+  P =   34D   (0 0 0 0) exitt     P =   34D   (0 0 0 0) next      P =   A20   (0 0 0 0)
+
+  P =   A21   (0 0 0 0) dolist    P =   A21   (0 0 0 0) next      P =   3F0   (0 0 0 0)
+
+  P =   3F1   (0 0 0 0) drop      P =   3F1   (0 0 0 0)
+  P =   3F2   (0 0 0 0) next      P =   208   (0 0 0 0)
+
+  P =   209   (0 0 0 0) docon     P =   209   (0 0 0 80)
+  P =   20A   (0 0 0 80) next     P =   3A4   (0 0 0 80)
+
+  P =   3A5   (0 0 0 80) at       P =   3A5   (0 0 0 1F6F)
+  P =   3A6   (0 0 0 1F6F) next   P =   7B4   (0 0 0 1F6F)
+
+  P =   7B5   (0 0 0 1F6F) dolist         P =   7B5   (0 0 0 1F6F) next   P =   79C   (0 0 0 1F6F)
+
+  P =   79D   (0 0 0 1F6F) dolist         P =   79D   (0 0 0 1F6F) next   P =   28C   (0 0 0 1F6F)
+
+  P =   28D   (0 0 0 1F6F) docon          P =   28D   (0 0 1F6F 9C)
+  P =   28E   (0 0 1F6F 9C) next          P =   3A4   (0 0 1F6F 9C)
+
+  P =   3A5   (0 0 1F6F 9C) at    P =   3A5   (0 0 1F6F 1F20)
+  P =   3A6   (0 0 1F6F 1F20) next        P =   34C   (0 0 1F6F 1F20)
+
+  P =   34D   (0 0 1F6F 1F20) exitt       P =   34D   (0 0 1F6F 1F20) next        P =   32C   (0 0 1F6F 1F20)
+
+  P =   32D   (0 0 1F6F 1F20) dolit       P =   32D   (0 0 1F20 50) next          P =   4B0   (0 0 1F20 50)
+
+  P =   4B1   (0 0 1F20 50) plus          P =   4B1   (0 0 1F6F 1F70)
+  P =   4B2   (0 0 1F6F 1F70) next        P =   34C   (0 0 1F6F 1F70)
+
+  P =   34D   (0 0 1F6F 1F70) exitt       P =   34D   (0 0 1F6F 1F70) next        P =   41C   (0 0 1F6F 1F70)
+
+  P =   41D   (0 0 1F6F 1F70) over        P =   41D   (0 0 1F70 0)
+  P =   41E   (0 0 1F70 0) next   P =   4E8   (0 0 1F70 0)
+
+  P =   4E9   (0 0 1F70 0) subb   P =   4E9   (0 0 1F6F 1F70)
+  P =   4EA   (0 0 1F6F 1F70) next        P =   34C   (0 0 1F6F 1F70)
+
+  P =   34D   (0 0 1F6F 1F70) exitt       P =   34D   (0 0 1F6F 1F70) next        P =   CC4   (0 0 1F6F 1F70)
+
+  P =   CC5   (0 0 1F6F 1F70) dolist      P =   CC5   (0 0 1F6F 1F70) next        P =   608   (0 0 1F6F 1F70)
+
+  P =   609   (0 0 1F6F 1F70) docon       P =   609   (0 0 1F70 20)
+  P =   60A   (0 0 1F70 20) next          P =   6E4   (0 0 1F70 20)
+
+  P =   6E5   (0 0 1F70 20) dolist        P =   6E5   (0 0 1F70 20) next          P =   30C   (0 0 1F70 20)
+
+  P =   30D   (0 0 1F70 20) txsto          P =   30D   (0 0 1F6F 1F70)
+  P =   30E   (0 0 1F6F 1F70) next        P =   34C   (0 0 1F6F 1F70)
+
+  P =   34D   (0 0 1F6F 1F70) exitt       P =   34D   (0 0 1F6F 1F70) next        P =   34C   (0 0 1F6F 1F70)
+
+  P =   34D   (0 0 1F6F 1F70) exitt       P =   34D   (0 0 1F6F 1F70) next        P =   D40   (0 0 1F6F 1F70)
+
+  P =   D41   (0 0 1F6F 1F70) dolist      P =   D41   (0 0 1F6F 1F70) next        P =   3E0   (0 0 1F6F 1F70)
+
+  P =   3E1   (0 0 1F6F 1F70) tor         P =   3E1   (0 0 0 1F6F)
+  P =   3E2   (0 0 0 1F6F) next   P =   38C   (0 0 0 1F6F)
+
+  P =   38D   (0 0 0 1F6F) bran   P =   38D   (0 0 0 1F6F) next   P =   36C   (0 0 0 1F6F)
+
+  P =   36D   (0 0 0 1F6F) donext         P =   36D   (0 0 0 1F6F) next   P =   5E4   (0 0 0 1F6F)
+
+  P =   5E5   (0 0 0 1F6F) count          P =   5E5   (0 0 1F70 30)
+  P =   5E6   (0 0 1F70 30) next          P =   728   (0 0 1F70 30)
+
+  P =   729   (0 0 1F70 30) dolist        P =   729   (0 0 1F70 30) next          P =   32C   (0 0 1F70 30)
+
+  P =   32D   (0 0 1F70 30) dolit         P =   32D   (0 0 30 7F) next    P =   434   (0 0 30 7F)
+
+  P =   435   (0 0 30 7F) andd    P =   435   (0 0 1F70 30)
+  P =   436   (0 0 1F70 30) next          P =   3FC   (0 0 1F70 30)
+
+  P =   3FD   (0 0 1F70 30) dup   P =   3FD   (0 0 30 30)
+  P =   3FE   (0 0 30 30) next    P =   32C   (0 0 30 30)
+
+  P =   32D   (0 0 30 30) dolit   P =   32D   (0 30 30 7F) next   P =   608   (0 30 30 7F)
+
+  P =   609   (0 30 30 7F) docon          P =   609   (30 30 7F 20)
+  P =   60A   (30 30 7F 20) next          P =   6FC   (30 30 7F 20)
+
+  P =   6FD   (30 30 7F 20) dolist        P =   6FD   (30 30 7F 20) next          P =   41C   (30 30 7F 20)
+
+  P =   41D   (30 30 7F 20) over          P =   41D   (30 7F 20 7F)
+  P =   41E   (30 7F 20 7F) next          P =   4E8   (30 7F 20 7F)
+
+  P =   4E9   (30 7F 20 7F) subb          P =   4E9   (30 30 7F FFFFFFA1)
+  P =   4EA   (30 30 7F FFFFFFA1) next    P =   3E0   (30 30 7F FFFFFFA1)
+
+  P =   3E1   (30 30 7F FFFFFFA1) tor     P =   3E1   (0 30 30 7F)
+  P =   3E2   (0 30 30 7F) next   P =   4E8   (0 30 30 7F)
+
+  P =   4E9   (0 30 30 7F) subb   P =   4E9   (0 0 30 FFFFFFB1)
+  P =   4EA   (0 0 30 FFFFFFB1) next      P =   3C8   (0 0 30 FFFFFFB1)
+
+  P =   3C9   (0 0 30 FFFFFFB1) rfrom     P =   3C9   (0 30 FFFFFFB1 FFFFFFA1)
+  P =   3CA   (0 30 FFFFFFB1 FFFFFFA1) next       P =   50C   (0 30 FFFFFFB1 FFFFFFA1)
+
+  P =   50D   (0 30 FFFFFFB1 FFFFFFA1) uless      P =   50D   (0 0 30 0)
+  P =   50E   (0 0 30 0) next     P =   34C   (0 0 30 0)
+
+  P =   34D   (0 0 30 0) exitt    P =   34D   (0 0 30 0) next     P =   37C   (0 0 30 0)
+
+  P =   37D   (0 0 30 0) qbran    P =   37D   (0 0 1F70 30) next          P =   34C   (0 0 1F70 30)
+
+  P =   34D   (0 0 1F70 30) exitt         P =   34D   (0 0 1F70 30) next          P =   6E4   (0 0 1F70 30)
+
+  P =   6E5   (0 0 1F70 30) dolist        P =   6E5   (0 0 1F70 30) next          P =   30C   (0 0 1F70 30)
+
+  P =   30D   (0 0 1F70 30) txsto       0  P =   30D   (0 0 0 1F70)
+  P =   30E   (0 0 0 1F70) next   P =   34C   (0 0 0 1F70)
+
+  P =   34D   (0 0 0 1F70) exitt          P =   34D   (0 0 0 1F70) next   P =   36C   (0 0 0 1F70)
+
+  P =   36D   (0 0 0 1F70) donext         P =   36D   (0 0 0 1F70) next   P =   5E4   (0 0 0 1F70)
+
+  P =   5E5   (0 0 0 1F70) count          P =   5E5   (0 0 1F71 0)
+  P =   5E6   (0 0 1F71 0) next   P =   728   (0 0 1F71 0)
+
+  P =   729   (0 0 1F71 0) dolist         P =   729   (0 0 1F71 0) next   P =   32C   (0 0 1F71 0)
+
+  P =   32D   (0 0 1F71 0) dolit          P =   32D   (0 0 0 7F) next     P =   434   (0 0 0 7F)
+
+  P =   435   (0 0 0 7F) andd     P =   435   (0 0 1F71 0)
+  P =   436   (0 0 1F71 0) next   P =   3FC   (0 0 1F71 0)
+
+  P =   3FD   (0 0 1F71 0) dup    P =   3FD   (0 0 0 0)
+  P =   3FE   (0 0 0 0) next      P =   32C   (0 0 0 0)
+
+  P =   32D   (0 0 0 0) dolit     P =   32D   (0 0 0 7F) next     P =   608   (0 0 0 7F)
+
+  P =   609   (0 0 0 7F) docon    P =   609   (0 0 7F 20)
+  P =   60A   (0 0 7F 20) next    P =   6FC   (0 0 7F 20)
+
+  P =   6FD   (0 0 7F 20) dolist          P =   6FD   (0 0 7F 20) next    P =   41C   (0 0 7F 20)
+
+  P =   41D   (0 0 7F 20) over    P =   41D   (0 7F 20 7F)
+  P =   41E   (0 7F 20 7F) next   P =   4E8   (0 7F 20 7F)
+
+  P =   4E9   (0 7F 20 7F) subb   P =   4E9   (0 0 7F FFFFFFA1)
+  P =   4EA   (0 0 7F FFFFFFA1) next      P =   3E0   (0 0 7F FFFFFFA1)
+
+  P =   3E1   (0 0 7F FFFFFFA1) tor       P =   3E1   (0 0 0 7F)
+  P =   3E2   (0 0 0 7F) next     P =   4E8   (0 0 0 7F)
+
+  P =   4E9   (0 0 0 7F) subb     P =   4E9   (0 0 0 FFFFFF81)
+  P =   4EA   (0 0 0 FFFFFF81) next       P =   3C8   (0 0 0 FFFFFF81)
+
+  P =   3C9   (0 0 0 FFFFFF81) rfrom      P =   3C9   (0 0 FFFFFF81 FFFFFFA1)
+  P =   3CA   (0 0 FFFFFF81 FFFFFFA1) next        P =   50C   (0 0 FFFFFF81 FFFFFFA1)
+
+  P =   50D   (0 0 FFFFFF81 FFFFFFA1) uless       P =   50D   (0 0 0 FFFFFFFF)
+  P =   50E   (0 0 0 FFFFFFFF) next       P =   34C   (0 0 0 FFFFFFFF)
+
+  P =   34D   (0 0 0 FFFFFFFF) exitt      P =   34D   (0 0 0 FFFFFFFF) next       P =   37C   (0 0 0 FFFFFFFF)
+
+  P =   37D   (0 0 0 FFFFFFFF) qbran      P =   37D   (0 0 1F71 0) next   P =   3F0   (0 0 1F71 0)
+
+  P =   3F1   (0 0 1F71 0) drop   P =   3F1   (0 0 0 1F71)
+  P =   3F2   (0 0 0 1F71) next   P =   32C   (0 0 0 1F71)
+
+  P =   32D   (0 0 0 1F71) dolit          P =   32D   (0 0 1F71 5F) next          P =   34C   (0 0 1F71 5F)
+
+  P =   34D   (0 0 1F71 5F) exitt         P =   34D   (0 0 1F71 5F) next          P =   6E4   (0 0 1F71 5F)
+
+  P =   6E5   (0 0 1F71 5F) dolist        P =   6E5   (0 0 1F71 5F) next          P =   30C   (0 0 1F71 5F)
+
+  P =   30D   (0 0 1F71 5F) txsto       top =    5F   P =   30D  IP =   6EC  WP =   310   S =    FF   R =     D thd =  1EF8
