@@ -96,7 +96,7 @@ void txsto(void)
 //
 void next(void)
 {
-	M->P = M->data[M->IP >> 2];
+	M->P = M->data[M->IP >> 2]; 
 	M->WP = M->P + 4;
 	M->IP += 4;
 }
@@ -476,14 +476,14 @@ int COMPO = 0x40;
 int BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 0;
 //
 // P  is the byte code index 0->255
-// IP ia the integer index, a 32bit item
+// IP is the integer index, a 32bit item
 //
 void HEADER(int lex, const char seq[]) {
 	M->IP = M->P >> 2;            // Present byte code index is made into the IP
-	int len = lex & 31;           // strip off the IMMEDIATE and COMPILE only bits
+	int len = lex & 0x1F;         // strip off the IMMEDIATE and COMPILE only bits
 	M->data[M->IP++] = M->thread; // Last link is place here in this new HEADER
 	M->P = M->IP << 2;            // P now indexes into the HEADER by 4bytes
-	M->thread = M->P;             // pass P to next link 
+	M->thread = M->P;             // pass P to next link - seems wrong
 	M->cData[M->P++] = (unsigned char)lex & 0xFF; // put length into this new HEADER
 	for (int i = 0; i < len; i++){ M->cData[M->P++] = seq[i]; } // deposit name characters
   while (M->P & 3) { M->cData[M->P++] = (unsigned char)0; }   // pad (char)0 to word boundary.
@@ -497,7 +497,7 @@ void HEADER(int lex, const char seq[]) {
 // **  **  **  **      // CODE or Other contructors continue to build the word here
 //
 int CODE(int len, ...) {
-	int addr = M->P;      // save preset byte index into dictionary
+	int addr = M->P;                        // save: preset byte index into dictionary
 	va_list argList;
 	va_start(argList, len);
 	for (; len; len--) {
@@ -505,9 +505,9 @@ int CODE(int len, ...) {
 		M->cData[M->P++] = (unsigned char) j; // byte codes and other things are inserted into the word
 	}
 	va_end(argList);
-	return addr;          // return the byte index which is place into a int to identify this CFA
+	return addr;          // return the byte index which is place into a int to identify this CFA?
 }
-// b2  b1  b0  len      // list of byte codes inserted where ** above are stored
+// b2  b1  b0  len      // list of byte codes inserted where ** from HEADER are stored
 //
 int COLON(int len, ...) {
 	int addr = M->P;
