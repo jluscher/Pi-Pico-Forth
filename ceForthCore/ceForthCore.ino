@@ -13,7 +13,7 @@ void establishContact() {
   strcpy(Communicate, "Terminal Settings: 19200 Baud, 8N1, No Local Echo, Send <cr>. \n\n");
   //
   while (Serial.available() <= 0) { }
-  Serial.read();
+  while (Serial.available() > 0)  { Serial.read(); }
 }
 //
 void setup() { 
@@ -36,14 +36,16 @@ void loop(void){
 #ifdef __cplusplus
 extern "C" {
 #endif
+  //
   // compiled under C not C++
-    int serial_getchar(bool echoit){ 
-      int thekey;
-      thekey = Serial.read(); // non blocking - returns -1 if no chars
-      if(echoit){
-        Serial.print((char)thekey);
-      }
-    return(thekey);
-  }
+  //
   void serial_putchar(char c){ Serial.print(c); }
+  //
+  int serial_getchar(bool echoit){ 
+    while (Serial.available() <= 0) { }
+    int32_t thekey = Serial.read(); // non blocking, returns -1 if no chars
+    if(echoit){ serial_putchar((char)thekey); }
+    return(thekey & 0xFF);
+  }
+  //
 }

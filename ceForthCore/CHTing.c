@@ -33,6 +33,7 @@ MemoryImage *M;
 char Printf_Buf[128]; //djw
 void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 #define Printf(...) sprintf(Printf_Buf, __VA_ARGS__); tell(Printf_Buf);//djw
+//
 #define TRACEtop Printf("top = %8X ", M->top);
 #define TRACEP   Printf("  P = %5X ", M->P);
 #define TRACEIP  Printf(" IP = %5X ", M->IP);
@@ -56,43 +57,12 @@ void tell(const char *str){ while (*str) serial_putchar(*str++); }//djw
 //
 void bye(void){	exit(0); }
 //
-bool testdone = false;
-int  cdex=0;
-char bufrd[512];
-void qrx(void)
-{
-  int32_t in;
-  int32_t charsintest;
-  if(testdone != true){
-    if(cdex == 0){
-      strcpy(bufrd, " HEX \n");
-      strcat(bufrd, " >IN ? \n");
-      cdex++;
-      testdone = true;
-      charsintest = strlen(bufrd);
-    }
-  }
-  if((--charsintest) == 0){
-    charsintest = 1; // once lol
-    //do{ in = serial_getchar(NOECHO); } //djw
-    //while(in <= 0);
-    //fpush(int32_t) in;      
-  }else{
-    fpush(int32_t) bufrd[cdex++];
-  }
-  if (M->top != 0) { fpush TRUE; }
+void qrx(void){ 
+  fpush(int32_t) serial_getchar(NOECHO); 
+  if (M->top != 0) { fpush TRUE; } 
 }
 //
-int trapcounter = 8;
-void txsto(void)
-{
-  if((char)M->top == 0x5F){ 
-    Printf("\nTRAP !\n");
-    if(--trapcounter == 0) exit(0);
-  }
-	serial_putchar((char)M->top); //djw 
-	fpop;
-}
+void txsto(void){ serial_putchar((char)M->top); fpop; }
 //
 void next(void)
 {
@@ -1355,18 +1325,18 @@ int CHT_Forth(void)
 	M->R = 0;
 	M->top = 0;
 	//
-  unsigned char PrimByteCode ; 
-  unsigned long  FuncCall ;  
-  int line = 0; 
+  //unsigned char PrimByteCode ; 
+  //unsigned long  FuncCall ;  
+  //int line = 0; 
   //
 	while (TRUE) {
-    PrimByteCode = M->cData[M->P++];
-    FuncCall = (unsigned long) primitives[PrimByteCode];
-    Printf("%5d\t", ++line);
-    Printf("func = %8X\t", FuncCall);
-    Printf("prim = %2X(%s)\t", PrimByteCode, ByteCodeBuf[PrimByteCode]);    
-    primitives[PrimByteCode]();
-    TRACE
- 		//primitives[(unsigned char)M->cData[M->P++]]();
+    //PrimByteCode = M->cData[M->P++];
+    //FuncCall = (unsigned long) primitives[PrimByteCode];
+    //Printf("%5d\t", ++line);
+    //Printf("func = %8X\t", FuncCall);
+    //Printf("prim = %2X(%s)\t", PrimByteCode, ByteCodeBuf[PrimByteCode]);    
+    //primitives[PrimByteCode]();
+    //TRACE
+ 		primitives[(unsigned char)M->cData[M->P++]]();
 	}
 }
