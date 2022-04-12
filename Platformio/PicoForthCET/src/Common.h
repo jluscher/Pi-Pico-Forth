@@ -4,9 +4,10 @@
 #include <stdarg.h>
 #include <string.h>
 #include <stdint.h>
-#include "pico/stdlib.h"
+#include <stdbool.h>
 //
-// https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
+#include "pico/stdlib.h"
+#include "pico/stdio.h"
+//#include "pico.h"
 //
 #define MEMSIZE 16384
-

@@ -40,7 +40,8 @@ void tell(const char *str){ while (*str) putchar(*str++); }//djw
 #define TRCWP  Printf(" WP = %5X ", M->WP);
 #define TRCS   Printf("  S = %-5X ", M->S);
 #define TRCS0  Printf("  S0 = %-8X ", M->stack[(unsigned char)M->S]);
-#define TRC_S  Printf("  S(4:[%X] 3:[%X] 2:[%X] 1:[%X] 0:[%X] 255:[%X] 254:[%X] 253:[%X] 252:[%X] )",                                              M->stack[4],   \
+#define TRC_S  Printf("  S(4:[%X] 3:[%X] 2:[%X] 1:[%X] 0:[%X] 255:[%X] 254:[%X] 253:[%X] 252:[%X] )", \
+                                               M->stack[4],   \
                                                M->stack[3],   \
                                                M->stack[2],   \
                                                M->stack[1],   \
@@ -73,11 +74,15 @@ void bye(void){	exit(0); }
 //
 void qrx(void){ 
   //TRC_NL TRCS TRC_S TRCtop TRC_NL
-  pushS =  getchar(); 
+  //pushS =  serial_getchar(NOECHO); 
+  pushS =  getchar();   
   if (M->top != 0) { pushS =  TRUE; } 
 }
 //
-void txsto(void){ putchar((unsigned char)M->top); popS; }
+void txsto(void){ 
+	putchar((unsigned char)M->top); 
+	popS; 
+}
 //
 void next(void)
 {
