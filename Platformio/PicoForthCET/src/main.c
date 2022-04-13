@@ -6,7 +6,7 @@ char Communicate[128];
 int CHT_Forth(void); 
 //
 int main(void){ 
-  //stdio_usb_init();
+  stdio_usb_init();
   strcpy(Title, "Pico_Forth Version: 0.00\n");
   strcat(Title, __DATE__);
   strcat(Title, "  ");
