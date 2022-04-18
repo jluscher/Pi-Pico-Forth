@@ -1,4 +1,4 @@
-A port(s) of Forth (simple) written in C.  Originally written by C.H.Ting, <-- Thank You!!
+Port(s) of Forth (simple) written in C.  Originally written by C.H.Ting, <-- Thank You!!
 
 The Directory "Original C.H.Ting ceForth" is to the best of my
 understanding the original file. Note: it has problems. It is included
