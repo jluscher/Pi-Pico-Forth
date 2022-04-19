@@ -1,8 +1,8 @@
 Port(s) of Forth (simple) written in C.  Originally written by C.H.Ting, <-- Thank You!!
 
-The "Original" is C.H.Ting's ceForth is to the best of my
-understanding the original file. Note: it has problems. It is included
-for completeness.
+The "csForth as I found it" is C.H.Ting's ceForth is to the best of my
+understanding the original file. 
+Note: it has problems. It is included with the Documents for completeness.
 
 The Directory "Baseline Code" is my manipulation of the original to get it working in a CYG-WIN compilation.
 
