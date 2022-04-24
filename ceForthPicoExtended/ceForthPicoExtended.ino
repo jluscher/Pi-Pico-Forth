@@ -10,7 +10,7 @@ void establishContact() {
   strcat(Title, "  ");
   strcat(Title, __TIME__);
   strcat(Title, "\nDerived From: (ceForth v3.3, 01jul19 C.H.Ting) <== Thank You!\n");
-  strcpy(Communicate, "Terminal Settings: 19200 Baud, 8N1, No Local Echo, Send <cr>. \n\n");
+  strcpy(Communicate, "Terminal Settings: 115200 Baud, 8N1, No Local Echo, Send <cr>. \n\n");
   //
   while (Serial.available() <= 0) { } // wait for key press
   Serial.read();
