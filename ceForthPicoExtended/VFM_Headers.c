@@ -562,8 +562,8 @@ void CompileHeaders(void){
 	int32_t IMMED = COLON(6, DOLIT, 0x80, LAST, AT, PSTOR, EXITT, GAP18);
 	int32_t ENDD = M->P;
   //
-  M->P = 0;
-  int32_t RESET = LABEL(2, 6, COLD, GAP22);
-  M->P = 0x90;
+  M->P = 0;                                   // reset P to zero to COMPILE at beginning of memory
+  int32_t RESET = LABEL(2, 6, COLD, GAP22);   // compile COLD (boot) at start of memory
+  M->P = 0x90;                                // set P to Hex 90, and begin USER's dictionary there
   int32_t USER = LABEL(8, 0X100, 0x10, IMMED - 12, ENDD, IMMED - 12, INTERR, QUITT, 0, GAP16);  
 }
