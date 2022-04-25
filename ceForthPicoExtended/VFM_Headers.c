@@ -1,172 +1,174 @@
 #include "VFM_Macros.h"
 #include "VFM_Primitives.h"
+#include "PicoPrimitivesGPIO.h"
+#include "PicoPrimitivesADC.h"
+#include "Utilities.h"
 //
 extern MemoryImage *M;
 //
-void CompileHeaders(void){
+void CompileVFM_Headers(void){
 	/* Kernel */
 	HEADER(3, "HLD");
-  	int32_t HLD = CODE(8, as_docon, as_next, 0, 0, 0X80, 0, 0, 0);
+  	int32_t HLD = VFM_CODE(8, as_docon, as_next, 0, 0, 0X80, 0, 0, 0);
 	HEADER(4, "SPAN");
-  	int32_t SPAN = CODE(8, as_docon, as_next, 0, 0, 0X84, 0, 0, 0);
+  	int32_t SPAN = VFM_CODE(8, as_docon, as_next, 0, 0, 0X84, 0, 0, 0);
 	HEADER(3, ">IN");
-    int32_t INN = CODE(8, as_docon, as_next, 0, 0, 0X88, 0, 0, 0); 
+    int32_t INN = VFM_CODE(8, as_docon, as_next, 0, 0, 0X88, 0, 0, 0); 
 	HEADER(4, "#TIB");
-	int32_t NTIB = CODE(8, as_docon, as_next, 0, 0, 0X8C, 0, 0, 0);
+	int32_t NTIB = VFM_CODE(8, as_docon, as_next, 0, 0, 0X8C, 0, 0, 0);
 	HEADER(4, "'TIB");
-	int32_t TTIB = CODE(8, as_docon, as_next, 0, 0, 0X90, 0, 0, 0);
+	int32_t TTIB = VFM_CODE(8, as_docon, as_next, 0, 0, 0X90, 0, 0, 0);
 	HEADER(4, "BASE");
-	int32_t BASE = CODE(8, as_docon, as_next, 0, 0, 0X94, 0, 0, 0);
+	int32_t BASE = VFM_CODE(8, as_docon, as_next, 0, 0, 0X94, 0, 0, 0);
 	HEADER(7, "CONTEXT");
-	int32_t CNTXT = CODE(8, as_docon, as_next, 0, 0, 0X98, 0, 0, 0);
+	int32_t CNTXT = VFM_CODE(8, as_docon, as_next, 0, 0, 0X98, 0, 0, 0);
 	HEADER(2, "CP");
-	int32_t CP = CODE(8, as_docon, as_next, 0, 0, 0X9C, 0, 0, 0);
+	int32_t CP = VFM_CODE(8, as_docon, as_next, 0, 0, 0X9C, 0, 0, 0);
 	HEADER(4, "LAST");
-	int32_t LAST = CODE(8, as_docon, as_next, 0, 0, 0XA0, 0, 0, 0);
+	int32_t LAST = VFM_CODE(8, as_docon, as_next, 0, 0, 0XA0, 0, 0, 0);
 	HEADER(5, "'EVAL");
-	int32_t TEVAL = CODE(8, as_docon, as_next, 0, 0, 0XA4, 0, 0, 0);
+	int32_t TEVAL = VFM_CODE(8, as_docon, as_next, 0, 0, 0XA4, 0, 0, 0);
 	HEADER(6, "'ABORT");
-	int32_t TABRT = CODE(8, as_docon, as_next, 0, 0, 0XA8, 0, 0, 0);
+	int32_t TABRT = VFM_CODE(8, as_docon, as_next, 0, 0, 0XA8, 0, 0, 0);
 	HEADER(3, "tmp");
-	int32_t TEMP = CODE(8, as_docon, as_next, 0, 0, 0XAC, 0, 0, 0);
+	int32_t TEMP = VFM_CODE(8, as_docon, as_next, 0, 0, 0XAC, 0, 0, 0);
 
 	HEADER(3, "NOP");
-	  int32_t NOP = CODE(4, as_next, 0, 0, 0, GAP4);
+	  int32_t NOP = VFM_CODE(4, as_next, 0, 0, 0, GAP4);
 	HEADER(3, "BYE");
-	  int32_t BYE = CODE(4, as_bye, as_next, 0, 0, GAP4);
+	int32_t BYE = VFM_CODE(4, as_bye, as_next, 0, 0, GAP4);
 	HEADER(3, "?RX");
-	int32_t QRX = CODE(4, as_qrx, as_next, 0, 0, GAP4);
+	int32_t QRX = VFM_CODE(4, as_qrx, as_next, 0, 0, GAP4);
 	HEADER(3, "TX!");
-	int32_t TXSTO = CODE(4, as_txsto, as_next, 0, 0, GAP4);
+	int32_t TXSTO = VFM_CODE(4, as_txsto, as_next, 0, 0, GAP4);
 	HEADER(5, "DOCON");
-	int32_t DOCON = CODE(4, as_docon, as_next, 0, 0, GAP4);
+	int32_t DOCON = VFM_CODE(4, as_docon, as_next, 0, 0, GAP4);
 	HEADER(5, "DOLIT");
-	int32_t DOLIT = CODE(4, as_dolit, as_next, 0, 0, GAP4);
+	int32_t DOLIT = VFM_CODE(4, as_dolit, as_next, 0, 0, GAP4);
 	HEADER(6, "DOLIST");
-	int32_t DOLST = CODE(4, as_dolist, as_next, 0, 0, GAP4);
+	int32_t DOLST = VFM_CODE(4, as_dolist, as_next, 0, 0, GAP4);
 	HEADER(4, "EXIT");
-	int32_t EXITT = CODE(4, as_exit, as_next, 0, 0, GAP4);
+	int32_t EXITT = VFM_CODE(4, as_exit, as_next, 0, 0, GAP4);
 	HEADER(7, "EXECUTE");
-	int32_t EXECU = CODE(4, as_execu, as_next, 0, 0, GAP4);
+	int32_t EXECU = VFM_CODE(4, as_execu, as_next, 0, 0, GAP4);
 	HEADER(6, "DONEXT");
-	DONXT = CODE(4, as_donext, as_next, 0, 0, GAP4);
+	DONXT = VFM_CODE(4, as_donext, as_next, 0, 0, GAP4);
 	HEADER(7, "QBRANCH");
-	QBRAN = CODE(4, as_qbran, as_next, 0, 0, GAP4);
+	QBRAN = VFM_CODE(4, as_qbran, as_next, 0, 0, GAP4);
 	HEADER(6, "BRANCH");
-	BRAN = CODE(4, as_bran, as_next, 0, 0, GAP4);
+	BRAN = VFM_CODE(4, as_bran, as_next, 0, 0, GAP4);
 	HEADER(1, "!");
-	int32_t STORE = CODE(4, as_store, as_next, 0, 0, GAP4);
+	int32_t STORE = VFM_CODE(4, as_store, as_next, 0, 0, GAP4);
 	HEADER(1, "@");
-	int32_t AT = CODE(4, as_at, as_next, 0, 0, GAP4);
+	int32_t AT = VFM_CODE(4, as_at, as_next, 0, 0, GAP4);
 	HEADER(2, "C!");
-	int32_t CSTOR = CODE(4, as_cstor, as_next, 0, 0, GAP4);
+	int32_t CSTOR = VFM_CODE(4, as_cstor, as_next, 0, 0, GAP4);
 	HEADER(2, "C@");
-	int32_t CAT = CODE(4, as_cat, as_next, 0, 0, GAP4);
+	int32_t CAT = VFM_CODE(4, as_cat, as_next, 0, 0, GAP4);
 	HEADER(2, "R>");
-	int32_t RFROM = CODE(4, as_rfrom, as_next, 0, 0, GAP4);
+	int32_t RFROM = VFM_CODE(4, as_rfrom, as_next, 0, 0, GAP4);
 	HEADER(2, "R@");
-	int32_t RAT = CODE(4, as_rat, as_next, 0, 0, GAP4);
+	int32_t RAT = VFM_CODE(4, as_rat, as_next, 0, 0, GAP4);
 	HEADER(2, ">R");
-	TOR = CODE(4, as_tor, as_next, 0, 0, GAP4);
+	TOR = VFM_CODE(4, as_tor, as_next, 0, 0, GAP4);
 	HEADER(4, "DROP");
-	int32_t DROP = CODE(4, as_drop, as_next, 0, 0, GAP4);
+	int32_t DROP = VFM_CODE(4, as_drop, as_next, 0, 0, GAP4);
 	HEADER(3, "DUP");
-	int32_t DUPP = CODE(4, as_dup, as_next, 0, 0, GAP4);
+	int32_t DUPP = VFM_CODE(4, as_dup, as_next, 0, 0, GAP4);
 	HEADER(4, "SWAP");
-	int32_t SWAP = CODE(4, as_swap, as_next, 0, 0, GAP4);
+	int32_t SWAP = VFM_CODE(4, as_swap, as_next, 0, 0, GAP4);
 	HEADER(4, "OVER");
-	int32_t OVER = CODE(4, as_over, as_next, 0, 0, GAP4);
+	int32_t OVER = VFM_CODE(4, as_over, as_next, 0, 0, GAP4);
 	HEADER(2, "0<");
-	int32_t ZLESS = CODE(4, as_zless, as_next, 0, 0, GAP4);
+	int32_t ZLESS = VFM_CODE(4, as_zless, as_next, 0, 0, GAP4);
 	HEADER(3, "AND");
-	int32_t ANDD = CODE(4, as_andd, as_next, 0, 0, GAP4);
+	int32_t ANDD = VFM_CODE(4, as_andd, as_next, 0, 0, GAP4);
 	HEADER(2, "OR");
-	int32_t ORR = CODE(4, as_orr, as_next, 0, 0, GAP4);
+	int32_t ORR = VFM_CODE(4, as_orr, as_next, 0, 0, GAP4);
 	HEADER(3, "XOR");
-	int32_t XORR = CODE(4, as_xorr, as_next, 0, 0, GAP4);
+	int32_t XORR = VFM_CODE(4, as_xorr, as_next, 0, 0, GAP4);
 	HEADER(3, "UM+");
-	int32_t UPLUS = CODE(4, as_uplus, as_next, 0, 0, GAP4);
+	int32_t UPLUS = VFM_CODE(4, as_uplus, as_next, 0, 0, GAP4);
 	HEADER(4, "NEXT");
-	int32_t NEXTT = CODE(4, as_next, as_next, 0, 0, GAP4);
+	int32_t NEXTT = VFM_CODE(4, as_next, as_next, 0, 0, GAP4);
 	HEADER(4, "?DUP");
-	int32_t QDUP = CODE(4, as_qdup, as_next, 0, 0, GAP4);
+	int32_t QDUP = VFM_CODE(4, as_qdup, as_next, 0, 0, GAP4);
 	HEADER(3, "ROT");
-	int32_t ROT = CODE(4, as_rot, as_next, 0, 0, GAP4);
+	int32_t ROT = VFM_CODE(4, as_rot, as_next, 0, 0, GAP4);
 	HEADER(5, "2DROP");
-	int32_t DDROP = CODE(4, as_ddrop, as_next, 0, 0, GAP4);
+	int32_t DDROP = VFM_CODE(4, as_ddrop, as_next, 0, 0, GAP4);
 	HEADER(4, "2DUP");
-	int32_t DDUP = CODE(4, as_ddup, as_next, 0, 0, GAP4);
+	int32_t DDUP = VFM_CODE(4, as_ddup, as_next, 0, 0, GAP4);
 	HEADER(1, "+");
-	int32_t PLUS = CODE(4, as_plus, as_next, 0, 0, GAP4);
+	int32_t PLUS = VFM_CODE(4, as_plus, as_next, 0, 0, GAP4);
 	HEADER(3, "NOT");
-	int32_t INVER = CODE(4, as_inver, as_next, 0, 0, GAP4);
+	int32_t INVER = VFM_CODE(4, as_inver, as_next, 0, 0, GAP4);
 	HEADER(6, "NEGATE");
-	int32_t NEGAT = CODE(4, as_negat, as_next, 0, 0, GAP4);
+	int32_t NEGAT = VFM_CODE(4, as_negat, as_next, 0, 0, GAP4);
 	HEADER(7, "DNEGATE");
-	int32_t DNEGA = CODE(4, as_dnega, as_next, 0, 0, GAP4);
+	int32_t DNEGA = VFM_CODE(4, as_dnega, as_next, 0, 0, GAP4);
 	HEADER(1, "-");
-	int32_t SUBBB = CODE(4, as_subb, as_next, 0, 0, GAP4);
+	int32_t SUBBB = VFM_CODE(4, as_subb, as_next, 0, 0, GAP4);
 	HEADER(3, "ABS");
-	int32_t ABSS = CODE(4, as_abss, as_next, 0, 0, GAP4);
+	int32_t ABSS = VFM_CODE(4, as_abss, as_next, 0, 0, GAP4);
 	HEADER(1, "=");
-	int32_t EQUAL = CODE(4, as_equal, as_next, 0, 0, GAP4);
+	int32_t EQUAL = VFM_CODE(4, as_equal, as_next, 0, 0, GAP4);
 	HEADER(2, "U<");
-	int32_t ULESS = CODE(4, as_uless, as_next, 0, 0, GAP4);
+	int32_t ULESS = VFM_CODE(4, as_uless, as_next, 0, 0, GAP4);
 	HEADER(1, "<");
-	int32_t LESS = CODE(4, as_less, as_next, 0, 0, GAP4);
+	int32_t LESS = VFM_CODE(4, as_less, as_next, 0, 0, GAP4);
 	HEADER(6, "UM/MOD");
-	int32_t UMMOD = CODE(4, as_ummod, as_next, 0, 0, GAP4);
+	int32_t UMMOD = VFM_CODE(4, as_ummod, as_next, 0, 0, GAP4);
 	HEADER(5, "M/MOD");
-	int32_t MSMOD = CODE(4, as_msmod, as_next, 0, 0, GAP4);
+	int32_t MSMOD = VFM_CODE(4, as_msmod, as_next, 0, 0, GAP4);
 	HEADER(4, "/MOD");
-	int32_t SLMOD = CODE(4, as_slmod, as_next, 0, 0, GAP4);
+	int32_t SLMOD = VFM_CODE(4, as_slmod, as_next, 0, 0, GAP4);
 	HEADER(3, "MOD");
-	int32_t MODD = CODE(4, as_mod, as_next, 0, 0, GAP4);
+	int32_t MODD = VFM_CODE(4, as_mod, as_next, 0, 0, GAP4);
 	HEADER(1, "/");
-	int32_t SLASH = CODE(4, as_slash, as_next, 0, 0, GAP4);
+	int32_t SLASH = VFM_CODE(4, as_slash, as_next, 0, 0, GAP4);
 	HEADER(3, "UM*");
-	int32_t UMSTA = CODE(4, as_umsta, as_next, 0, 0, GAP4);
+	int32_t UMSTA = VFM_CODE(4, as_umsta, as_next, 0, 0, GAP4);
 	HEADER(1, "*");
-	int32_t STAR = CODE(4, as_star, as_next, 0, 0, GAP4);
+	int32_t STAR = VFM_CODE(4, as_star, as_next, 0, 0, GAP4);
 	HEADER(2, "M*");
-	int32_t MSTAR = CODE(4, as_mstar, as_next, 0, 0, GAP4);
+	int32_t MSTAR = VFM_CODE(4, as_mstar, as_next, 0, 0, GAP4);
 	HEADER(5, "*/MOD");
-	int32_t SSMOD = CODE(4, as_ssmod, as_next, 0, 0, GAP4);
+	int32_t SSMOD = VFM_CODE(4, as_ssmod, as_next, 0, 0, GAP4);
 	HEADER(2, "*/");
-	int32_t STASL = CODE(4, as_stasl, as_next, 0, 0, GAP4);
+	int32_t STASL = VFM_CODE(4, as_stasl, as_next, 0, 0, GAP4);
 	HEADER(4, "PICK");
-	int32_t PICK = CODE(4, as_pick, as_next, 0, 0, GAP4);
+	int32_t PICK = VFM_CODE(4, as_pick, as_next, 0, 0, GAP4);
 	HEADER(2, "+!");
-	int32_t PSTOR = CODE(4, as_pstor, as_next, 0, 0, GAP4);
+	int32_t PSTOR = VFM_CODE(4, as_pstor, as_next, 0, 0, GAP4);
 	HEADER(2, "2!");
-	int32_t DSTOR = CODE(4, as_dstor, as_next, 0, 0, GAP4);
+	int32_t DSTOR = VFM_CODE(4, as_dstor, as_next, 0, 0, GAP4);
 	HEADER(2, "2@");
-	int32_t DAT = CODE(4, as_dat, as_next, 0, 0, GAP4);
+	int32_t DAT = VFM_CODE(4, as_dat, as_next, 0, 0, GAP4);
 	HEADER(5, "COUNT");
-	int32_t COUNT = CODE(4, as_count, as_next, 0, 0, GAP4);
+	int32_t COUNT = VFM_CODE(4, as_count, as_next, 0, 0, GAP4);
 	HEADER(3, "MAX");
-	int32_t MAX = CODE(4, as_max, as_next, 0, 0, GAP4);
+	int32_t MAX = VFM_CODE(4, as_max, as_next, 0, 0, GAP4);
 	HEADER(3, "MIN");
-	int32_t MIN = CODE(4, as_min, as_next, 0, 0, GAP4);
+	int32_t MIN = VFM_CODE(4, as_min, as_next, 0, 0, GAP4);
 	HEADER(2, "BL");
-	int32_t BLANK = CODE(8, as_docon, as_next, 0, 0, 32, 0, 0, 0);
+	int32_t BLANK = VFM_CODE(8, as_docon, as_next, 0, 0, 32, 0, 0, 0);
 	HEADER(4, "CELL");
-	int32_t CELL = CODE(8, as_docon, as_next, 0, 0, 4, 0, 0, 0);
+	int32_t CELL = VFM_CODE(8, as_docon, as_next, 0, 0, 4, 0, 0, 0);
 	HEADER(5, "CELL+");
-	int32_t CELLP = CODE(8, as_docon, as_plus, as_next, 0, 4, 0, 0, 0);
+	int32_t CELLP = VFM_CODE(8, as_docon, as_plus, as_next, 0, 4, 0, 0, 0);
 	HEADER(5, "CELL-");
-	int32_t CELLM = CODE(8, as_docon, as_subb, as_next, 0, 4, 0, 0, 0);
+	int32_t CELLM = VFM_CODE(8, as_docon, as_subb, as_next, 0, 4, 0, 0, 0);
 	HEADER(5, "CELLS");
-	int32_t CELLS = CODE(8, as_docon, as_star, as_next, 0, 4, 0, 0, 0);
+	int32_t CELLS = VFM_CODE(8, as_docon, as_star, as_next, 0, 4, 0, 0, 0);
 	HEADER(5, "CELL/");
-	int32_t CELLD = CODE(8, as_docon, as_slash, as_next, 0, 4, 0, 0, 0);
+	int32_t CELLD = VFM_CODE(8, as_docon, as_slash, as_next, 0, 4, 0, 0, 0);
 	HEADER(2, "1+");
-	int32_t ONEP = CODE(8, as_docon, as_plus, as_next, 0, 1, 0, 0, 0);
+	int32_t ONEP = VFM_CODE(8, as_docon, as_plus, as_next, 0, 1, 0, 0, 0);
 	HEADER(2, "1-");
-	int32_t ONEM = CODE(8, as_docon, as_subb, as_next, 0, 1, 0, 0, 0);
+	int32_t ONEM = VFM_CODE(8, as_docon, as_subb, as_next, 0, 1, 0, 0, 0);
 	HEADER(5, "DOVAR");
-	int32_t DOVAR = CODE(4, as_dovar, as_next, 0, 0, GAP4);
-
+	int32_t DOVAR = VFM_CODE(4, as_dovar, as_next, 0, 0, GAP4);
 	/* Common Colon Words */
 
 	HEADER(4, "?KEY");
@@ -542,8 +544,10 @@ void CompileHeaders(void){
 	int32_t STRQ = COLON(6, DOLIT, STRQP, HERE, STORE, STRCQ, EXITT, GAP18);
 	HEADER(IMEDD + 2, ".\"");
 	int32_t DOTQQ = COLON(6, DOLIT, DOTQP, HERE, STORE, STRCQ, EXITT, GAP18);
+ 
 	HEADER(4, "CODE");
 	int32_t CODE = COLON(4, TOKEN, SNAME, OVERT, EXITT, GAP20);
+	
 	HEADER(6, "CREATE");
 	int32_t CREAT = COLON(5, CODE, DOLIT, 0x203D, COMMA, EXITT, GAP19);
 	HEADER(8, "VARIABLE");
@@ -558,8 +562,32 @@ void CompileHeaders(void){
 	int32_t PAREN = COLON(5, DOLIT, 0X29, PARSE, DDROP, EXITT, GAP19);
 	HEADER(12, "COMPILE-ONLY");
 	int32_t ONLY = COLON(6, DOLIT, 0x40, LAST, AT, PSTOR, EXITT, GAP18);
+//
+// Steps to add a primitive:
+// 1) wrap a pico skd function with name f_{thename}, see PicoPrimitivesADC.c
+// 2) add as_f_{thename} to ByteCodes.h
+// 3) in Common.h increment the PRIMITIVE_ARRAYSIZE
+// 4) add the f_{thename} to the end of the primitive array at end of VFM_Primitives.c
+// 5) Generate suitable HEADER and Variable below, don't forget the damn as_ prefix
+//
+#ifdef EXTENSIONS
+// PICO EXTENSIONS
+  // ADC
+  HEADER(7 , "TEMP_ON");     int32_t   TEMP_ON     = VFM_CODE(4, as_f_temp_on, as_next, 0, 0, GAP4);   
+  HEADER(8,  "TEMP_OFF");    int32_t   TEMP_OFF    = VFM_CODE(4, as_f_temp_off, as_next, 0, 0, GAP4);     
+  HEADER(8,  "ADC_INIT");    int32_t   ADC_INIT    = VFM_CODE(4, as_f_adc_init, as_next, 0, 0, GAP4);
+  HEADER(11, "ADC_IO_INIT"); int32_t   ADC_IO_INIT = VFM_CODE(4, as_f_adc_gpio_init, as_next, 0, 0, GAP4); 
+  HEADER(9,  "ADC_INPUT");   int32_t   ADC_INPUT   = VFM_CODE(4, as_f_adc_select_input, as_next, 0, 0, GAP4);
+  HEADER(8,  "ADC_READ");    int32_t   ADC_READ    = VFM_CODE(4, as_f_adc_read, as_next, 0, 0, GAP4);
+  HEADER(7,  "RAWTEMP");     int32_t   RAWTEMP     = COLON(7, ADC_INIT, TEMP_ON, DOLIT, 4, ADC_INPUT, ADC_READ, EXITT, GAP17);      
+#endif
+  
 	HEADER(9, "IMMEDIATE");
 	int32_t IMMED = COLON(6, DOLIT, 0x80, LAST, AT, PSTOR, EXITT, GAP18);
+#ifdef REPORT_COUNTS
+  ReportCounts(); 
+#endif
+  // 
 	int32_t ENDD = M->P;
   //
   M->P = 0;

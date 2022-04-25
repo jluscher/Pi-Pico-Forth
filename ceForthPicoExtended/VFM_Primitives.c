@@ -1,4 +1,6 @@
 #include "Common.h"
+#include "PicoPrimitivesADC.h"
+#include "Utilities.h"
 //
 extern MemoryImage *M;
 //
@@ -6,13 +8,14 @@ extern MemoryImage *M;
 //
 void bye(void){ exit(0); }
 //
+#define SERIAL_CHAR
 void qrx(void){ 
 #ifdef SERIAL_CHAR  
-    push(long) serial_getchar(); 
+    pushS(long) serial_getchar(); 
 #else
-    push(long) getchar(); 
+    pushS(long) getchar(); 
 #endif
-	if (M->top != 0) push TRUE;
+	if (M->top != 0) pushS TRUE;
 }
 //
 void txsto(void)
@@ -22,7 +25,7 @@ void txsto(void)
 #else
   putchar((char)M->top);
 #endif  
-	pop;
+	popS;
 }
 //
 void next(void)
@@ -34,17 +37,17 @@ void next(void)
 //
 void dovar(void)
 {
-	push M->WP;
+	pushS M->WP;
 }
 //
 void docon(void)
 {
-	push M->data[M->WP >> 2];
+	pushS M->data[M->WP >> 2];
 }
 //
 void dolit(void)
 {
-	push M->data[M->IP >> 2];
+	pushS M->data[M->IP >> 2];
 	M->IP += 4;
 	next();
 }
@@ -66,7 +69,7 @@ void execu(void)
 {
 	M->P = M->top;
 	M->WP = M->P + 4;
-	pop;
+	popS;
 }
 //
 void donext(void)
@@ -86,7 +89,7 @@ void qbran(void)
 {
 	if (M->top == 0) M->IP = M->data[M->IP >> 2];
 	else M->IP += 4;
-	pop;
+	popS;
 	next();
 }
 //
@@ -99,7 +102,7 @@ void bran(void)
 void store(void)
 {
 	M->data[M->top >> 2] = M->stack[M->S--]; 
-	pop;
+	popS;
 }
 //
 void at(void)
@@ -110,7 +113,7 @@ void at(void)
 void cstor(void)
 {
 	M->cdata[M->top] = (char)M->stack[M->S--]; 
-	pop;
+	popS;
 }
 //
 void cat(void)
@@ -120,23 +123,23 @@ void cat(void)
 //
 void rfrom(void)
 {
-	push M->rack[(M->R)--]; 
+	pushS M->rack[(M->R)--]; 
 }
 //
 void rat(void)
 {
-	push M->rack[M->R]; 
+	pushS M->rack[M->R]; 
 }
 //
 void tor(void)
 {
 	M->rack[++(M->R)] = M->top; 
-	pop;
+	popS;
 }
 //
 void drop(void)
 {
-	pop;
+	popS;
 }
 //
 void dup(void)
@@ -153,7 +156,7 @@ void swap(void)
 //
 void over(void)
 {
-	push M->stack[M->S - 1]; 
+	pushS M->stack[M->S - 1]; 
 }
 //
 void zless(void)
@@ -230,7 +233,7 @@ void dnega(void)
 	inver();
 	tor();
 	inver();
-	push 1;
+	pushS 1;
 	uplus();
 	rfrom();
 	plus();
@@ -273,7 +276,7 @@ void ummod(void)
 	M->m = (int64_t)((uint64_t)M->stack[M->S]);
 	M->n = (int64_t)((uint64_t)M->stack[M->S - 1]); 
 	M->n += M->m << 32;
-	pop;
+	popS;
 	M->top = (uint64_t)(M->n / M->d);
 	M->stack[M->S] = (uint64_t)(M->n % M->d);   
 }
@@ -284,7 +287,7 @@ void msmod(void)
 	M->m = (int64_t)((signed long)M->stack[M->S]);
 	M->n = (int64_t)((signed long)M->stack[M->S - 1]); 
 	M->n += M->m << 32;
-	pop;
+	popS;
 	M->top = (signed long)(M->n / M->d);
 	M->stack[M->S] = (signed long)(M->n % M->d); 
 }
@@ -337,7 +340,7 @@ void ssmod(void)
 	M->m = (int64_t)M->stack[M->S];
 	M->n = (int64_t)M->stack[(M->S) - 1]; 
 	M->n *= M->m;
-	pop;
+	popS;
 	M->top = (signed long)(M->n / M->d);
 	M->stack[M->S] = (signed long)(M->n % M->d); 
 }
@@ -348,7 +351,7 @@ void stasl(void)
 	M->m = (int64_t)M->stack[M->S];
 	M->n = (int64_t)M->stack[(M->S) - 1]; 
 	M->n *= M->m;
-	pop; pop;
+	popS; popS;
 	M->top = (signed long)(M->n / M->d);
 }
 //
@@ -359,19 +362,19 @@ void pick(void)
 //
 void pstor(void)
 {
-	M->data[M->top >> 2] += M->stack[(M->S)--], pop; 
+	M->data[M->top >> 2] += M->stack[(M->S)--], popS; 
 }
 //
 void dstor(void)
 {
 	M->data[(M->top >> 2) + 1] = M->stack[(M->S)--];
 	M->data[M->top >> 2] = M->stack[(M->S)--]; 
-	pop;
+	popS;
 }
 //
 void dat(void)
 {
-	push M->data[M->top >> 2];
+	pushS M->data[M->top >> 2];
 	M->top = M->data[(M->top >> 2) + 1];
 }
 //
@@ -383,14 +386,14 @@ void count(void)
 //
 void max_(void)
 {
-	if (M->top < M->stack[M->S]) pop;
+	if (M->top < M->stack[M->S]) popS;
 	else (M->S)--; 
 }
 //
 void min_(void)
 {
 	if (M->top < M->stack[M->S]) (M->S)--; 
-	else pop;
+	else popS;
 }
 //
 void(*primitives[PRIMITIVE_ARRAYSIZE])(void) = {
@@ -458,5 +461,15 @@ void(*primitives[PRIMITIVE_ARRAYSIZE])(void) = {
 	/* case 61 */ dovar,
 	/* case 62 */ max_,
 	/* case 63 */ min_
-  //gpio_dir, // 64
+#ifndef EXTENSIONS
 };
+#else
+,
+  f_temp_on,          // 64
+  f_temp_off,         // 65                  
+  f_adc_init,         // 66
+  f_adc_gpio_init,    // 67
+  f_adc_select_input, // 68
+  f_adc_read          // 69
+};
+#endif

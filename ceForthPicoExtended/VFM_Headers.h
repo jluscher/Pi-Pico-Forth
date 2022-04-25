@@ -1,1 +1,1 @@
-void CompileHeaders(void);
+void CompileVFM_Headers(void);

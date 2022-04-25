@@ -31,6 +31,7 @@
 /* Preamble */
 #include "Common.h"
 #include "VFM_Headers.h"
+#include "Utilities.h"
 //
 MemoryImage *M;
 //
@@ -51,32 +52,6 @@ void PrepareMemory(MemoryImage *mptr){
 	M = mptr;
 }
 //
-#define CRC32_DICTIONARY
-//
-#ifdef CRC32_DICTIONARY
-char crc32buf[48];
-char* crc32b(MemoryImage *mptr) {
-   int32_t i, j, len;
-   uint32_t abyte, crc, mask;
-   //
-   i = 0;
-   crc = 0xFFFFFFFF;
-   len = MEMSIZE;
-   while (len-- >= 0){
-      abyte = mptr->cdata[i];           
-      crc = crc ^ abyte;
-      for (j = 7; j >= 0; j--) {   
-         mask = -(crc & 1);
-         crc = (crc >> 1) ^ (0xEDB88320 & mask);
-      }
-      i++;
-   }
-   if(0x1D41B324 == ~crc) sprintf(crc32buf,"\nCRC32 = %8X <= Looking Good!\n", ~crc);
-   if(0x1D41B324 != ~crc) sprintf(crc32buf,"\nCRC32 = %8X <= Not Good!\n", ~crc); 
-   return crc32buf;
-}
-#endif
-//
 extern void(*primitives[PRIMITIVE_ARRAYSIZE])(void);
 //
 /*
@@ -87,12 +62,13 @@ int32_t CHT_Forth(MemoryImage *MP)
   PrepareMemory(MP);
   M->P = 512;
   M->R = 0;
-  CompileHeaders();
+  CompileVFM_Headers();
   //
-#ifdef CRC32_DICTIONARY 
-	M->P = 0;
-	Printbuf(crc32b(MP));
-#endif
+#ifdef CRC32_DICTIONARY
+  Set_astart(0); // entire dictionary space, will change crc if MEMSIZE is changed
+  Set_anend(MEMSIZE);
+  Printbuf(crc32b("\nCRC32 of Entire Dictionary = "));
+#endif  
   //
   // Boot Up
   //  

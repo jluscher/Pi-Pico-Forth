@@ -38,7 +38,7 @@ extern int32_t BRAN, QBRAN, DONXT, DOTQP, STRQP, TOR, ABORQP;
 #define PARAM08_08 iS c0, iS c1, iS c2, iS c3, iS c4, iS c5, iS c6, iS c7
 //
 void  HEADER(int32_t  , char *);
-int32_t CODE(int32_t  , PARAM08_08); 
+int32_t VFM_CODE(int32_t  , PARAM08_08); 
 int32_t COLON(int32_t , PARAM32_24);
 int32_t LABEL(int32_t , PARAM32_24); 
 void BEGIN(int32_t    , PARAM32_24); 

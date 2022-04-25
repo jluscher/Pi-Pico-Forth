@@ -1,9 +1,11 @@
 #include "VFM_Macros.h"
+#include "Utilities.h"
 /* Macro Assembler */
 //
 #define NAME_LENGTH_MAX 31
 extern MemoryImage *M;
 //
+int32_t HeaderCount =0, VFM_CodeCount =0;
 int32_t IMEDD = 0x80;
 int32_t COMPO = 0x40;
 int32_t BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 0;
@@ -92,42 +94,14 @@ int32_t BRAN = 0, QBRAN = 0, DONXT = 0, DOTQP = 0, STRQP = 0, TOR = 0, ABORQP = 
     case  0: M->IP +=  0; break; \
   } 
 //
-#define CRC_HEADER
-#ifdef CRC_HEADER
-char acrc32buf[48];
-int32_t astart=512, anend;
-char* acrc32b(char *s) {
-   int32_t i, j;
-   int32_t cnt = anend - astart;
-   uint32_t abyte, crc, mask;
-   MemoryImage *mptr;
-   mptr = (MemoryImage *)astart;
-   //
-   i = 0;
-   crc = 0xFFFFFFFF;
-   while (cnt-- >= 0){
-      abyte = mptr->cdata[i];           
-      crc = crc ^ abyte;
-      for (j = 7; j >= 0; j--) {   
-         mask = -(crc & 1);
-         crc = (crc >> 1) ^ (0xEDB88320 & mask);
-      }
-      i++;
-   }
-   sprintf(acrc32buf,"%16s %8.8X \n", s, crc);
-   astart = anend;
-   return acrc32buf;
-}
-void reportcrc(char* s){ Printbuf(acrc32b(s)); }
-#endif
-//
 void HEADER(int32_t lex,  char seq[]) {
+  HeaderCount++;
   int32_t len = lex & 0x1F;        // seperate name length
   int32_t nfa = M->thread;         // thread == name field of prior word
   //
   ALIGN_IP ;                       // align Integer Pointer from Character Pointer  
 #ifdef CRC_HEADER
-  astart = M->P;  
+  if(HeaderCount == 1)Set_astart(M->P);
 #endif  
   DEPOSIT_WORD_INC = nfa;          // place the nfa
   ALIGN_P ;                        // update Character Pointer to match IP
@@ -138,11 +112,13 @@ void HEADER(int32_t lex,  char seq[]) {
   while (M->P & 3){ DEPOSIT_BYTE_INC = (char) 0; }             // pad name with zeros
   //
 #ifdef CRC_HEADER
-  anend = M->P; reportcrc(seq); 
+  Set_anend(M->P);
+  Printbuf(crc32b(seq)); 
 #endif
 }
 //
-int32_t CODE(int32_t len, PARAM08_08){
+int32_t VFM_CODE(int32_t len, PARAM08_08){
+  VFM_CodeCount++;
   int32_t addr = M->P;
   DEPOSIT_8BYTES_MAX 
   return(addr); // return nfa of this CODE
@@ -158,11 +134,11 @@ int32_t COLON(int32_t len,  PARAM32_24 ){
 }
 //
 int32_t LABEL(int32_t len, PARAM32_24) {
-	int32_t addr = M->P;
-	ALIGN_IP ;
+  int32_t addr = M->P;
+  ALIGN_IP ;
   DEPOSIT_24INT32_MAX
-	ALIGN_P ;
-	return addr;
+  ALIGN_P ;
+  return addr;
 }
 //
 void BEGIN(int32_t len, PARAM32_24) {
