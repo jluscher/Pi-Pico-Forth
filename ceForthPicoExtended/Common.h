@@ -28,7 +28,7 @@ extern "C" {
 #define MEMSIZE 32768
 #define STACKSIZE 256
 //
-#define PRIMITIVE_ARRAYSIZE 70
+#define PRIMITIVE_ARRAYSIZE 86
 //
 typedef struct{
   union{

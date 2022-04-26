@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "PicoPrimitivesADC.h"
+#include "PicoPrimitivesGPIO.h"
 #include "Utilities.h"
 //
 extern MemoryImage *M;
@@ -465,11 +466,28 @@ void(*primitives[PRIMITIVE_ARRAYSIZE])(void) = {
 };
 #else
 ,
-  f_temp_on,          // 64
+  f_temp_on,          // 64 PICO ADC
   f_temp_off,         // 65                  
   f_adc_init,         // 66
   f_adc_gpio_init,    // 67
   f_adc_select_input, // 68
   f_adc_read          // 69
+,
+ f_gpio_get_dir,                     // 70 PICO GPIO
+ f_gpio_get_drive_strength,          // 71
+ f_gpio_get_slew_rate,               // 72
+ f_gpio_disable_pulls,               // 73
+ f_gpio_pull_up,                     // 74
+ f_gpio_pull_down,                   // 75
+ f_gpio_is_pulled_up,                // 76
+ f_gpio_is_pulled_down,              // 77
+ f_gpio_is_input_hysteresis_enabled, // 78
+ f_gpio_get,                         // 79
+ f_gpio_init,                        // 80
+ f_gpio_set_dir,                     // 81
+ f_gpio_put,                         // 82
+ f_gpio_set_drive_strength,          // 83
+ f_gpio_set_slew_rate,               // 84
+ f_gpio_set_input_hysteresis_enabled // 85
 };
 #endif

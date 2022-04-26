@@ -153,6 +153,8 @@ void CompileVFM_Headers(void){
 	int32_t MIN = VFM_CODE(4, as_min, as_next, 0, 0, GAP4);
 	HEADER(2, "BL");
 	int32_t BLANK = VFM_CODE(8, as_docon, as_next, 0, 0, 32, 0, 0, 0);
+  HEADER(3, "TAB"); // DJW
+  int32_t TAB = VFM_CODE(8, as_docon, as_next, 0, 0, 9, 0, 0, 0);  
 	HEADER(4, "CELL");
 	int32_t CELL = VFM_CODE(8, as_docon, as_next, 0, 0, 4, 0, 0, 0);
 	HEADER(5, "CELL+");
@@ -273,6 +275,8 @@ void CompileVFM_Headers(void){
 
 	HEADER(5, "SPACE");
 	int32_t SPACE = COLON(3, BLANK, EMIT, EXITT, GAP21);
+  HEADER(5, "DOTAB");
+  int32_t DOTAB = COLON(3, TAB, EMIT, EXITT, GAP21);  // DJW
 	HEADER(5, "CHARS");
 	int32_t CHARS = COLON(4, SWAP, DOLIT, 0, MAX, GAP20);
 	FOR(0, GAP24);
@@ -492,14 +496,17 @@ void CompileVFM_Headers(void){
 	REPEAT(3, SWAP, DROP, EXITT, GAP21);
 	HEADER(3, ".ID");
 	int32_t DOTID = COLON(7, COUNT, DOLIT, 0x1F, ANDD, TYPES, SPACE, EXITT, GAP17);
+//
+  #define WORDS_ON_LINE_MINUS_1 3 
 	HEADER(5, "WORDS");
 	int32_t WORDS = COLON(6, CR, CNTXT, DOLIT, 0, TEMP, STORE, GAP18);
 	BEGIN(2, AT, QDUP, GAP22);
-	WHILE(9, DUPP, SPACE, DOTID, CELLM, TEMP, AT, DOLIT, 0xA, LESS, GAP15);
+	WHILE(10, DUPP, DOTAB, DOTAB, DOTID, CELLM, TEMP, AT, DOLIT, WORDS_ON_LINE_MINUS_1, LESS, GAP14); 
 	IF(4, DOLIT, 1, TEMP, PSTOR, GAP20);
 	ELSE(5, CR, DOLIT, 0, TEMP, STORE, GAP19);
 	THEN(0, GAP24);
 	REPEAT(1, EXITT, GAP23);
+//	
 	HEADER(6, "FORGET");
 	int32_t FORGT = COLON(3, TOKEN, NAMEQ, QDUP, GAP21);
 	IF(12, CELLM, DUPP, CP, STORE, AT, DUPP, CNTXT, STORE, LAST, STORE, DROP, EXITT, GAP12);
@@ -579,7 +586,25 @@ void CompileVFM_Headers(void){
   HEADER(11, "ADC_IO_INIT"); int32_t   ADC_IO_INIT = VFM_CODE(4, as_f_adc_gpio_init, as_next, 0, 0, GAP4); 
   HEADER(9,  "ADC_INPUT");   int32_t   ADC_INPUT   = VFM_CODE(4, as_f_adc_select_input, as_next, 0, 0, GAP4);
   HEADER(8,  "ADC_READ");    int32_t   ADC_READ    = VFM_CODE(4, as_f_adc_read, as_next, 0, 0, GAP4);
-  HEADER(7,  "RAWTEMP");     int32_t   RAWTEMP     = COLON(7, ADC_INIT, TEMP_ON, DOLIT, 4, ADC_INPUT, ADC_READ, EXITT, GAP17);      
+  HEADER(7,  "RAWTEMP");     int32_t   RAWTEMP     = COLON(7, ADC_INIT, TEMP_ON, DOLIT, 4, ADC_INPUT, ADC_READ, EXITT, GAP17);
+  // GPIO
+  HEADER(10, "GET_IO_DIR");       int32_t   GET_IO_DIR       = VFM_CODE(4, as_f_gpio_get_dir, as_next, 0, 0, GAP4); 
+  HEADER(10, "GET_IO_AMP");       int32_t   GET_IO_AMP       = VFM_CODE(4, as_f_gpio_get_drive_strength, as_next, 0, 0, GAP4); 
+  HEADER(11, "GET_IO_SLEW");      int32_t   GET_IO_SLEW      = VFM_CODE(4, as_f_gpio_get_slew_rate, as_next, 0, 0, GAP4); 
+  HEADER(16, "SET_IO_DIS_PULLS"); int32_t   SET_IO_DIS_PULLS = VFM_CODE(4, as_f_gpio_disable_pulls, as_next, 0, 0, GAP4); 
+  HEADER(14, "SET_IO_PULL_UP");   int32_t   SET_IO_PULL_UP   = VFM_CODE(4, as_f_gpio_pull_up, as_next, 0, 0, GAP4); 
+  HEADER(14, "SET_IO_PULL_DN");   int32_t   SET_IO_PULL_DN   = VFM_CODE(4, as_f_gpio_pull_down, as_next, 0, 0, GAP4); 
+  HEADER(15, "CHK_IO_PULL_UP?");  int32_t   CHK_IO_PULL_UPQ  = VFM_CODE(4, as_f_gpio_is_pulled_up, as_next, 0, 0, GAP4); 
+  HEADER(15, "CHK_IO_PULL_DN?");  int32_t   CHK_IO_PULL_DNQ  = VFM_CODE(4, as_f_gpio_is_pulled_down, as_next, 0, 0, GAP4); 
+  HEADER(15, "CHK_IO_HIST_ON?");  int32_t   CHK_IO_HIST_ONQ  = VFM_CODE(4, as_f_gpio_is_input_hysteresis_enabled, as_next, 0, 0, GAP4); 
+  HEADER(10, "GET_IO_BIT");       int32_t   GET_IO_BIT       = VFM_CODE(4, as_f_gpio_get, as_next, 0, 0, GAP4); 
+  HEADER(14, "SET_IO_BIT_SIO");   int32_t   SET_IO_BIT_SIO   = VFM_CODE(4, as_f_gpio_init, as_next, 0, 0, GAP4); 
+  HEADER(14, "SET_IO_BIT_DIR");   int32_t   SET_IO_BIT_DIR   = VFM_CODE(4, as_f_gpio_set_dir, as_next, 0, 0, GAP4); 
+  HEADER(10, "PUT_IO_BIT");       int32_t   PUT_IO_BIT       = VFM_CODE(4, as_f_gpio_put, as_next, 0, 0, GAP4); 
+  HEADER(10, "SET_IO_AMP");       int32_t   SET_IO_AMP       = VFM_CODE(4, as_f_gpio_set_drive_strength, as_next, 0, 0, GAP4); 
+  HEADER(11, "SET_IO_SLEW");      int32_t   SET_IO_SLEW      = VFM_CODE(4, as_f_gpio_set_slew_rate, as_next, 0, 0, GAP4); 
+  HEADER(11, "SET_IO_HIST");      int32_t   SET_IO_HIST      = VFM_CODE(4, as_f_gpio_set_input_hysteresis_enabled, as_next, 0, 0, GAP4); 
+  //
 #endif
   
 	HEADER(9, "IMMEDIATE");
