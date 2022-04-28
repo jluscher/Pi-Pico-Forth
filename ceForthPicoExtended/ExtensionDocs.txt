@@ -1,3 +1,6 @@
+Many names need to be changed, these are old from the last forth version.
+The SPI docs at the end of the file are correct, at least thru one set of tests.
+
 ---
 BuiltIns
 ---
