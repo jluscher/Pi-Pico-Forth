@@ -8,3 +8,4 @@ void reportcrc(char*);
 void Set_astart(int32_t);
 void Set_anend (int32_t);
 void ReportCounts(void);
+void PrintNumber(int32_t);

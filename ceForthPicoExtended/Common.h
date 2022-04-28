@@ -15,6 +15,13 @@
 #define  popR  M->rack[(M->R)--]
 #define  pushR M->rack[++(M->R)]
 //
+#define FLASH_SECTORS_AVAILABLE 256
+#define FLASH_SECTORS_OFFSET 1024 * 1024
+#define PAGES_PER_SECTOR 16
+#define MEMSIZE 4096 * 4
+#define STACKSIZE 256
+#define PRIMITIVE_ARRAYSIZE 92
+//
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -24,11 +31,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-//
-#define MEMSIZE 32768
-#define STACKSIZE 256
-//
-#define PRIMITIVE_ARRAYSIZE 86
 //
 typedef struct{
   union{

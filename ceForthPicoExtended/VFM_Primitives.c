@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "PicoPrimitivesADC.h"
 #include "PicoPrimitivesGPIO.h"
+#include "PicostoreSPI.h"
 #include "Utilities.h"
 //
 extern MemoryImage *M;
@@ -489,5 +490,12 @@ void(*primitives[PRIMITIVE_ARRAYSIZE])(void) = {
  f_gpio_set_drive_strength,          // 83
  f_gpio_set_slew_rate,               // 84
  f_gpio_set_input_hysteresis_enabled // 85
+,
+ f_flash_sector_erase,               // 86
+ f_flash_store,                      // 87
+ f_flash_page_list,                  // 88
+ f_flash_get_unique_id,              // 89
+ f_page_pattern,                     // 90
+ f_WipeAllSectors                    // 91
 };
 #endif

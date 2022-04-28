@@ -605,6 +605,12 @@ void CompileVFM_Headers(void){
   HEADER(11, "SET_IO_SLEW");      int32_t   SET_IO_SLEW      = VFM_CODE(4, as_f_gpio_set_slew_rate, as_next, 0, 0, GAP4); 
   HEADER(11, "SET_IO_HIST");      int32_t   SET_IO_HIST      = VFM_CODE(4, as_f_gpio_set_input_hysteresis_enabled, as_next, 0, 0, GAP4); 
   //
+  HEADER(12, "SECTOR_ERASE");     int32_t   SECTOR_ERASE     = VFM_CODE(4, as_f_flash_sector_erase, as_next, 0, 0, GAP4);   
+  HEADER(12, "SECTOR_STORE");     int32_t   SECTOR_STORE     = VFM_CODE(4, as_f_flash_store, as_next, 0, 0, GAP4);   
+  HEADER(9,  "PAGE_LIST");        int32_t   PAGE_LIST        = VFM_CODE(4, as_f_flash_page_list, as_next, 0, 0, GAP4);     
+  HEADER(6,  "GET_ID");           int32_t   GET_ID           = VFM_CODE(4, as_f_flash_get_unique_id, as_next, 0, 0, GAP4);     
+  HEADER(12, "PATTERN_PAGE");     int32_t   PATTERN_PAGE     = VFM_CODE(4, as_f_page_pattern, as_next, 0, 0, GAP4);     
+  HEADER(16, "WIPE_ALL_SECTORS"); int32_t   WIPE_ALL_SECTORS = VFM_CODE(4, as_f_WipeAllSectors, as_next, 0, 0, GAP4);     
 #endif
   
 	HEADER(9, "IMMEDIATE");

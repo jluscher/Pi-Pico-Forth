@@ -40,3 +40,9 @@ void ReportCounts(void){
   if(strlen(buf)>80)sprintf(buf,"\nReportCounts string too long!\n");
   Printbuf(buf);
 }
+//
+void PrintNumber(int32_t N){
+  char buf[20];
+  sprintf(buf," %d ",N);
+  Printbuf(buf);
+}

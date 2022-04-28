@@ -44,6 +44,12 @@ as_pick,  as_pstor,  as_dstor, as_dat,   as_count, as_dovar,    as_max,    as_mi
  as_f_gpio_put,
  as_f_gpio_set_drive_strength,
  as_f_gpio_set_slew_rate,
- as_f_gpio_set_input_hysteresis_enabled
+ as_f_gpio_set_input_hysteresis_enabled,
+ as_f_flash_sector_erase,               
+ as_f_flash_store,                      
+ as_f_flash_page_list,                  
+ as_f_flash_get_unique_id,              
+ as_f_page_pattern,                     
+ as_f_WipeAllSectors                     
 } ByteCodes;
 #endif
