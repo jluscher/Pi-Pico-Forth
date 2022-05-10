@@ -9,7 +9,6 @@ extern MemoryImage *M;
 //
 //#define VERBOSE
 //
-char buf256[256];
 //
 void f_flash_sector_erase(void){ //(Sector - ) erase one sector = 4096 bytes
   int32_t s = FLASH_SECTORS_AVAILABLE; 
@@ -114,15 +113,13 @@ void f_flash_page_list(void){ // (sector Page - )
   }
 }
 //
-uint8_t IDbuf[16] = {}; // buf needs to be >= 64bits long plus char 0  
-//
 void f_flash_get_unique_id(void){  // ( - idPtr)
-  flash_get_unique_id((uint8_t*)IDbuf);
+  flash_get_unique_id((uint8_t*)M->IDbuf);
 #ifdef VERBOSE
   Printbuf("\n");
-  show_buffer(IDbuf, 8);
+  show_buffer(M->IDbuf, 8);
 #endif
-  pushS (int32_t)IDbuf;
+  pushS (int32_t)M->IDbuf;
 }
 //
 // make page pattern to test writing flash
@@ -136,12 +133,12 @@ void f_page_pattern(void){ // (Offset - PatternPtr)
   Printbuf("\n");
 #endif
   for(i=0;i<256;i++){
-    buf256[i] = (unsigned char)(0xFF & (i+offset));
+    M->page_buf[i] = (unsigned char)(0xFF & (i+offset));
   }
 #ifdef VERBOSE
-  show_buffer(buf256, 256);
+  show_buffer(M->page_buf, 256);
 #endif
-  pushS (int32_t)buf256;
+  pushS (int32_t)M->page_buf;
 }
 /*
 void f_flash_do_cmd(int32_t*, int32_t*, int32_t){
@@ -156,4 +153,16 @@ void f_WipeAllSectors(void){ // ( - )
     pushS i;
     f_flash_sector_erase();
   }
+}
+//
+void f_Get_Page_Line(void){ // (line page sector - )destination M->line_buf[64]
+  int32_t LineNumber = M->top ;  popS ;   
+  int32_t PageNumber = M->top ;  popS ;  
+  int32_t SectorNumber = M->top ; popS ;   
+}
+//
+void f_Put_Page_Line(void){ // source M->line_buf[64]
+  int32_t LineNumber = M->top ;  popS ;   
+  int32_t PageNumber = M->top ;  popS ;  
+  int32_t SectorNumber = M->top ; popS ;   
 }

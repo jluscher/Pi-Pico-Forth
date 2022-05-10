@@ -1,4 +1,5 @@
 #include "Common.h"
+#include "ForthWordExtensions.h"
 #include "PicoPrimitivesADC.h"
 #include "PicoPrimitivesGPIO.h"
 #include "PicostoreSPI.h"
@@ -12,11 +13,16 @@ void bye(void){ exit(0); }
 //
 #define SERIAL_CHAR
 void qrx(void){ 
+char thechar;  
+  if (CompileExtensions()){ thechar =  OkCompile(); }
+  else{
 #ifdef SERIAL_CHAR  
-    pushS(long) serial_getchar(); 
+        thechar = serial_getchar(); 
 #else
-    pushS(long) getchar(); 
+        thechar = getchar(); 
 #endif
+  }
+  pushS(long) thechar;
 	if (M->top != 0) pushS TRUE;
 }
 //

@@ -8,3 +8,4 @@ void f_flash_get_unique_id(void);
 void f_page_pattern(void);
 //void f_flash_do_cmd(int32_t*, int32_t*, int32_t);
 void f_WipeAllSectors(void);
+void f_Get_Page_Line(void);

@@ -42,4 +42,7 @@ typedef struct{
   int64_t  d, n, m;
   int8_t   R, S;
   int32_t  top, P, IP, WP, thread;
+  int8_t   IDbuf[16];
+  int8_t   line_buf[64];
+  int8_t   page_buf[256];
 } MemoryImage;
