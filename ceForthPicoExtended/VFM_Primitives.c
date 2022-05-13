@@ -82,15 +82,13 @@ void execu(void)
 //
 void donext(void)
 {
-	if (M->rack[M->R]) {
-		M->rack[M->R] -= 1;
-		M->IP = M->data[M->IP >> 2]; 
-	}
-	else {
-		M->IP += 4;
-		(M->R)--;
-	}
-	next();
+	if (M->rack[M->R]) {                // if top of R-stack element is non-zero
+		M->rack[M->R] -= 1;                 // decrement top of R-stack element
+		M->IP = M->data[M->IP >> 2];        // continue interpreting at start of loop
+	} else {                            // else
+		M->IP += 4;                         // step interpreter pointer to next cell
+		(M->R)--;                           // DROP top element from R-stack
+	} next();                           // resume interpreting
 }
 //
 void qbran(void)
